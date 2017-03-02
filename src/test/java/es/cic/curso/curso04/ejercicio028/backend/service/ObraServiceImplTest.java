@@ -19,7 +19,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Categoria;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
 
@@ -45,9 +45,9 @@ public class ObraServiceImplTest {
 	private Tipo tipo2;
 	private Tipo tipo3;
 	
-	private Categoria categoria1;
-	private Categoria categoria2;
-	private Categoria categoria3;
+	private Estilo estilo1;
+	private Estilo estilo2;
+	private Estilo estilo3;
  
 	
 	
@@ -71,7 +71,7 @@ public class ObraServiceImplTest {
 
 	@Test
 	public void testBorrarObra() {
-		Obra historicoABorrar = new Obra("titulo","autor",1234,tipo1,categoria1,1234,"imagen");
+		Obra historicoABorrar = new Obra("titulo","autor",1234,tipo1,estilo1,1234,"imagen");
 		obraService.aniadirObra(historicoABorrar);
 		obraService.borrarObra(historicoABorrar.getId());
 		List<Obra> listaHistorico = obraService.listarObra();
@@ -97,17 +97,17 @@ public class ObraServiceImplTest {
 		entityManager.persist(tipo2);
 		entityManager.persist(tipo3);
 		
-		categoria1 = new Categoria("categoria1");
-		categoria2 = new Categoria("categoria2");
-		categoria3 = new Categoria("categoria3");
+		estilo1 = new Estilo("estilo1");
+		estilo2 = new Estilo("estilo2");
+		estilo3 = new Estilo("estilo3");
 
-		entityManager.persist(categoria1);
-		entityManager.persist(categoria2);
-		entityManager.persist(categoria3);
+		entityManager.persist(estilo1);
+		entityManager.persist(estilo2);
+		entityManager.persist(estilo3);
 		
-		obra1 = new Obra("titulo","autor",1234,tipo1,categoria1,1234,"imagen");
-		obra2 = new Obra("titulo","autor",1234,tipo2,categoria2,1234,"imagen");
-		obra3 = new Obra("titulo","autor",1234,tipo3,categoria3,1234,"imagen");
+		obra1 = new Obra("titulo","autor",1234,tipo1,estilo1,1234,"imagen");
+		obra2 = new Obra("titulo","autor",1234,tipo2,estilo2,1234,"imagen");
+		obra3 = new Obra("titulo","autor",1234,tipo3,estilo3,1234,"imagen");
 
 		entityManager.persist(obra1);
 		entityManager.persist(obra2);

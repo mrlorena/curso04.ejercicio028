@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Categoria;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
 
@@ -28,7 +28,7 @@ public class ObraRepositoryImplTest extends AbstractRepositoryImplTest<Long, Obr
 	private ObraRepository sut;
 	 
 	private Tipo tipo;
-	private Categoria categoria;
+	private Estilo estilo;
 
 	    @Before
 	    @Override
@@ -36,9 +36,9 @@ public class ObraRepositoryImplTest extends AbstractRepositoryImplTest<Long, Obr
 	    	super.setUp();
 	    	
 	    	tipo = new Tipo("cuadro");
-	    	categoria = new Categoria("cuadro");
+	    	estilo = new Estilo("cuadro");
 	    	em.persist(tipo);
-	    	em.persist(categoria);
+	    	em.persist(estilo);
 	        
 	    }
 
@@ -51,7 +51,7 @@ public class ObraRepositoryImplTest extends AbstractRepositoryImplTest<Long, Obr
 	    	obra.setAutor("autor");
 	    	obra.setAnio(1900);
 	        obra.setTipo(tipo);
-	        obra.setCategoria(categoria);
+	        obra.setEstilo(estilo);
 	        obra.setPrecio(1200);
 	        obra.setImagen("imagen");
 	        
@@ -68,7 +68,7 @@ public class ObraRepositoryImplTest extends AbstractRepositoryImplTest<Long, Obr
 	    	obra.setAutor("autor");
 	    	obra.setAnio(1900);
 	        obra.setTipo(tipo);
-	        obra.setCategoria(categoria);
+	        obra.setEstilo(estilo);
 	        obra.setPrecio(1200);
 	        obra.setImagen("imagen");
 	        
@@ -88,7 +88,7 @@ public class ObraRepositoryImplTest extends AbstractRepositoryImplTest<Long, Obr
 	    	obra.setAutor("autor");
 	    	obra.setAnio(1900);
 	        obra.setTipo(tipo);
-	        obra.setCategoria(categoria);
+	        obra.setEstilo(estilo);
 	        obra.setPrecio(1200);
 	        obra.setImagen("imagen");
 	       
@@ -122,7 +122,7 @@ public class ObraRepositoryImplTest extends AbstractRepositoryImplTest<Long, Obr
 				return false;
 			}
 			
-			if (!t1.getCategoria().equals(t2.getCategoria())) {
+			if (!t1.getEstilo().equals(t2.getEstilo())) {
 				return false;
 			}
 			

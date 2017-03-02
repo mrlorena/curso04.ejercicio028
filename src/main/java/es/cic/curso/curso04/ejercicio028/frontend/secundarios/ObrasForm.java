@@ -16,10 +16,10 @@ import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Categoria;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
-import es.cic.curso.curso04.ejercicio028.backend.service.CategoriaService;
+import es.cic.curso.curso04.ejercicio028.backend.service.EstiloService;
 import es.cic.curso.curso04.ejercicio028.backend.service.ObraService;
 import es.cic.curso.curso04.ejercicio028.backend.service.TipoService;
 import es.cic.curso.grupo5.ejercicio027.frontend.secundarios.GestionHistoricos;
@@ -44,7 +44,7 @@ public class ObrasForm extends FormLayout {
 	private Tipo nombreTipo;
 	
 	@PropertyId("categoria")
-	private Categoria nombreCategoria;
+	private Estilo nombreCategoria;
 	
 	@PropertyId("precio")
 	private TextField precio;
@@ -58,9 +58,9 @@ public class ObrasForm extends FormLayout {
 	private ObraService obraService;
 	private List<String> listaAutores;
 	private List<Tipo> listaTipos;
-	private List<Categoria> listaCategorias;
+	private List<Estilo> listaCategorias;
 	
-	private CategoriaService categoriaService;
+	private EstiloService categoriaService;
 	private TipoService operacionService;
 	
 	

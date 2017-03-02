@@ -10,24 +10,24 @@ import javax.persistence.Table;
 import es.cic.curso.curso04.ejercicio028.backend.repository.Identificable;
 
 @Entity
-@Table(name="CATEGORIA")
-public class Categoria implements Identificable<Long>{
+@Table(name="ESTILO")
+public class Estilo implements Identificable<Long>{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name="NOMBRE_CATEGORIA")
-	private String nombreCategoria;
+	@Column(name="NOMBRE_ESTILO")
+	private String nombreEstilo;
 	
 	
-	public Categoria() {
+	public Estilo() {
 		super();
 	}
 
-	public Categoria(String nombreCategoria) {
+	public Estilo(String nombreEstilo) {
 		super();
-		this.nombreCategoria = nombreCategoria;
+		this.nombreEstilo = nombreEstilo;
 	}
 
 	@Override
@@ -40,12 +40,12 @@ public class Categoria implements Identificable<Long>{
 		this.id = id;
 	}
 
-	public String getNombreCategoria() {
-		return nombreCategoria;
+	public String getNombreEstilo() {
+		return nombreEstilo;
 	}
 
-	public void setNombreCategoria(String nombreCategoria) {
-		this.nombreCategoria = nombreCategoria;
+	public void setNombreEstilo(String nombreEstilo) {
+		this.nombreEstilo = nombreEstilo;
 	}
 
 	

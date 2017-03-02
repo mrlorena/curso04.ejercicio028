@@ -12,7 +12,7 @@ import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
-import es.cic.curso.curso04.ejercicio028.backend.service.CategoriaService;
+import es.cic.curso.curso04.ejercicio028.backend.service.EstiloService;
 
 
 public class TiposForm extends FormLayout {
@@ -34,7 +34,7 @@ public class TiposForm extends FormLayout {
 	
 	@SuppressWarnings("unused")
 	private GestionTipos padre;
-	private CategoriaService rolService;
+	private EstiloService rolService;
 
 	private Tipo tipo;
 	
@@ -42,7 +42,7 @@ public class TiposForm extends FormLayout {
 	public TiposForm(GestionTipos padre) {
 		this.padre = padre;
 
-		rolService = ContextLoader.getCurrentWebApplicationContext().getBean(CategoriaService.class);	
+		rolService = ContextLoader.getCurrentWebApplicationContext().getBean(EstiloService.class);	
 		
 		
 	}

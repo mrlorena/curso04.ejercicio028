@@ -1,6 +1,12 @@
 package es.cic.curso.curso04.ejercicio028.frontend.secundarios;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.context.ContextLoader;
+
+import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.Grid;
@@ -9,11 +15,11 @@ import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Grid.SelectionMode;
 
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Categoria;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
+import es.cic.curso.curso04.ejercicio028.backend.service.ObraService;
 import es.cic.curso.curso04.ejercicio028.frontend.principal.MyUI;
-import es.cic.curso.grupo5.ejercicio027.frontend.secundarios.HistoricoForm;
 
 public class GestionObras  extends HorizontalLayout {
 
@@ -22,9 +28,9 @@ public class GestionObras  extends HorizontalLayout {
 	 */
 	private static final long serialVersionUID = 6683850118394414599L;
 	
-	
+	private ObraService obraService;
 	private Tipo tipo;
-	private Categoria categoria;
+	private Estilo categoria;
 	private ObrasForm detalleObras;
 	
 	private final VerticalLayout verticalLayoutGrid;
@@ -37,7 +43,8 @@ public class GestionObras  extends HorizontalLayout {
 	private NativeButton aniadirObra;
 	private Grid gridObras;
 	
- 
+	private List<Obra> listaObras = new ArrayList<>();
+	
 	@SuppressWarnings("unused")
 	private MyUI padre;
 
@@ -45,6 +52,7 @@ public class GestionObras  extends HorizontalLayout {
 	
 	public GestionObras(MyUI padre){
 		this.padre = padre;
+		obraService = ContextLoader.getCurrentWebApplicationContext().getBean(ObraService.class);
 		
 		horizontal1 = new HorizontalLayout();
 		horizontal2 = new HorizontalLayout();
@@ -84,15 +92,26 @@ public class GestionObras  extends HorizontalLayout {
 		addComponents(verticalLayoutGrid, verticalLayoutFormulario);
 		
 	}
-	private void aniadirObra(Obra obra) {	
-		obra = new Obra("","",0,tipo,categoria,0,"");
+	private void aniadirObra() {	
+		detalleObras.setVisible(true);
+		Obra o = new Obra("","",0,tipo,categoria,0,"");
+		detalleObras.setObra(o);
+		gridObras.setContainerDataSource(
+				new BeanItemContainer<>(Obra.class, listaObras)
+				);
 		
 	}
 
 
 	public void cargarObras(Obra obra){	
-		
+		List<Obra> listaObras = obraService.listarObra();
+		aniadirObra.setVisible(true);
+		detalleObras.setVisible(false);
 		
 
+		gridObras.setContainerDataSource(
+				new BeanItemContainer<>(Obra.class, listaObras)
+				);
+		detalleObras.setObra(null);
 	}
 }

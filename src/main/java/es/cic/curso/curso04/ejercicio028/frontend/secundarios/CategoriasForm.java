@@ -11,8 +11,8 @@ import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.VerticalLayout;
 
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Categoria;
-import es.cic.curso.curso04.ejercicio028.backend.service.CategoriaService;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
+import es.cic.curso.curso04.ejercicio028.backend.service.EstiloService;
 public class CategoriasForm extends FormLayout {
 
 	/**
@@ -28,12 +28,12 @@ public class CategoriasForm extends FormLayout {
 	
 
 	private List<String> listaRoles;
-	private CategoriaService categoriaService;
+	private EstiloService categoriaService;
 	
 	private NativeButton confirmar;
 	private NativeButton cancelar;
 
-	private Categoria categoria;
+	private Estilo categoria;
 	
 	
 	public CategoriasForm(GestionCategorias padre) {
@@ -42,19 +42,19 @@ public class CategoriasForm extends FormLayout {
 		final VerticalLayout vertical1 = new VerticalLayout();
 		vertical1.setSpacing(true);
 
-		categoriaService = ContextLoader.getCurrentWebApplicationContext().getBean(CategoriaService.class);	
+		categoriaService = ContextLoader.getCurrentWebApplicationContext().getBean(EstiloService.class);	
 		
 		
 		
 	}
-	public void setCategoria(Categoria categoria) {
+	public void setCategoria(Estilo categoria) {
 		this.setVisible(categoria != null);
 		this.categoria = categoria;
 
 		if (categoria != null) {
 			BeanFieldGroup.bindFieldsUnbuffered(categoria, this);
 		} else {
-			BeanFieldGroup.bindFieldsUnbuffered(new Categoria(), this);
+			BeanFieldGroup.bindFieldsUnbuffered(new Estilo(), this);
 		}
 	}
 }

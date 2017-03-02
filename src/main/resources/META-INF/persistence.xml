@@ -8,7 +8,7 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>es.cic.curso.curso04.ejercicio028.backend.dominio.Obra</class>
         <class>es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo</class>
-        <class>es.cic.curso.curso04.ejercicio028.backend.dominio.Categoria</class>
+        <class>es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo</class>
 
         <!--
         	Ruta de las clases que va en el Dominio

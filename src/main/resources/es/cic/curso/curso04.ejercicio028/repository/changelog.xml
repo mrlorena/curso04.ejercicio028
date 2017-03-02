@@ -16,11 +16,11 @@
          </createTable>
          
              
-         <createTable catalogName="grupo5" tableName="CATEGORIA">
+         <createTable catalogName="grupo5" tableName="ESTILO">
             <column autoIncrement="true" name="id" type="INT(10)">
                 <constraints primaryKey="true" />
             </column>
-            <column name="NOMBRE_CATEGORIA" type="VARCHAR(50)" />
+            <column name="NOMBRE_ESTILO" type="VARCHAR(50)" />
          </createTable>
          
          <createTable catalogName="grupo00" tableName="OBRA">
@@ -31,7 +31,7 @@
 	            <column name="AUTOR" type="VARCHAR(60)"/>
 	            <column name="ANIO" type="INT(4)"/>
 	            <column name="TIPO_ID" type="INT(10)"/>
-	            <column name="CATEGORIA_ID" type="INT(10)"/>
+	            <column name="ESTILO_ID" type="INT(10)"/>
 	            <column name="PRECIO" type="DOUBLE(5,5)"/>
 	            <column name="IMAGEN" type="VARCHAR(60)"/>
 	             

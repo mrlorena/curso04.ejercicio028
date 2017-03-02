@@ -33,8 +33,8 @@ public class Obra implements Identificable<Long> {
 	private Tipo tipo;
 	
 	@OneToOne
-	@JoinColumn(name="CATEGORIA_ID")
-	private Categoria categoria;
+	@JoinColumn(name="ESTILO_ID")
+	private Estilo estilo;
 	
 	@Column(name="PRECIO")
 	private double precio;
@@ -47,13 +47,13 @@ public class Obra implements Identificable<Long> {
 		super();
 	}
 	
-	public Obra(String titulo, String autor, int anio, Tipo tipo, Categoria categoria, double precio, String imagen) {
+	public Obra(String titulo, String autor, int anio, Tipo tipo, Estilo estilo, double precio, String imagen) {
 		super();
 		this.titulo = titulo;
 		this.autor = autor;
 		this.anio = anio;
 		this.tipo = tipo;
-		this.categoria = categoria;
+		this.estilo = estilo;
 		this.precio = precio;
 		this.imagen = imagen;
 	}
@@ -99,12 +99,12 @@ public class Obra implements Identificable<Long> {
 		this.tipo = tipo;
 	}
 
-	public Categoria getCategoria() {
-		return categoria;
+	public Estilo getEstilo() {
+		return estilo;
 	}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+	public void setEstilo(Estilo estilo) {
+		this.estilo = estilo;
 	}
 
 	public double getPrecio() {

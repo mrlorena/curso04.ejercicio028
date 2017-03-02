@@ -19,7 +19,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Categoria;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 
  
 
@@ -27,17 +27,17 @@ import es.cic.curso.curso04.ejercicio028.backend.dominio.Categoria;
 @ContextConfiguration(locations = {	"classpath:es/cic/curso/curso04.ejercicio028/applicationContext.xml"})
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
 @Transactional
-public class CategoriaServiceImplTest {
+public class EstiloServiceImplTest {
 
 	@PersistenceContext
 	protected EntityManager entityManager;
 	
 	@Autowired
-	private CategoriaService categoriaService;
+	private EstiloService estiloService;
 
-	private Categoria categoria1;
-	private Categoria categoria2;
-	private Categoria categoria3;
+	private Estilo estilo1;
+	private Estilo estilo2;
+	private Estilo estilo3;
 	
 	
 	@Before
@@ -47,49 +47,49 @@ public class CategoriaServiceImplTest {
 
 	@Test
 	public void testAniadirCategoria() {
-		categoriaService.aniadirCategoria(categoria1);
-		categoriaService.aniadirCategoria(categoria2);
-		categoriaService.aniadirCategoria(categoria3);
+		estiloService.aniadirEstilo(estilo1);
+		estiloService.aniadirEstilo(estilo2);
+		estiloService.aniadirEstilo(estilo3);
 		
-		assertNotNull(categoria1.getId());
-		assertNotNull(categoria2.getId());
-		assertNotNull(categoria3.getId());
+		assertNotNull(estilo1.getId());
+		assertNotNull(estilo2.getId());
+		assertNotNull(estilo3.getId());
 	}
 
 	@Test
 	public void testModificarCategoria() {
 		
-		categoria2.setNombreCategoria("categoria");
-		categoriaService.modificarCategoria(categoria2);
-		assertEquals(categoria2.getNombreCategoria(), "categoria");
+		estilo2.setNombreEstilo("estilo");
+		estiloService.modificarEstilo(estilo2);
+		assertEquals(estilo2.getNombreEstilo(), "estilo");
 	}
 
 	@Test
 	public void testBorrarCategoria() {
-		Categoria categoriaABorrar = new Categoria("operacion");
-		categoriaService.aniadirCategoria(categoriaABorrar);
-		categoriaService.borrarCategoria(categoriaABorrar.getId());
-		List<Categoria> listaCategoria = categoriaService.listarCategoria();
-		assertEquals(listaCategoria.size(), 3);
+		Estilo estiloABorrar = new Estilo("estilo");
+		estiloService.aniadirEstilo(estiloABorrar);
+		estiloService.borrarEstilo(estiloABorrar.getId());
+		List<Estilo> listaEstilo = estiloService.listarEstilo();
+		assertEquals(listaEstilo.size(), 3);
 	}
 
 	@Test
 	public void testListarCategoria() {
-		List<Categoria> listaCategoria = categoriaService.listarCategoria();
-		for (Categoria u : listaCategoria) {
+		List<Estilo> listaEstilo = estiloService.listarEstilo();
+		for (Estilo u : listaEstilo) {
 			assertNotNull(u.getId());
 		}
 
 	}
 	
 	private void inicializaBaseDeDatos() {
-		categoria1 = new Categoria("categoria1");
-		categoria2 = new Categoria("categoria2");
-		categoria3 = new Categoria("categoria3");
+		estilo1 = new Estilo("categoria1");
+		estilo2 = new Estilo("categoria2");
+		estilo3 = new Estilo("categoria3");
 
-		entityManager.persist(categoria1);
-		entityManager.persist(categoria2);
-		entityManager.persist(categoria3);
+		entityManager.persist(estilo1);
+		entityManager.persist(estilo2);
+		entityManager.persist(estilo3);
 
 	}
 

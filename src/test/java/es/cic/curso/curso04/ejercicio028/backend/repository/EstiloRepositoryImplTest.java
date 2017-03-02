@@ -6,17 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Categoria;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 "classpath:es/cic/curso/curso04.ejercicio028/applicationContext.xml"}
 )
-public class CategoriaRepositoryImplTest extends AbstractRepositoryImplTest<Long, Categoria> {
+public class EstiloRepositoryImplTest extends AbstractRepositoryImplTest<Long, Estilo> {
 
 	
 	 @Autowired
-	    private CategoriaRepository sut;
+	    private EstiloRepository sut;
 
 	    @Before
 	    @Override
@@ -25,23 +25,23 @@ public class CategoriaRepositoryImplTest extends AbstractRepositoryImplTest<Long
 	    }
 
 	    @Override
-	    public Categoria getInstanceDeTParaNuevo() {
+	    public Estilo getInstanceDeTParaNuevo() {
 	    	
-	    	Categoria categoria = new Categoria();
+	    	Estilo estilo = new Estilo();
 	    	
-	        categoria.setNombreCategoria("dibujo");
+	        estilo.setNombreEstilo("dibujo");
 	        
-	        return categoria;
+	        return estilo;
 	    }
 
 	    @Override
-	    public Categoria getInstanceDeTParaLectura() {
+	    public Estilo getInstanceDeTParaLectura() {
 	    
-	    	Categoria categoria = new Categoria();
+	    	Estilo estilo = new Estilo();
 	    	
-	        categoria.setNombreCategoria("dibujo");
+	        estilo.setNombreEstilo("dibujo");
 	        
-	        return categoria;
+	        return estilo;
 	    }
 
 	    @Override
@@ -50,26 +50,26 @@ public class CategoriaRepositoryImplTest extends AbstractRepositoryImplTest<Long
 	    }
 
 	    @Override
-	    public Categoria getInstanceDeTParaModificar(Long clave) {
-	    	Categoria categoria = getInstanceDeTParaLectura();
-	    	categoria.setId(clave);
-	    	categoria.setNombreCategoria("dibujo");
+	    public Estilo getInstanceDeTParaModificar(Long clave) {
+	    	Estilo estilo = getInstanceDeTParaLectura();
+	    	estilo.setId(clave);
+	    	estilo.setNombreEstilo("dibujo");
 	       
-	        return categoria;
+	        return estilo;
 	    }
 
 	    @Override
-	    public IRepository<Long, Categoria> getRepository() {
+	    public IRepository<Long, Estilo> getRepository() {
 	        return sut;
 	    }
 
 	    @Override
-	    public boolean sonDatosIguales(Categoria t1, Categoria t2) {
+	    public boolean sonDatosIguales(Estilo t1, Estilo t2) {
 	        if (t1 == null || t2 == null) {
 	            throw new UnsupportedOperationException("No puedo comparar nulos");
 	        }
 	        
-			if (!t1.getNombreCategoria().equals(t2.getNombreCategoria())) {
+			if (!t1.getNombreEstilo().equals(t2.getNombreEstilo())) {
 				return false;
 			}
 			
