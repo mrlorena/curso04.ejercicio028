@@ -15,8 +15,7 @@ import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Operacion;
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Rol;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Categoria;
 import es.cic.curso.curso04.ejercicio028.backend.service.CategoriaService;
 public class CategoriasForm extends FormLayout {
 
@@ -33,12 +32,12 @@ public class CategoriasForm extends FormLayout {
 	
 
 	private List<String> listaRoles;
-	private CategoriaService rolService;
-	List<Rol> lisRoles = new ArrayList<>();
-	 
-	private Operacion operacion;
+	private CategoriaService categoriaService;
+	
 	private NativeButton confirmar;
 	private NativeButton cancelar;
+
+	private Categoria categoria;
 	
 	
 	public CategoriasForm(GestionCategorias padre) {
@@ -46,64 +45,20 @@ public class CategoriasForm extends FormLayout {
 		
 		final VerticalLayout vertical1 = new VerticalLayout();
 		vertical1.setSpacing(true);
-		  
-		
-		rolService = ContextLoader.getCurrentWebApplicationContext().getBean(CategoriaService.class);	
-		
-		
-		listaRoles = new ArrayList<>();	
-		lisRoles=rolService.listarRol();
-		
-		for(Rol rol :lisRoles){	
-			listaRoles.add(rol.getTipoRol());
-		}
-		
-		nombreRol = new ComboBox("Rol",listaRoles);
-		nombreRol.setNullSelectionAllowed(false);
-		nombreRol.select(1);
-		nombreRol.setImmediate(true);
-		nombreRol.setWidth(300, Unit.PIXELS);
-		nombreRol.setInputPrompt("seleccione rol");
-		
-		confirmar = new NativeButton("confirmar");
-		confirmar.setIcon(FontAwesome.SAVE);
-		cancelar = new NativeButton("Cancelar");
-		cancelar.setIcon(FontAwesome.REPLY);
-		
-		confirmar.addClickListener(e->{
-			
-			if(nombreRol.getValue()==null){	
-				Notification sample = new Notification("Rellene todos los campos");
-				sample.setDelayMsec(2000);
-				sample.show(Page.getCurrent()); 
-			}
-			else{
-				
-				
-				operacion.setNombreRol(nombreRol.getValue().toString());
-				padre.cargaGridOperaciones(operacion);
-				setOperacion(null);
-				
-			}
-		
-		});
-		
-		cancelar.addClickListener(e->padre.cargaGridOperaciones(null));
-		
-		vertical1.addComponents(nombreRol,confirmar,cancelar);
-		addComponents(vertical1);
 
-		setOperacion(null);
+		categoriaService = ContextLoader.getCurrentWebApplicationContext().getBean(CategoriaService.class);	
+		
+		
 		
 	}
-	public void setOperacion(Operacion operacion) {
-		this.setVisible(operacion != null);
-		this.operacion = operacion;
+	public void setCategoria(Categoria categoria) {
+		this.setVisible(categoria != null);
+		this.categoria = categoria;
 
-		if (operacion != null) {
-			BeanFieldGroup.bindFieldsUnbuffered(operacion, this);
+		if (categoria != null) {
+			BeanFieldGroup.bindFieldsUnbuffered(categoria, this);
 		} else {
-			BeanFieldGroup.bindFieldsUnbuffered(new Operacion(), this);
+			BeanFieldGroup.bindFieldsUnbuffered(new Categoria(), this);
 		}
 	}
 }

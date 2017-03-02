@@ -16,7 +16,7 @@ import com.vaadin.ui.VerticalLayout;
 
 import es.cic.curso.curso04.ejercicio028.frontend.secundarios.GestionObras;
 import es.cic.curso.curso04.ejercicio028.frontend.secundarios.GestionCategorias;
-import es.cic.curso.curso04.ejercicio028.frontend.secundarios.TiposUsuarios;
+import es.cic.curso.curso04.ejercicio028.frontend.secundarios.GestionTipos;
 
 
 
@@ -38,7 +38,7 @@ public class MyUI extends UI {
 		layout.setSpacing(true);
 		layout.setWidth("100%");
 
-		final HorizontalLayout hlTipos = new TiposUsuarios(this);
+		final HorizontalLayout hlTipos = new GestionTipos(this);
 		hlTipos.setMargin(true);
 		hlTipos.setSpacing(true);
 		final HorizontalLayout hlObras = new GestionObras(this);
