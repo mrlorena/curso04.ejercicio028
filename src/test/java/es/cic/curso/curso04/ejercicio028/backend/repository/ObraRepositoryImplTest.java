@@ -12,7 +12,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Categoria;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
-import es.cic.curso.curso04.ejercicio028.backend.repository.IRepository;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)

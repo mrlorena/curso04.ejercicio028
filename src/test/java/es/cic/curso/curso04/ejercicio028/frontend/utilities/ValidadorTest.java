@@ -1,11 +1,10 @@
 package es.cic.curso.curso04.ejercicio028.frontend.utilities;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import es.cic.curso.curso04.ejercicio028.frontend.utilities.Validador;
 
 public class ValidadorTest {
 	

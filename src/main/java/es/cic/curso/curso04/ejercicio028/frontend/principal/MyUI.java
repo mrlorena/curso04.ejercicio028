@@ -6,16 +6,14 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-
 import com.vaadin.ui.HorizontalLayout;
-
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-import es.cic.curso.curso04.ejercicio028.frontend.secundarios.GestionObras;
 import es.cic.curso.curso04.ejercicio028.frontend.secundarios.GestionCategorias;
+import es.cic.curso.curso04.ejercicio028.frontend.secundarios.GestionObras;
 import es.cic.curso.curso04.ejercicio028.frontend.secundarios.GestionTipos;
 
 
@@ -49,7 +47,7 @@ public class MyUI extends UI {
 		hlCategorias.setSpacing(true);
 		
 		
-		Label titulo = new Label("CONTROL DE ACCESOS / PERMISOS");
+		Label titulo = new Label("CATÁLOGO DE OBRAS DE ARTE");
 		pestania = new TabSheet();
 		pestania.setHeight(100.0f, Unit.PERCENTAGE);
 		pestania.addTab(hlObras, "OBRAS");

@@ -17,9 +17,6 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.cic.curso.curso04.ejercicio028.backend.repository.IRepository;
-import es.cic.curso.curso04.ejercicio028.backend.repository.Identificable;
-
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class})
 @Transactional
 public abstract class AbstractRepositoryImplTest<K extends Number, T extends Identificable<K>> {

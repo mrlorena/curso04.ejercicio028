@@ -3,7 +3,6 @@ package es.cic.curso.curso04.ejercicio028.backend.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
- 
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -20,10 +19,9 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Categoria;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Categoria;
-import es.cic.curso.curso04.ejercicio028.backend.service.ObraService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:es/cic/curso/curso04.ejercicio028/applicationContext.xml"})

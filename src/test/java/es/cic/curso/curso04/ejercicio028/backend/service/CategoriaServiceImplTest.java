@@ -20,7 +20,6 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.transaction.annotation.Transactional;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Categoria;
-import es.cic.curso.curso04.ejercicio028.backend.service.CategoriaService;
 
  
 
