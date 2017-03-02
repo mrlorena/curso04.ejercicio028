@@ -42,9 +42,9 @@ public class MyUI extends UI {
 		final HorizontalLayout hlObras = new GestionObras(this);
 		hlObras.setMargin(true);
 		hlObras.setSpacing(true);
-		final HorizontalLayout hlCategorias = new GestionCategorias(this);
-		hlCategorias.setMargin(true);
-		hlCategorias.setSpacing(true);
+		final HorizontalLayout hlEstilos = new GestionCategorias(this);
+		hlEstilos.setMargin(true);
+		hlEstilos.setSpacing(true);
 		
 		
 		Label titulo = new Label("CATÁLOGO DE OBRAS DE ARTE");
@@ -52,7 +52,7 @@ public class MyUI extends UI {
 		pestania.setHeight(100.0f, Unit.PERCENTAGE);
 		pestania.addTab(hlObras, "OBRAS");
 		pestania.addTab(hlTipos, "TIPOS");
-		pestania.addTab(hlCategorias, "CATEGORIAS");
+		pestania.addTab(hlEstilos, "ESTILOS");
 
 		layout.addComponents(titulo,pestania);	
 		setContent(layout);

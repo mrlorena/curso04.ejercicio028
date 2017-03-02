@@ -6,8 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
+import es.cic.curso.curso04.ejercicio028.backend.repository.EstiloRepository;
 import es.cic.curso.curso04.ejercicio028.backend.repository.ObraRepository;
+import es.cic.curso.curso04.ejercicio028.backend.repository.TipoRepository;
 
 @Service
 @Transactional
@@ -15,6 +19,12 @@ public class ObraServiceImpl implements ObraService{
 
 	@Autowired
 	private ObraRepository obraRepository;
+	
+	@Autowired
+	private TipoRepository tipoRepository;
+	
+	@Autowired
+	private EstiloRepository estiloRepository;
 
     @Override
 	public Obra aniadirObra(Obra obra) {
@@ -41,5 +51,21 @@ public class ObraServiceImpl implements ObraService{
     public List<Obra> listarObra() {
         return obraRepository.list();
     }
+    
+    @Override
+	public void generaBBDD() {
+    	Tipo tipo = new Tipo("tipo1");
+    	Estilo estilo = new Estilo("estilo1");
+    
+    	tipoRepository.add(tipo);
+    	estiloRepository.add(estilo);
+    	
+		Obra obra1 = new Obra("titulo1", "autor1", 1234, tipo, estilo, 1235, "imagen");
+		Obra obra2 = new Obra("titulo2", "autor2", 1234, tipo, estilo, 1235, "imagen");	
+		
+		obraRepository.add(obra1);
+		obraRepository.add(obra2);
+		
+	}
 
 }

@@ -15,4 +15,6 @@ public interface ObraService {
     Obra obtenerObra(Long id);
 
     List<Obra> listarObra();
+
+	void generaBBDD();
 }
