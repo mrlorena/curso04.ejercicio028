@@ -121,12 +121,12 @@ public class GestionObras  extends HorizontalLayout {
 				
 					if(obra.getTipo().getNombreTipo().equals(tipo.getNombreTipo())){
 						
-					if(obra.getEstilo().getNombreEstilo().equals(estilo.getNombreEstilo())){
+					//if(obra.getEstilo().getNombreEstilo().equals(estilo.getNombreEstilo())){
 							ObraDTO obraDTO = new ObraDTO();
 							obraDTO = obraConverter.entityToDto(obra,tipo,estilo);
 							listaObras.add(obraDTO);
 						}
-					}
+					
 				}
 				 
 			}

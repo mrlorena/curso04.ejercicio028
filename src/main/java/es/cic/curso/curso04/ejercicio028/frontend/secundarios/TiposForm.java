@@ -3,9 +3,11 @@ import org.springframework.web.context.ContextLoader;
 
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.PropertyId;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Page;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.PasswordField;
@@ -13,36 +15,70 @@ import com.vaadin.ui.TextField;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
 import es.cic.curso.curso04.ejercicio028.backend.service.EstiloService;
+import es.cic.curso.curso04.ejercicio028.backend.service.TipoService;
 
 
 public class TiposForm extends FormLayout {
 	 
 	private static final long serialVersionUID = -8212581707579739708L;
 
-	@PropertyId("nombre")
-	private TextField nombre;
-	@PropertyId("password")
-	protected PasswordField password;
-	@PropertyId("email")
-	private TextField email;	
-	@PropertyId("rol")
+	@PropertyId("nombreTipo")
+	private TextField nombreTipo;
 	
 	private NativeButton confirmar;
 	private NativeButton cancelar;	
 	
-	private ComboBox roles;
+	private final HorizontalLayout horizontal1;
+	private final HorizontalLayout horizontal2;
+
 	
 	@SuppressWarnings("unused")
 	private GestionTipos padre;
-	private EstiloService rolService;
+	private TipoService tipoService;
 
 	private Tipo tipo;
 	
 			
 	public TiposForm(GestionTipos padre) {
 		this.padre = padre;
+		tipo = new Tipo();
+		tipoService = ContextLoader.getCurrentWebApplicationContext().getBean(TipoService.class);	
+		
+		confirmar = new NativeButton("Guardar");
+		confirmar.setIcon(FontAwesome.SAVE);
 
-		rolService = ContextLoader.getCurrentWebApplicationContext().getBean(EstiloService.class);	
+		cancelar = new NativeButton("Cancelar");
+		cancelar.setIcon(FontAwesome.REPLY);
+		
+		nombreTipo = new TextField("Nombre ");
+
+		horizontal1 = new HorizontalLayout();
+		horizontal2 = new HorizontalLayout();
+		
+		confirmar.addClickListener(e->{
+				tipoService.aniadirTipo(tipo);
+				padre.cargarTipos(tipo);
+				
+				setTipo(null);
+				nombreTipo.clear();
+				
+				
+				
+			
+			
+		});
+
+		cancelar.addClickListener(e->{
+			
+			nombreTipo.clear();
+			padre.cargarTipos(null);
+			
+		
+		});
+		horizontal1.addComponents(nombreTipo);
+		horizontal2.addComponents(confirmar, cancelar);
+
+		addComponents(horizontal1,horizontal2);	
 		
 		
 	}

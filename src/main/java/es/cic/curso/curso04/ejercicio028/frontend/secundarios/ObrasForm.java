@@ -1,6 +1,10 @@
 package es.cic.curso.curso04.ejercicio028.frontend.secundarios;
 
  
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,12 +12,18 @@ import org.springframework.web.context.ContextLoader;
 
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.PropertyId;
+import com.vaadin.server.FileResource;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Image;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.Upload;
+import com.vaadin.ui.Upload.Receiver;
+import com.vaadin.ui.Upload.SucceededEvent;
+import com.vaadin.ui.Upload.SucceededListener;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
@@ -135,6 +145,69 @@ public class ObrasForm extends FormLayout {
 		cancelar.setIcon(FontAwesome.REPLY);
 	
 		
+
+		// Show uploaded file in this placeholder
+		final Image image = new Image("Cargar imagen");
+
+		// Implement both receiver that saves upload in a file and
+		// listener for successful upload
+		class ImageUploader implements Receiver, SucceededListener {
+		    public File file;
+		    private int counter;
+            private int total;
+            private boolean sleep;
+		    
+        	
+    			OutputStream outputFile = null;
+
+    			@Override
+    			public OutputStream receiveUpload(String strFilename, String strMIMEType) {
+    				File file = null;
+    				try {
+    					file = new File("/src/main/webapp/WEB-INF" + strFilename);
+    					if (!file.exists()) {
+    						file.createNewFile();
+    					}
+    					outputFile = new FileOutputStream(file);
+    				} catch (IOException e) {
+    					e.printStackTrace();
+    				}
+    				return outputFile;
+    			}
+
+    			protected void finalize() {
+    				try {
+    					super.finalize();
+    					if (outputFile != null) {
+    						outputFile.close();
+    					}
+    				} catch (Throwable exception) {
+    					exception.printStackTrace();
+    				}
+    			
+            
+            
+            
+            
+            
+            
+            
+		       
+		    }
+
+		    public void uploadSucceeded(SucceededEvent event) {
+		        // Show the uploaded file in the image viewer
+		        image.setSource(new FileResource(file));
+		    }
+		};
+		ImageUploader receiver = new ImageUploader();
+
+		// Create the upload with a caption and set receiver later
+		Upload upload = new Upload("Seleccione la imagen", receiver);
+		upload.addSucceededListener(receiver);
+		upload.setButtonCaption("Guardar");
+		
+		
 		
 		confirmar.addClickListener(e->{
 			
@@ -144,7 +217,9 @@ public class ObrasForm extends FormLayout {
 			*/
 				//obra.setTitulo(txTitulo.getValue().toString());
 				obra.setAutor(cbAutores.getValue().toString());
-			//	obraService.aniadirObra(obra);
+				obraService.aniadirObra(obra);
+				
+			
 				padre.cargarObras(obra);
 				
 				setObra(null);
@@ -171,6 +246,8 @@ public class ObrasForm extends FormLayout {
 			txAnio.clear();
 			txPrecio.clear();
 			
+			cbEstilos.setVisible(false);
+			cbTipos.setVisible(false);
 			cbAutores.clear();
 			cbEstilos.clear();
 			cbTipos.clear();
@@ -181,7 +258,7 @@ public class ObrasForm extends FormLayout {
 		});
 		horizontal1.addComponents(txTitulo,txAnio);
 		horizontal2.addComponents(cbAutores);
-		horizontal3.addComponents(txPrecio,txImagen);
+		horizontal3.addComponents(txPrecio, upload);
 		horizontal4.addComponents(confirmar, cancelar);
 
 		addComponents(horizontal1,horizontal2,horizontal3,horizontal4);	
