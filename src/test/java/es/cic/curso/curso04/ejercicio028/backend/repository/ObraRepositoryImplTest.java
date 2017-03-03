@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
-import es.cic.curso.curso04.ejercicio028.backend.dominio.estilo;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,7 +27,7 @@ public class ObraRepositoryImplTest extends AbstractRepositoryImplTest<Long, Obr
     @Autowired
 	private ObraRepository sut;
 	 
-	private estilo tipo;
+	private Tipo tipo;
 	private Estilo estilo;
 
 	    @Before
@@ -35,7 +35,7 @@ public class ObraRepositoryImplTest extends AbstractRepositoryImplTest<Long, Obr
 	    public void setUp() throws Exception {
 	    	super.setUp();
 	    	
-	    	tipo = new estilo("cuadro");
+	    	tipo = new Tipo("cuadro");
 	    	estilo = new Estilo("cuadro");
 	    	em.persist(tipo);
 	    	em.persist(estilo);

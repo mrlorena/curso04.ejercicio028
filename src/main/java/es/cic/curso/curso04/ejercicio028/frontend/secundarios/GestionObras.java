@@ -16,7 +16,7 @@ import com.vaadin.ui.VerticalLayout;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
-import es.cic.curso.curso04.ejercicio028.backend.dominio.estilo;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
 import es.cic.curso.curso04.ejercicio028.backend.dto.ObraConverter;
 import es.cic.curso.curso04.ejercicio028.backend.dto.ObraDTO;
 import es.cic.curso.curso04.ejercicio028.backend.service.EstiloService;
@@ -33,14 +33,9 @@ public class GestionObras  extends HorizontalLayout {
 	private TipoService tipoService;
 	private ObraService obraService;
 	private EstiloService estiloService;
-	private estilo tipo;
-	private Estilo categoria;
 	private ObrasForm detalleObras;
 	private List<ObraDTO> listaObras = new ArrayList<>();
 	private ObraConverter obraConverter = new ObraConverter();
-	
-	private final VerticalLayout verticalLayoutGrid;
-	private final VerticalLayout verticalLayoutFormulario;
 	
 	private NativeButton aniadirObra;
 	private Grid gridObras;
@@ -56,18 +51,11 @@ public class GestionObras  extends HorizontalLayout {
 		obraService = ContextLoader.getCurrentWebApplicationContext().getBean(ObraService.class);
 		tipoService = ContextLoader.getCurrentWebApplicationContext().getBean(TipoService.class);
 		estiloService = ContextLoader.getCurrentWebApplicationContext().getBean(EstiloService.class);
-		
 
 		if(listaObras.isEmpty()){	
 			obraService.generaBBDD();
 		}
 		
-	
-		verticalLayoutGrid = new VerticalLayout();
-		verticalLayoutFormulario = new VerticalLayout();
-		
-	
-	
 		aniadirObra = new NativeButton("Añadir Obra");
 		aniadirObra.setIcon(FontAwesome.PLUS);
 		
@@ -86,11 +74,6 @@ public class GestionObras  extends HorizontalLayout {
 		});
 		
 		cargarObras(null);
-		
-		
-		//verticalLayoutGrid.addComponent(gridObras);
-		//verticalLayoutFormulario.addComponents(aniadirObra, detalleObras);
-		//addComponents(verticalLayoutGrid, verticalLayoutFormulario);
 		addComponents(gridObras,aniadirObra,detalleObras);	
 	}
 	
@@ -109,13 +92,13 @@ public class GestionObras  extends HorizontalLayout {
 
 
 	public void cargarObras(Obra obra){	
-		List<estilo> listaTipos = tipoService.listarTipo();
+		List<Tipo> listaTipos = tipoService.listarTipo();
 		List<Estilo> listaEstilos = estiloService.listarEstilo();
 		aniadirObra.setVisible(true);
 		detalleObras.setVisible(false);
 		
 		if(obra!=null){
-			for(estilo tipo: listaTipos){
+			for(Tipo tipo: listaTipos){
 				for(Estilo estilo: listaEstilos){
 					
 				

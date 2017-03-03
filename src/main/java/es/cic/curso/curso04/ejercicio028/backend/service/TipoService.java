@@ -2,18 +2,18 @@ package es.cic.curso.curso04.ejercicio028.backend.service;
 
 import java.util.List;
 
-import es.cic.curso.curso04.ejercicio028.backend.dominio.estilo;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
 
 public interface TipoService {
 
-	estilo aniadirTipo(estilo tipo);
+	Tipo aniadirTipo(Tipo tipo);
 
-	List<estilo> listarTipo();
+	List<Tipo> listarTipo();
 
-	estilo obtenerTipo(Long id);
+	Tipo obtenerTipo(Long id);
 
 	void borrarTipo(Long id);
 
-	estilo modificarTipo(estilo tipo);
+	Tipo modificarTipo(Tipo tipo);
 
 }

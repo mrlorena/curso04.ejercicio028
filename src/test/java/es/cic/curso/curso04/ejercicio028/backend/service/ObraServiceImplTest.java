@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
-import es.cic.curso.curso04.ejercicio028.backend.dominio.estilo;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:es/cic/curso/curso04.ejercicio028/applicationContext.xml"})
@@ -41,9 +41,9 @@ public class ObraServiceImplTest {
 	private Obra obra3;
 	
 
-	private estilo tipo1;
-	private estilo tipo2;
-	private estilo tipo3;
+	private Tipo tipo1;
+	private Tipo tipo2;
+	private Tipo tipo3;
 	
 	private Estilo estilo1;
 	private Estilo estilo2;
@@ -89,9 +89,9 @@ public class ObraServiceImplTest {
 	
 	private void inicializaBaseDeDatos() {
  	 
-		tipo1 = new estilo("tipo1");
-		tipo2 = new estilo("tipo2");
-		tipo3 = new estilo("tipo3");
+		tipo1 = new Tipo("tipo1");
+		tipo2 = new Tipo("tipo2");
+		tipo3 = new Tipo("tipo3");
 	
 		entityManager.persist(tipo1);
 		entityManager.persist(tipo2);

@@ -14,7 +14,7 @@ public class EstiloConverter {
 		return resultado;
 		
 	}
-	public Estilo DTO2Entity(EstiloDTO estiloDTO) {
+	public Estilo dto2Entity(EstiloDTO estiloDTO) {
 		Estilo resultado = new Estilo();
 		resultado.setNombreEstilo(estiloDTO.getNombreEstilo());
 		return resultado;		

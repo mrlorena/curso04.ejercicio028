@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import es.cic.curso.curso04.ejercicio028.backend.dominio.estilo;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 "classpath:es/cic/curso/curso04.ejercicio028/applicationContext.xml"}
 )
-public class TipoRepositoryImplTest extends AbstractRepositoryImplTest<Long, estilo> {
+public class TipoRepositoryImplTest extends AbstractRepositoryImplTest<Long, Tipo> {
 
 	
 	 @Autowired
@@ -26,9 +26,9 @@ public class TipoRepositoryImplTest extends AbstractRepositoryImplTest<Long, est
 	    }
 
 	    @Override
-	    public estilo getInstanceDeTParaNuevo() {
+	    public Tipo getInstanceDeTParaNuevo() {
 	    	
-	    	estilo tipo = new estilo();
+	    	Tipo tipo = new Tipo();
 	        
 	        tipo.setNombreTipo("cuadro");
 	        
@@ -36,9 +36,9 @@ public class TipoRepositoryImplTest extends AbstractRepositoryImplTest<Long, est
 	    }
 
 	    @Override
-	    public estilo getInstanceDeTParaLectura() {
+	    public Tipo getInstanceDeTParaLectura() {
 	    	
-	    	estilo tipo = new estilo();
+	    	Tipo tipo = new Tipo();
 	        
 	        tipo.setNombreTipo("cuadro");
 	        
@@ -51,8 +51,8 @@ public class TipoRepositoryImplTest extends AbstractRepositoryImplTest<Long, est
 	    }
 
 	    @Override
-	    public estilo getInstanceDeTParaModificar(Long clave) {
-	    	estilo tipo = getInstanceDeTParaLectura();
+	    public Tipo getInstanceDeTParaModificar(Long clave) {
+	    	Tipo tipo = getInstanceDeTParaLectura();
 	        tipo.setId(clave);
 	        tipo.setNombreTipo("escultura");
 	       
@@ -60,12 +60,12 @@ public class TipoRepositoryImplTest extends AbstractRepositoryImplTest<Long, est
 	    }
 
 	    @Override
-	    public IRepository<Long, estilo> getRepository() {
+	    public IRepository<Long, Tipo> getRepository() {
 	        return sut;
 	    }
 
 	    @Override
-	    public boolean sonDatosIguales(estilo t1, estilo t2) {
+	    public boolean sonDatosIguales(Tipo t1, Tipo t2) {
 	        if (t1 == null || t2 == null) {
 	            throw new UnsupportedOperationException("No puedo comparar nulos");
 	        }

@@ -7,15 +7,12 @@ import org.springframework.web.context.ContextLoader;
 
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.server.FontAwesome;
-import com.vaadin.server.Sizeable.Unit;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Grid;
+import com.vaadin.ui.Grid.SelectionMode;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.NativeButton;
-import com.vaadin.ui.Grid.SelectionMode;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
-import es.cic.curso.curso04.ejercicio028.backend.dominio.estilo;
 import es.cic.curso.curso04.ejercicio028.backend.service.EstiloService;
 import es.cic.curso.curso04.ejercicio028.backend.service.ObraService;
 import es.cic.curso.curso04.ejercicio028.frontend.principal.MyUI;

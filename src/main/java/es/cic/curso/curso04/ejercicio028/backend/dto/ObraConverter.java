@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
-import es.cic.curso.curso04.ejercicio028.backend.dominio.estilo;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
 
 
 
@@ -18,7 +18,7 @@ public class ObraConverter {
 	private TipoConverter tipoConverter;
 	private EstiloConverter estiloConverter;
 	
-	public ObraDTO entityToDto(Obra obra, estilo tipo, Estilo estilo) {
+	public ObraDTO entityToDto(Obra obra, Tipo tipo, Estilo estilo) {
 		ObraDTO resultado = new ObraDTO();
 		resultado.setTitulo(obra.getTitulo());
 		resultado.setAutor(obra.getAutor());
@@ -33,23 +33,23 @@ public class ObraConverter {
 	}
 
 	
-	public Obra DTO2Entity(ObraDTO obraDTO, TipoDTO tipoDTO, EstiloDTO estiloDTO) {
+	public Obra dto2Entity(ObraDTO obraDTO, TipoDTO tipoDTO, EstiloDTO estiloDTO) {
 		Obra resultado = new Obra();
 		resultado.setTitulo(obraDTO.getTitulo());
 		resultado.setAutor(obraDTO.getAutor());
 		resultado.setAnio(obraDTO.getAnio());
-		resultado.setTipo(tipoConverter.DTO2Entity(tipoDTO));
-		resultado.setEstilo(estiloConverter.DTO2Entity(estiloDTO));
+		resultado.setTipo(tipoConverter.dto2Entity(tipoDTO));
+		resultado.setEstilo(estiloConverter.dto2Entity(estiloDTO));
 		resultado.setPrecio(obraDTO.getPrecio());
 		resultado.setImagen(obraDTO.getImagen());
 		
 		return resultado;		
 	}
 	
-	public List<ObraDTO> entity2DTO(List<Obra> obras, List<estilo> tipos, List<Estilo> estilos) {
-		List<ObraDTO> resultado = new ArrayList<ObraDTO>();
+	public List<ObraDTO> entity2DTO(List<Obra> obras, List<Tipo> tipos, List<Estilo> estilos) {
+		List<ObraDTO> resultado = new ArrayList<>();
 		for(Obra obra: obras) {
-			for(estilo tipo : tipos){
+			for(Tipo tipo : tipos){
 				for(Estilo estilo : estilos){
 					resultado.add(entityToDto(obra, tipo, estilo));
 				}
@@ -59,11 +59,11 @@ public class ObraConverter {
 	}
 	
 	public List<Obra> DTO2Entity(List<ObraDTO> obrasDTO, List<TipoDTO> tiposDTO, List<EstiloDTO> estilosDTO) {
-		List<Obra> resultado = new ArrayList<Obra>();
+		List<Obra> resultado = new ArrayList<>();
 		for(ObraDTO obra: obrasDTO) {
 			for(TipoDTO tipo : tiposDTO){
 				for(EstiloDTO estilo : estilosDTO){
-					resultado.add(DTO2Entity(obra, tipo, estilo));
+					resultado.add(dto2Entity(obra, tipo, estilo));
 				}
 			}
 		}
