@@ -25,5 +25,10 @@ public class TipoDTO {
 		this.nombreTipo = nombreTipo;
 	}
 
+	@Override
+	public String toString() {
+		return "TipoDTO [id=" + id + ", nombreTipo=" + nombreTipo + "]";
+	}
+
 	
 }

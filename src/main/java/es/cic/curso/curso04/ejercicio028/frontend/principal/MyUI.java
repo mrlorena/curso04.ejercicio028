@@ -36,15 +36,16 @@ public class MyUI extends UI {
 		layout.setSpacing(true);
 		layout.setWidth("100%");
 
-		final HorizontalLayout hlTipos = new GestionTipos(this);
-		hlTipos.setMargin(true);
-		hlTipos.setSpacing(true);
+		
 		final HorizontalLayout hlObras = new GestionObras(this);
 		hlObras.setMargin(true);
 		hlObras.setSpacing(true);
 		final HorizontalLayout hlEstilos = new GestionEstilo(this);
 		hlEstilos.setMargin(true);
 		hlEstilos.setSpacing(true);
+		final HorizontalLayout hlTipos = new GestionTipos(this);
+		hlTipos.setMargin(true);
+		hlTipos.setSpacing(true);
 		
 		
 		Label titulo = new Label("CATÁLOGO DE OBRAS DE ARTE");

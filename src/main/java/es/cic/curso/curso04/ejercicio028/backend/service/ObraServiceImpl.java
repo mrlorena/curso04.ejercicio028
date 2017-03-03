@@ -25,6 +25,12 @@ public class ObraServiceImpl implements ObraService{
 	
 	@Autowired
 	private EstiloRepository estiloRepository;
+	
+	@Autowired
+	private EstiloService estiloService;
+	
+	@Autowired
+	private TipoService tipoService;
 
     @Override
 	public Obra aniadirObra(Obra obra) {

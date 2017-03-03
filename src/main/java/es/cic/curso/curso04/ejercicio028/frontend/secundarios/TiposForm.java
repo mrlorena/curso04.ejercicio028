@@ -45,7 +45,7 @@ public class TiposForm extends FormLayout {
 		cancelar = new NativeButton("Cancelar");
 		cancelar.setIcon(FontAwesome.REPLY);
 		
-		nombreTipo = new TextField("Nombre ");
+		nombreTipo = new TextField("Nombre");
 
 		horizontal1 = new HorizontalLayout();
 		horizontal2 = new HorizontalLayout();

@@ -265,7 +265,7 @@ public class ObrasForm extends FormLayout {
 		cbEstilos.setWidth(90, Unit.PIXELS);
 		cbEstilos.setInputPrompt("seleccione estilo de la obra");
 		
-		cbTipos.addValueChangeListener(a->{
+		cbEstilos.addValueChangeListener(a->{
 			for(Estilo e : listaNombreEstilos){
 				if(cbEstilos.getValue()==(e.getNombreEstilo())){
 				

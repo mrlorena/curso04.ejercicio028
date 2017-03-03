@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
 import es.cic.curso.curso04.ejercicio028.backend.repository.EstiloRepository;
 
 @Service
@@ -40,6 +41,18 @@ public class EstiloServiceImpl implements EstiloService{
     @Override
     public List<Estilo> listarEstilo() {
         return estiloRepository.list();
+    }
+    
+    @Override
+    public void generaBBDD(){
+    	Estilo estilo1 = new Estilo("estilo1");
+    	Estilo estilo2 = new Estilo("estilo2");
+    	Estilo estilo3 = new Estilo("estilo3");
+    	
+    	estiloRepository.add(estilo1);
+    	estiloRepository.add(estilo2);
+    	estiloRepository.add(estilo3);
+    	
     }
 
 }

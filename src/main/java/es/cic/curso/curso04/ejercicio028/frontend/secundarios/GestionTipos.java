@@ -42,9 +42,9 @@ public class GestionTipos extends HorizontalLayout {
 		tipoService = ContextLoader.getCurrentWebApplicationContext().getBean(TipoService.class);	
 		obraService = ContextLoader.getCurrentWebApplicationContext().getBean(ObraService.class);	
 
-		if(listaTipos.isEmpty()){	
-			obraService.generaBBDD();
-		}
+		listaTipos = new ArrayList<>();
+		listaTipos = tipoService.listarTipo();
+		System.out.println("44444"+listaTipos);
 		
 		aniadirTipo = new NativeButton("Añadir Tipo");
 		aniadirTipo.setIcon(FontAwesome.PLUS);
@@ -80,7 +80,6 @@ public class GestionTipos extends HorizontalLayout {
 
 	public void cargarTipos(Tipo tipo) {
 		listaTipos = tipoService.listarTipo();
-		System.out.println("1111111111"+listaTipos);
 		aniadirTipo.setVisible(true);
 		detalleTipo.setVisible(false);
 		

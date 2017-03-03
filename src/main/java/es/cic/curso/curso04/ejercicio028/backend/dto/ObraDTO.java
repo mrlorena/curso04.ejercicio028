@@ -68,6 +68,12 @@ public class ObraDTO {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
+
+	@Override
+	public String toString() {
+		return "ObraDTO [titulo=" + titulo + ", autor=" + autor + ", anio=" + anio + ", tipo=" + tipo + ", estilo="
+				+ estilo + ", precio=" + precio + ", imagen=" + imagen + "]";
+	}
 	
 	
 	

@@ -25,4 +25,9 @@ public class EstiloDTO {
 		this.nombreEstilo = nombreEstilo;
 	}
 
+	@Override
+	public String toString() {
+		return "EstiloDTO [id=" + id + ", nombreEstilo=" + nombreEstilo + "]";
+	}
+
 }

@@ -34,6 +34,10 @@ public class GestionObras  extends HorizontalLayout {
 	private EstiloService estiloService;
 	private ObrasForm detalleObras;
 	private List<ObraDTO> listaObras = new ArrayList<>();
+	private List<Obra> listaObr = new ArrayList<>();
+	private List<Tipo> listaTipos = new ArrayList<>();
+	private List<Estilo> listaEstilos = new ArrayList<>();
+	
 	private ObraConverter obraConverter = new ObraConverter();
 	
 	private NativeButton aniadirObra;
@@ -50,10 +54,23 @@ public class GestionObras  extends HorizontalLayout {
 		obraService = ContextLoader.getCurrentWebApplicationContext().getBean(ObraService.class);
 		tipoService = ContextLoader.getCurrentWebApplicationContext().getBean(TipoService.class);
 		estiloService = ContextLoader.getCurrentWebApplicationContext().getBean(EstiloService.class);
+		
+		
 
-		if(listaObras.isEmpty()){	
+		if(listaObr.isEmpty()){	
 			obraService.generaBBDD();
 		}
+		
+		listaObras = new ArrayList<>();
+		listaObr = new ArrayList<>();
+		listaTipos = new ArrayList<>();
+		listaEstilos = new ArrayList<>();
+		
+		listaTipos = tipoService.listarTipo();
+		listaEstilos = estiloService.listarEstilo();
+		listaObr = obraService.listarObra();
+		
+		listaObras = obraConverter.entity2DTO(listaObr, listaTipos, listaEstilos);
 		
 		aniadirObra = new NativeButton("Añadir Obra");
 		aniadirObra.setIcon(FontAwesome.PLUS);
@@ -82,11 +99,6 @@ public class GestionObras  extends HorizontalLayout {
 		
 		Obra obra = new Obra("","",0,null,null,0,"");
 		detalleObras.setObra(obra);
-		
-		gridObras.setContainerDataSource(
-				new BeanItemContainer<>(ObraDTO.class, listaObras)
-				);
-
 	}
 
 
@@ -97,21 +109,28 @@ public class GestionObras  extends HorizontalLayout {
 		detalleObras.setVisible(false);
 		
 		if(obra!=null){
-			for(Tipo tipo: listaTipos){
-				for(Estilo estilo: listaEstilos){
-					
+			Tipo tipo = null;
+			Estilo estilo = null;
+			
+			for(Tipo t: listaTipos){
 				
-					if(obra.getTipo().getNombreTipo().equals(tipo.getNombreTipo())){
-						
-					//if(obra.getEstilo().getNombreEstilo().equals(estilo.getNombreEstilo())){
-							ObraDTO obraDTO = new ObraDTO();
-							obraDTO = obraConverter.entityToDto(obra,tipo,estilo);
-							listaObras.add(obraDTO);
-						}
+				if(obra.getTipo().getNombreTipo().equals(t.getNombreTipo())){
+					tipo = new Tipo();
+					tipo = obra.getTipo();
 					
 				}
-				 
+			}	
+				
+			for(Estilo e: listaEstilos){
+				
+				if(obra.getEstilo().getNombreEstilo().equals(e.getNombreEstilo())){
+					estilo = new Estilo();
+					estilo = obra.getEstilo();		
+				}
 			}
+			ObraDTO obraDTO = new ObraDTO();	
+			obraDTO = obraConverter.entityToDto(obra,tipo,estilo);
+			listaObras.add(obraDTO);
 		}	
 		
 

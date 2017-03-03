@@ -41,9 +41,6 @@ public class GestionEstilo extends HorizontalLayout {
 		estiloService = ContextLoader.getCurrentWebApplicationContext().getBean(EstiloService.class);	
 		obraService = ContextLoader.getCurrentWebApplicationContext().getBean(ObraService.class);	
 		
-		if(listaEstilos.isEmpty()){	
-			obraService.generaBBDD();
-		}
 		
 		aniadirEstilo = new NativeButton("Añadir Estilo");
 		aniadirEstilo.setIcon(FontAwesome.PLUS);
