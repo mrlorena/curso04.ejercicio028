@@ -1,12 +1,5 @@
 package es.cic.curso.curso04.ejercicio028.backend.dto;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
-
 public class ObraDTO {
 	private String titulo;
 	private String autor;

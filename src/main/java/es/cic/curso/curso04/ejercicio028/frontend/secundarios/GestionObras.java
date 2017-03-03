@@ -2,7 +2,6 @@ package es.cic.curso.curso04.ejercicio028.frontend.secundarios;
 
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.web.context.ContextLoader;
@@ -10,10 +9,10 @@ import org.springframework.web.context.ContextLoader;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Grid;
+import com.vaadin.ui.Grid.SelectionMode;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Grid.SelectionMode;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
@@ -122,11 +121,11 @@ public class GestionObras  extends HorizontalLayout {
 				
 					if(obra.getTipo().getNombreTipo().equals(tipo.getNombreTipo())){
 						
-					//if(obra.getEstilo().getNombreEstilo().equals(estilo.getNombreEstilo())){
+					if(obra.getEstilo().getNombreEstilo().equals(estilo.getNombreEstilo())){
 							ObraDTO obraDTO = new ObraDTO();
 							obraDTO = obraConverter.entityToDto(obra,tipo,estilo);
 							listaObras.add(obraDTO);
-						//}
+						}
 					}
 				}
 				 

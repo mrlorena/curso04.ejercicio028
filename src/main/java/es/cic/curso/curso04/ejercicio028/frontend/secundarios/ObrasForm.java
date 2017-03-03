@@ -30,13 +30,13 @@ public class ObrasForm extends FormLayout {
 	private GestionObras padre;
 
 	@PropertyId("titulo")
-	private TextField titulo;
+	private TextField txTitulo;
 	
 	@PropertyId("autor")
 	protected ComboBox autor=new ComboBox();
 	
 	@PropertyId("anio")
-	private TextField anio;
+	private TextField txAnio;
 	
 	@PropertyId("tipo")
 	private Tipo nombreTipo;
@@ -45,10 +45,10 @@ public class ObrasForm extends FormLayout {
 	private Estilo nombreEstilo;
 	
 	@PropertyId("precio")
-	private TextField precio;
+	private TextField txPrecio;
 	
 	@PropertyId("imagen")
-	private TextField imagen;
+	private TextField txImagen;
 	
 
 	private Obra obra;
@@ -72,10 +72,6 @@ public class ObrasForm extends FormLayout {
 	private NativeButton confirmar;
 	private NativeButton cancelar;
 	
-	private TextField txTitulo;
-	private TextField txAnio;
-	private TextField txPrecio;
-	private TextField txImagen;
 	
 	private ComboBox cbAutores;
 	private ComboBox cbTipos;
@@ -127,10 +123,10 @@ public class ObrasForm extends FormLayout {
 		cbAutores.setWidth(90, Unit.PIXELS);
 		
 		
-		txTitulo = new TextField("Titulo");
+		txTitulo = new TextField("Titulo *");
 		txAnio = new TextField("Año");
-		txPrecio = new TextField("Precio");
-		txImagen = new TextField("Imagen");
+		txPrecio = new TextField("Precio *");
+		txImagen = new TextField("Imagen *");
 		
 		confirmar = new NativeButton("Registrar");
 		confirmar.setIcon(FontAwesome.SAVE);
@@ -146,17 +142,12 @@ public class ObrasForm extends FormLayout {
 				Notification sample = new Notification("Rellene todos los campos");
 				mostrarNotificacion(sample);
 			*/
-				obra.setTitulo(txTitulo.getValue().toString());
+				//obra.setTitulo(txTitulo.getValue().toString());
 				obra.setAutor(cbAutores.getValue().toString());
-				//obra.setAnio((txAnio.getValue());
-				//obra.setTipo(cbTipos.getValue().toString());
-				//obra.setEstilo(cbEstilos.getValue().toString());
-				//obra.setPrecio(txPrecio.getValue());
-				obra.setImagen(txImagen.getValue().toString());
+			//	obraService.aniadirObra(obra);
+				padre.cargarObras(obra);
 				
-				
-			
-				obraService.aniadirObra(obra);
+				setObra(null);
 				
 				txTitulo.clear();
 				txImagen.clear();
@@ -169,9 +160,7 @@ public class ObrasForm extends FormLayout {
 				
 				
 				
-				padre.cargarObras(obra);
-				
-				setObra(null);
+			
 			
 		});
 
@@ -193,8 +182,9 @@ public class ObrasForm extends FormLayout {
 		horizontal1.addComponents(txTitulo,txAnio);
 		horizontal2.addComponents(cbAutores);
 		horizontal3.addComponents(txPrecio,txImagen);
+		horizontal4.addComponents(confirmar, cancelar);
 
-		addComponents(horizontal1,horizontal2,horizontal3,confirmar,cancelar);	
+		addComponents(horizontal1,horizontal2,horizontal3,horizontal4);	
 	}
 	
 	public void actualizarEstilo() {
@@ -234,7 +224,7 @@ public class ObrasForm extends FormLayout {
 			listaTipos.add(t.getNombreTipo());	
 		}
 		
-		cbTipos = new ComboBox("Tipo",listaTipos);
+		cbTipos = new ComboBox("Tipo *",listaTipos);
 		cbTipos.setNullSelectionAllowed(false);
 		cbTipos.select(1);
 		cbTipos.setImmediate(true);
