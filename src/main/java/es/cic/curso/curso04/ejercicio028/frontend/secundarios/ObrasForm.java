@@ -59,6 +59,9 @@ public class ObrasForm extends FormLayout {
 	private List<String> listaTipos;
 	private List<String> listaEstilos;
 	
+	private List<Tipo> listaNombreTipos;
+	private List<Estilo> listaNombreEstilos;
+	
 	
 	private final HorizontalLayout horizontal1;
 	private final HorizontalLayout horizontal2;
@@ -124,18 +127,12 @@ public class ObrasForm extends FormLayout {
 		cbAutores.setWidth(90, Unit.PIXELS);
 		
 		
-		cbEstilos = new ComboBox("Estilo",listaEstilos);
-		cbEstilos.setNullSelectionAllowed(false);
-		cbEstilos.select(1);
-		cbEstilos.setImmediate(true);
-		cbEstilos.setWidth(90, Unit.PIXELS);
-	
 		txTitulo = new TextField("Titulo");
 		txAnio = new TextField("Año");
 		txPrecio = new TextField("Precio");
 		txImagen = new TextField("Imagen");
 		
-		confirmar = new NativeButton("Registrar histórico");
+		confirmar = new NativeButton("Registrar");
 		confirmar.setIcon(FontAwesome.SAVE);
 
 		cancelar = new NativeButton("Cancelar");
@@ -149,6 +146,14 @@ public class ObrasForm extends FormLayout {
 				Notification sample = new Notification("Rellene todos los campos");
 				mostrarNotificacion(sample);
 			*/
+				obra.setTitulo(txTitulo.getValue().toString());
+				obra.setAutor(cbAutores.getValue().toString());
+				//obra.setAnio((txAnio.getValue());
+				//obra.setTipo(cbTipos.getValue().toString());
+				//obra.setEstilo(cbEstilos.getValue().toString());
+				//obra.setPrecio(txPrecio.getValue());
+				obra.setImagen(txImagen.getValue().toString());
+				
 				
 			
 				obraService.aniadirObra(obra);
@@ -193,9 +198,10 @@ public class ObrasForm extends FormLayout {
 	}
 	
 	public void actualizarEstilo() {
+		listaNombreEstilos = estiloService.listarEstilo();
 		listaEstilos.clear();
 		
-		for(Estilo e :estiloService.listarEstilo()){	
+		for(Estilo e :listaNombreEstilos){	
 			
 			listaEstilos.add(e.getNombreEstilo());	
 		}
@@ -208,7 +214,7 @@ public class ObrasForm extends FormLayout {
 		cbEstilos.setInputPrompt("seleccione estilo de la obra");
 		
 		cbTipos.addValueChangeListener(a->{
-			for(Estilo e :estiloService.listarEstilo()){
+			for(Estilo e : listaNombreEstilos){
 				if(cbEstilos.getValue()==(e.getNombreEstilo())){
 				
 					obra.setEstilo(e);
@@ -220,9 +226,10 @@ public class ObrasForm extends FormLayout {
 	}
 
 	public void actualizarTipo() {
+		listaNombreTipos = tipoService.listarTipo();
 		listaTipos.clear();
 		
-		for(Tipo t :tipoService.listarTipo()){	
+		for(Tipo t :listaNombreTipos){	
 			
 			listaTipos.add(t.getNombreTipo());	
 		}
@@ -235,7 +242,7 @@ public class ObrasForm extends FormLayout {
 		cbTipos.setInputPrompt("seleccione tipo de obra");
 		
 		cbTipos.addValueChangeListener(a->{
-			for(Tipo t :tipoService.listarTipo()){
+			for(Tipo t :listaNombreTipos){
 				if(cbTipos.getValue()==(t.getNombreTipo())){
 				
 					obra.setTipo(t);

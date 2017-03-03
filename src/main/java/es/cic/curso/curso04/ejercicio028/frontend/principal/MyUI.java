@@ -12,7 +12,7 @@ import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-import es.cic.curso.curso04.ejercicio028.frontend.secundarios.GestionCategorias;
+import es.cic.curso.curso04.ejercicio028.frontend.secundarios.GestionEstilo;
 import es.cic.curso.curso04.ejercicio028.frontend.secundarios.GestionObras;
 import es.cic.curso.curso04.ejercicio028.frontend.secundarios.GestionTipos;
 
@@ -42,7 +42,7 @@ public class MyUI extends UI {
 		final HorizontalLayout hlObras = new GestionObras(this);
 		hlObras.setMargin(true);
 		hlObras.setSpacing(true);
-		final HorizontalLayout hlEstilos = new GestionCategorias(this);
+		final HorizontalLayout hlEstilos = new GestionEstilo(this);
 		hlEstilos.setMargin(true);
 		hlEstilos.setSpacing(true);
 		

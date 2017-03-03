@@ -10,7 +10,7 @@ import com.vaadin.ui.NativeButton;
 import es.cic.curso.curso04.ejercicio028.backend.service.EstiloService;
 import es.cic.curso.curso04.ejercicio028.frontend.principal.MyUI;
 
-public class GestionCategorias extends HorizontalLayout {
+public class GestionEstilo extends HorizontalLayout {
 
 	/**
 	 * 
@@ -25,10 +25,10 @@ public class GestionCategorias extends HorizontalLayout {
 	private ComboBox operaciones = new ComboBox();
 	private NativeButton cambiarRol;
 	private NativeButton cancelar;
-	private CategoriasForm detalleOperracion;
+	private EstiloForm detalleOperracion;
 	
 	
-	public GestionCategorias(MyUI padre){
+	public GestionEstilo(MyUI padre){
 		this.padre = padre;
 		
 		categoriaService = ContextLoader.getCurrentWebApplicationContext().getBean(EstiloService.class);	

@@ -58,7 +58,7 @@ public class GestionObras  extends HorizontalLayout {
 		tipoService = ContextLoader.getCurrentWebApplicationContext().getBean(TipoService.class);
 		estiloService = ContextLoader.getCurrentWebApplicationContext().getBean(EstiloService.class);
 		
-		
+
 		if(listaObras.isEmpty()){	
 			obraService.generaBBDD();
 		}
@@ -98,9 +98,8 @@ public class GestionObras  extends HorizontalLayout {
 
 	private void aniadirObra() {	
 		detalleObras.setVisible(true);
-		Tipo tipo1 = new Tipo("");
-		Estilo estilo1 = new Estilo("");
-		Obra obra = new Obra("","",0,tipo1,estilo1,0,"");
+		
+		Obra obra = new Obra("","",0,null,null,0,"");
 		detalleObras.setObra(obra);
 		
 		gridObras.setContainerDataSource(
@@ -117,16 +116,17 @@ public class GestionObras  extends HorizontalLayout {
 		detalleObras.setVisible(false);
 		
 		if(obra!=null){
-			
 			for(Tipo tipo: listaTipos){
 				for(Estilo estilo: listaEstilos){
+					
 				
-					if((obra.getTipo().getNombreTipo().equals(tipo.getNombreTipo())&& obra.getEstilo().getNombreEstilo().equals(estilo.getNombreEstilo()))){
+					if(obra.getTipo().getNombreTipo().equals(tipo.getNombreTipo())){
 						
-						ObraDTO obraDTO = new ObraDTO();
-						obraDTO = obraConverter.entityToDto(obra,tipo,estilo);
-						listaObras.add(obraDTO);
-	
+					//if(obra.getEstilo().getNombreEstilo().equals(estilo.getNombreEstilo())){
+							ObraDTO obraDTO = new ObraDTO();
+							obraDTO = obraConverter.entityToDto(obra,tipo,estilo);
+							listaObras.add(obraDTO);
+						//}
 					}
 				}
 				 
