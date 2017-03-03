@@ -146,17 +146,17 @@ public class ObrasForm extends FormLayout {
 	
 		
 
-		// Show uploaded file in this placeholder
+	
 		final Image image = new Image("Cargar imagen");
 
-		// Implement both receiver that saves upload in a file and
-		// listener for successful upload
+		
 		class ImageUploader implements Receiver, SucceededListener {
-		    public File file;
-		    private int counter;
-            private int total;
-            private boolean sleep;
-		    
+		    /**
+			 * 
+			 */
+			private static final long serialVersionUID = -994472642239542333L;
+
+			public File file;
         	
     			OutputStream outputFile = null;
 
@@ -186,23 +186,15 @@ public class ObrasForm extends FormLayout {
     				}
     			
             
-            
-            
-            
-            
-            
-            
 		       
 		    }
 
 		    public void uploadSucceeded(SucceededEvent event) {
-		        // Show the uploaded file in the image viewer
 		        image.setSource(new FileResource(file));
 		    }
 		};
 		ImageUploader receiver = new ImageUploader();
 
-		// Create the upload with a caption and set receiver later
 		Upload upload = new Upload("Seleccione la imagen", receiver);
 		upload.addSucceededListener(receiver);
 		upload.setButtonCaption("Guardar");
@@ -210,12 +202,6 @@ public class ObrasForm extends FormLayout {
 		
 		
 		confirmar.addClickListener(e->{
-			
-			/*if(operacion.getValue()==null||horas.getValue()==null|| minutos.getValue()==null || historico.getUsuario()==null ||date.getValue()==null){	
-				Notification sample = new Notification("Rellene todos los campos");
-				mostrarNotificacion(sample);
-			*/
-				//obra.setTitulo(txTitulo.getValue().toString());
 				obra.setAutor(cbAutores.getValue().toString());
 				obraService.aniadirObra(obra);
 				
@@ -229,13 +215,12 @@ public class ObrasForm extends FormLayout {
 				txAnio.clear();
 				txPrecio.clear();
 				
+				cbEstilos.setVisible(false);
+				cbTipos.setVisible(false);
 				cbAutores.clear();
 				cbEstilos.clear();
 				cbTipos.clear();
-				
-				
-				
-			
+		
 			
 		});
 

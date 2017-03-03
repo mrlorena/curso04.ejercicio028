@@ -58,7 +58,7 @@ public class ObraConverter {
 		return resultado;
 	}
 	
-	public List<Obra> DTO2Entity(List<ObraDTO> obrasDTO, List<TipoDTO> tiposDTO, List<EstiloDTO> estilosDTO) {
+	public List<Obra> dto2Entity(List<ObraDTO> obrasDTO, List<TipoDTO> tiposDTO, List<EstiloDTO> estilosDTO) {
 		List<Obra> resultado = new ArrayList<>();
 		for(ObraDTO obra: obrasDTO) {
 			for(TipoDTO tipo : tiposDTO){

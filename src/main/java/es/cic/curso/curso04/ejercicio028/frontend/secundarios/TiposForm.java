@@ -4,11 +4,9 @@ import org.springframework.web.context.ContextLoader;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.PropertyId;
 import com.vaadin.server.FontAwesome;
-import com.vaadin.server.Page;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.NativeButton;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
@@ -73,10 +71,7 @@ public class TiposForm extends FormLayout {
 		
 		
 	}
-	private void mostrarNotificacion(Notification notificacionMostrar) {
-		notificacionMostrar.setDelayMsec(2000);
-		notificacionMostrar.show(Page.getCurrent());
-	}
+	
 	public void setTipo(Tipo tipo) {
 		this.setVisible(tipo != null);
 		this.tipo = tipo;

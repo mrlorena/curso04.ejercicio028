@@ -3,6 +3,7 @@ package es.cic.curso.curso04.ejercicio028.frontend.utilities;
 public class Validador {
 
 	public Validador(){
+		super();
 		
 	}
 	
@@ -17,14 +18,14 @@ public class Validador {
 		
 		String patronNumCaracteres = "[a-zA-Z0-9]{1,50}";
 		
-		return (numCaracteres.matches(patronNumCaracteres));
+		return numCaracteres.matches(patronNumCaracteres);
 		
 	}
 	
 	public boolean validarNombreApellidos(String nombreApellidos){
 		String patronNombreApellidos= "[a-zA-Z\\s\\u00E0-\\u00FC]{1,50}";
 		
-		return (nombreApellidos.matches(patronNombreApellidos));
+		return nombreApellidos.matches(patronNombreApellidos);
 	}
 	
 	
