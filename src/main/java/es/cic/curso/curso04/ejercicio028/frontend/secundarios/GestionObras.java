@@ -16,7 +16,7 @@ import com.vaadin.ui.VerticalLayout;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dto.ObraConverter;
 import es.cic.curso.curso04.ejercicio028.backend.dto.ObraDTO;
 import es.cic.curso.curso04.ejercicio028.backend.service.EstiloService;
@@ -33,7 +33,7 @@ public class GestionObras  extends HorizontalLayout {
 	private TipoService tipoService;
 	private ObraService obraService;
 	private EstiloService estiloService;
-	private Tipo tipo;
+	private estilo tipo;
 	private Estilo categoria;
 	private ObrasForm detalleObras;
 	private List<ObraDTO> listaObras = new ArrayList<>();
@@ -109,13 +109,13 @@ public class GestionObras  extends HorizontalLayout {
 
 
 	public void cargarObras(Obra obra){	
-		List<Tipo> listaTipos = tipoService.listarTipo();
+		List<estilo> listaTipos = tipoService.listarTipo();
 		List<Estilo> listaEstilos = estiloService.listarEstilo();
 		aniadirObra.setVisible(true);
 		detalleObras.setVisible(false);
 		
 		if(obra!=null){
-			for(Tipo tipo: listaTipos){
+			for(estilo tipo: listaTipos){
 				for(Estilo estilo: listaEstilos){
 					
 				

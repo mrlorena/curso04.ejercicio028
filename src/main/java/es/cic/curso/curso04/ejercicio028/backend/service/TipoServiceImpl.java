@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.estilo;
 import es.cic.curso.curso04.ejercicio028.backend.repository.TipoRepository;
  
 
@@ -17,28 +17,28 @@ public class TipoServiceImpl implements TipoService{
 	private TipoRepository tipoRepository;
 
     @Override
-	public Tipo aniadirTipo(Tipo tipo) {
+	public estilo aniadirTipo(estilo tipo) {
         return tipoRepository.add(tipo);
 	}
 
     @Override
-    public Tipo modificarTipo(Tipo tipo) {
+    public estilo modificarTipo(estilo tipo) {
     	return tipoRepository.update(tipo);
     }
    
     @Override
     public void borrarTipo(Long id) {
-    	Tipo tipoABorrar = obtenerTipo(id);
+    	estilo tipoABorrar = obtenerTipo(id);
     	tipoRepository.delete(tipoABorrar);
     }
 
     @Override
-    public Tipo obtenerTipo(Long id) {
+    public estilo obtenerTipo(Long id) {
         return tipoRepository.read(id);
     }
 
     @Override
-    public List<Tipo> listarTipo() {
+    public List<estilo> listarTipo() {
         return tipoRepository.list();
     }
 }

@@ -19,7 +19,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.estilo;
  
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -34,9 +34,9 @@ public class TipoServiceImplTest {
 	@Autowired
 	private TipoService tipoService;
 	
-	private Tipo tipo1;
-	private Tipo tipo2;
-	private Tipo tipo3;
+	private estilo tipo1;
+	private estilo tipo2;
+	private estilo tipo3;
 	
 
 	@Before
@@ -46,7 +46,7 @@ public class TipoServiceImplTest {
 
 	@Test
 	public void testAniadirTipo() {
-		Tipo tipoCreado = tipoService.aniadirTipo(tipo2);
+		estilo tipoCreado = tipoService.aniadirTipo(tipo2);
 		assertNotNull(tipoCreado.getId());
 	}
 
@@ -59,17 +59,17 @@ public class TipoServiceImplTest {
 
 	@Test
 	public void testBorrarTipo() {
-		Tipo tipoABorrar = new Tipo("Eliminar");
+		estilo tipoABorrar = new estilo("Eliminar");
 		tipoService.aniadirTipo(tipoABorrar);
 		tipoService.borrarTipo(tipoABorrar.getId());
-		List<Tipo> listaTipo = tipoService.listarTipo();
+		List<estilo> listaTipo = tipoService.listarTipo();
 		assertEquals(listaTipo.size(), 3);
 	}
 
 	@Test
 	public void testListarTipo() {
-		List<Tipo> listaTipo = tipoService.listarTipo();
-		for (Tipo u : listaTipo) {
+		List<estilo> listaTipo = tipoService.listarTipo();
+		for (estilo u : listaTipo) {
 			assertNotNull(u.getId());
 		}
 
@@ -77,9 +77,9 @@ public class TipoServiceImplTest {
 	
 	private void inicializaBaseDeDatos() {
 		
-		tipo1 = new Tipo("administrador");
-		tipo2 = new Tipo("invitado");
-		tipo3 = new Tipo("invitado");
+		tipo1 = new estilo("administrador");
+		tipo2 = new estilo("invitado");
+		tipo3 = new estilo("invitado");
 		entityManager.persist(tipo1);
 		entityManager.persist(tipo2);
 		entityManager.persist(tipo3);

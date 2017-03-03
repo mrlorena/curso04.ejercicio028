@@ -13,7 +13,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.estilo;
 import es.cic.curso.curso04.ejercicio028.backend.service.EstiloService;
 import es.cic.curso.curso04.ejercicio028.backend.service.TipoService;
 
@@ -36,12 +36,12 @@ public class TiposForm extends FormLayout {
 	private GestionTipos padre;
 	private TipoService tipoService;
 
-	private Tipo tipo;
+	private estilo tipo;
 	
 			
 	public TiposForm(GestionTipos padre) {
 		this.padre = padre;
-		tipo = new Tipo();
+		tipo = new estilo();
 		tipoService = ContextLoader.getCurrentWebApplicationContext().getBean(TipoService.class);	
 		
 		confirmar = new NativeButton("Guardar");
@@ -61,20 +61,14 @@ public class TiposForm extends FormLayout {
 				
 				setTipo(null);
 				nombreTipo.clear();
-				
-				
-				
-			
-			
 		});
 
 		cancelar.addClickListener(e->{
 			
 			nombreTipo.clear();
 			padre.cargarTipos(null);
-			
-		
 		});
+		
 		horizontal1.addComponents(nombreTipo);
 		horizontal2.addComponents(confirmar, cancelar);
 
@@ -86,14 +80,14 @@ public class TiposForm extends FormLayout {
 		notificacionMostrar.setDelayMsec(2000);
 		notificacionMostrar.show(Page.getCurrent());
 	}
-	public void setTipo(Tipo tipo) {
+	public void setTipo(estilo tipo) {
 		this.setVisible(tipo != null);
 		this.tipo = tipo;
 
 		if (tipo != null) {
 			BeanFieldGroup.bindFieldsUnbuffered(tipo, this);
 		} else {
-			BeanFieldGroup.bindFieldsUnbuffered(new Tipo(), this);
+			BeanFieldGroup.bindFieldsUnbuffered(new estilo(), this);
 		}
 	}
  

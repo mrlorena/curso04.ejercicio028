@@ -27,7 +27,7 @@ import com.vaadin.ui.Upload.SucceededListener;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.estilo;
 import es.cic.curso.curso04.ejercicio028.backend.service.EstiloService;
 import es.cic.curso.curso04.ejercicio028.backend.service.ObraService;
 import es.cic.curso.curso04.ejercicio028.backend.service.TipoService;
@@ -49,7 +49,7 @@ public class ObrasForm extends FormLayout {
 	private TextField txAnio;
 	
 	@PropertyId("tipo")
-	private Tipo nombreTipo;
+	private estilo nombreTipo;
 	
 	@PropertyId("estilo")
 	private Estilo nombreEstilo;
@@ -69,7 +69,7 @@ public class ObrasForm extends FormLayout {
 	private List<String> listaTipos;
 	private List<String> listaEstilos;
 	
-	private List<Tipo> listaNombreTipos;
+	private List<estilo> listaNombreTipos;
 	private List<Estilo> listaNombreEstilos;
 	
 	
@@ -104,7 +104,7 @@ public class ObrasForm extends FormLayout {
 		listaAutores.add("ccc");
 		
 		listaTipos = new ArrayList<>();
-		for(Tipo t :tipoService.listarTipo()){	
+		for(estilo t :tipoService.listarTipo()){	
 			listaTipos.add(t.getNombreTipo());
 		}
 		
@@ -296,7 +296,7 @@ public class ObrasForm extends FormLayout {
 		listaNombreTipos = tipoService.listarTipo();
 		listaTipos.clear();
 		
-		for(Tipo t :listaNombreTipos){	
+		for(estilo t :listaNombreTipos){	
 			
 			listaTipos.add(t.getNombreTipo());	
 		}
@@ -309,7 +309,7 @@ public class ObrasForm extends FormLayout {
 		cbTipos.setInputPrompt("seleccione tipo de obra");
 		
 		cbTipos.addValueChangeListener(a->{
-			for(Tipo t :listaNombreTipos){
+			for(estilo t :listaNombreTipos){
 				if(cbTipos.getValue()==(t.getNombreTipo())){
 				
 					obra.setTipo(t);

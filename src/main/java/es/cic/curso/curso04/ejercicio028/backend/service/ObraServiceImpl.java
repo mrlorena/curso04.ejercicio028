@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.estilo;
 import es.cic.curso.curso04.ejercicio028.backend.repository.EstiloRepository;
 import es.cic.curso.curso04.ejercicio028.backend.repository.ObraRepository;
 import es.cic.curso.curso04.ejercicio028.backend.repository.TipoRepository;
@@ -54,7 +54,7 @@ public class ObraServiceImpl implements ObraService{
     
     @Override
 	public void generaBBDD() {
-    	Tipo tipo = new Tipo("tipo1");
+    	estilo tipo = new estilo("tipo1");
     	Estilo estilo = new Estilo("estilo1");
     
     	tipoRepository.add(tipo);

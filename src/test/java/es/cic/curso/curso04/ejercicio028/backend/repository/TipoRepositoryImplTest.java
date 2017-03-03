@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.estilo;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 "classpath:es/cic/curso/curso04.ejercicio028/applicationContext.xml"}
 )
-public class TipoRepositoryImplTest extends AbstractRepositoryImplTest<Long, Tipo> {
+public class TipoRepositoryImplTest extends AbstractRepositoryImplTest<Long, estilo> {
 
 	
 	 @Autowired
@@ -26,9 +26,9 @@ public class TipoRepositoryImplTest extends AbstractRepositoryImplTest<Long, Tip
 	    }
 
 	    @Override
-	    public Tipo getInstanceDeTParaNuevo() {
+	    public estilo getInstanceDeTParaNuevo() {
 	    	
-	    	Tipo tipo = new Tipo();
+	    	estilo tipo = new estilo();
 	        
 	        tipo.setNombreTipo("cuadro");
 	        
@@ -36,9 +36,9 @@ public class TipoRepositoryImplTest extends AbstractRepositoryImplTest<Long, Tip
 	    }
 
 	    @Override
-	    public Tipo getInstanceDeTParaLectura() {
+	    public estilo getInstanceDeTParaLectura() {
 	    	
-	    	Tipo tipo = new Tipo();
+	    	estilo tipo = new estilo();
 	        
 	        tipo.setNombreTipo("cuadro");
 	        
@@ -51,8 +51,8 @@ public class TipoRepositoryImplTest extends AbstractRepositoryImplTest<Long, Tip
 	    }
 
 	    @Override
-	    public Tipo getInstanceDeTParaModificar(Long clave) {
-	    	Tipo tipo = getInstanceDeTParaLectura();
+	    public estilo getInstanceDeTParaModificar(Long clave) {
+	    	estilo tipo = getInstanceDeTParaLectura();
 	        tipo.setId(clave);
 	        tipo.setNombreTipo("escultura");
 	       
@@ -60,12 +60,12 @@ public class TipoRepositoryImplTest extends AbstractRepositoryImplTest<Long, Tip
 	    }
 
 	    @Override
-	    public IRepository<Long, Tipo> getRepository() {
+	    public IRepository<Long, estilo> getRepository() {
 	        return sut;
 	    }
 
 	    @Override
-	    public boolean sonDatosIguales(Tipo t1, Tipo t2) {
+	    public boolean sonDatosIguales(estilo t1, estilo t2) {
 	        if (t1 == null || t2 == null) {
 	            throw new UnsupportedOperationException("No puedo comparar nulos");
 	        }

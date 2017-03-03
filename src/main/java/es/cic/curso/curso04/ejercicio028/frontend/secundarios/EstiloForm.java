@@ -1,15 +1,14 @@
 package es.cic.curso.curso04.ejercicio028.frontend.secundarios;
 
-import java.util.List;
-
 import org.springframework.web.context.ContextLoader;
 
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.PropertyId;
-import com.vaadin.ui.ComboBox;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.NativeButton;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.TextField;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.service.EstiloService;
@@ -18,41 +17,68 @@ public class EstiloForm extends FormLayout {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3416021602328437461L;
-	 
-	@SuppressWarnings("unused")
-	private GestionEstilo padre;
-	
-	@PropertyId("nombreRol")
-	protected ComboBox nombreRol;
-	
+	private static final long serialVersionUID = -8212581707579739708L;
 
-	private List<String> listaRoles;
-	private EstiloService categoriaService;
+	@PropertyId("nombreEstilo")
+	private TextField nombreEstilo;
 	
 	private NativeButton confirmar;
-	private NativeButton cancelar;
+	private NativeButton cancelar;	
+	
+	private final HorizontalLayout horizontal1;
+	private final HorizontalLayout horizontal2;
 
-	private Estilo categoria;
 	
+	@SuppressWarnings("unused")
+	private GestionEstilo padre;
+	private EstiloService estiloService;
+
+	private Estilo estilo;
 	
+			
 	public EstiloForm(GestionEstilo padre) {
+		this.padre = padre;
+		estilo = new Estilo();
+		estiloService = ContextLoader.getCurrentWebApplicationContext().getBean(EstiloService.class);	
 		
-		
-		final VerticalLayout vertical1 = new VerticalLayout();
-		vertical1.setSpacing(true);
+		confirmar = new NativeButton("Guardar");
+		confirmar.setIcon(FontAwesome.SAVE);
 
-		categoriaService = ContextLoader.getCurrentWebApplicationContext().getBean(EstiloService.class);	
+		cancelar = new NativeButton("Cancelar");
+		cancelar.setIcon(FontAwesome.REPLY);
 		
+		nombreEstilo = new TextField("Estilo ");
+
+		horizontal1 = new HorizontalLayout();
+		horizontal2 = new HorizontalLayout();
+		
+		confirmar.addClickListener(e->{
+				estiloService.aniadirEstilo(estilo);
+				padre.cargarEstilos(estilo);
+				
+				setEstilo(null);
+				nombreEstilo.clear();
+		});
+
+		cancelar.addClickListener(e->{
+			
+			nombreEstilo.clear();
+			padre.cargarEstilos(null);
+		});
+		
+		horizontal1.addComponents(nombreEstilo);
+		horizontal2.addComponents(confirmar, cancelar);
+
+		addComponents(horizontal1,horizontal2);	
 		
 		
 	}
-	public void setCategoria(Estilo categoria) {
-		this.setVisible(categoria != null);
-		this.categoria = categoria;
+	public void setEstilo(Estilo estilo) {
+		this.setVisible(estilo != null);
+		this.estilo = estilo;
 
-		if (categoria != null) {
-			BeanFieldGroup.bindFieldsUnbuffered(categoria, this);
+		if (estilo != null) {
+			BeanFieldGroup.bindFieldsUnbuffered(estilo, this);
 		} else {
 			BeanFieldGroup.bindFieldsUnbuffered(new Estilo(), this);
 		}

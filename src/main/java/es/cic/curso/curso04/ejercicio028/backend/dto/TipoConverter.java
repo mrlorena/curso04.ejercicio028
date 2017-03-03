@@ -2,21 +2,21 @@ package es.cic.curso.curso04.ejercicio028.backend.dto;
 
 import org.springframework.stereotype.Component;
 
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.estilo;
 
 
 @Component
 public class TipoConverter {
 	
-	public TipoDTO entity2DTO(Tipo tipo) {
+	public TipoDTO entity2DTO(estilo tipo) {
 		
 		TipoDTO resultado = new TipoDTO();
 		resultado.setNombreTipo(tipo.getNombreTipo());
 		return resultado;
 		
 	}
-	public Tipo DTO2Entity(TipoDTO tipoDTO) {
-		Tipo resultado = new Tipo();
+	public estilo DTO2Entity(TipoDTO tipoDTO) {
+		estilo resultado = new estilo();
 		resultado.setNombreTipo(tipoDTO.getNombreTipo());
 		return resultado;		
 	}

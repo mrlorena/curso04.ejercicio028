@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.estilo;
 
 
 
@@ -18,7 +18,7 @@ public class ObraConverter {
 	private TipoConverter tipoConverter;
 	private EstiloConverter estiloConverter;
 	
-	public ObraDTO entityToDto(Obra obra, Tipo tipo, Estilo estilo) {
+	public ObraDTO entityToDto(Obra obra, estilo tipo, Estilo estilo) {
 		ObraDTO resultado = new ObraDTO();
 		resultado.setTitulo(obra.getTitulo());
 		resultado.setAutor(obra.getAutor());
@@ -46,10 +46,10 @@ public class ObraConverter {
 		return resultado;		
 	}
 	
-	public List<ObraDTO> entity2DTO(List<Obra> obras, List<Tipo> tipos, List<Estilo> estilos) {
+	public List<ObraDTO> entity2DTO(List<Obra> obras, List<estilo> tipos, List<Estilo> estilos) {
 		List<ObraDTO> resultado = new ArrayList<ObraDTO>();
 		for(Obra obra: obras) {
-			for(Tipo tipo : tipos){
+			for(estilo tipo : tipos){
 				for(Estilo estilo : estilos){
 					resultado.add(entityToDto(obra, tipo, estilo));
 				}

@@ -11,7 +11,7 @@ import es.cic.curso.curso04.ejercicio028.backend.repository.Identificable;
 
 @Entity
 @Table(name="TIPO")
-public class Tipo implements Identificable<Long>{
+public class estilo implements Identificable<Long>{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -21,11 +21,11 @@ public class Tipo implements Identificable<Long>{
 	private String nombreTipo;
 	
 	
-	public Tipo() {
+	public estilo() {
 		super();
 	}
 
-	public Tipo(String nombreTipo) {
+	public estilo(String nombreTipo) {
 		super();
 		this.nombreTipo = nombreTipo;
 	}

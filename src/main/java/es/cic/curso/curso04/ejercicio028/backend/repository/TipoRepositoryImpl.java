@@ -2,15 +2,15 @@ package es.cic.curso.curso04.ejercicio028.backend.repository;
 
 import org.springframework.stereotype.Repository;
 
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.estilo;
 
 
 @Repository
-public class TipoRepositoryImpl extends AbstractRepositoryImpl <Long, Tipo> implements TipoRepository {
+public class TipoRepositoryImpl extends AbstractRepositoryImpl <Long, estilo> implements TipoRepository {
 
 	@Override
-    public Class<Tipo> getClassDeT() {
-        return Tipo.class;
+    public Class<estilo> getClassDeT() {
+        return estilo.class;
     }
 
 	@Override

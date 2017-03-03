@@ -7,17 +7,12 @@ import org.springframework.web.context.ContextLoader;
 
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.server.FontAwesome;
-import com.vaadin.server.Sizeable.Unit;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.Grid.SelectionMode;
 
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
-import es.cic.curso.curso04.ejercicio028.backend.dto.ObraDTO;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.estilo;
 import es.cic.curso.curso04.ejercicio028.backend.service.ObraService;
 import es.cic.curso.curso04.ejercicio028.backend.service.TipoService;
 import es.cic.curso.curso04.ejercicio028.frontend.principal.MyUI;
@@ -31,7 +26,7 @@ public class GestionTipos extends HorizontalLayout {
 	
 	private TipoService tipoService;
 	private ObraService obraService;
-	private List<Tipo> listaTipos = new ArrayList<>();
+	private List<estilo> listaTipos = new ArrayList<>();
 
 	private TiposForm detalleTipo;
 	private NativeButton aniadirTipo;
@@ -78,16 +73,12 @@ public class GestionTipos extends HorizontalLayout {
 	private void aniadirTipo() {	
 		detalleTipo.setVisible(true);
 		
-		Tipo tipo = new Tipo("");
+		estilo tipo = new estilo("");
 		detalleTipo.setTipo(tipo);
-		
-		gridTipos.setContainerDataSource(
-				new BeanItemContainer<>(Tipo.class, listaTipos)
-				);
-		
+	
 	}
 
-	public void cargarTipos(Tipo tipo) {
+	public void cargarTipos(estilo tipo) {
 		listaTipos = tipoService.listarTipo();
 		System.out.println("1111111111"+listaTipos);
 		aniadirTipo.setVisible(true);
@@ -95,7 +86,7 @@ public class GestionTipos extends HorizontalLayout {
 		
 		if(tipo!=null){
 			gridTipos.setContainerDataSource(
-					new BeanItemContainer<>(Tipo.class, listaTipos)
+					new BeanItemContainer<>(estilo.class, listaTipos)
 					);
 			detalleTipo.setTipo(null);
 		}
