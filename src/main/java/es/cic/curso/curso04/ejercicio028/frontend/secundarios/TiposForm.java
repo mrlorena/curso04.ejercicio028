@@ -1,7 +1,5 @@
 package es.cic.curso.curso04.ejercicio028.frontend.secundarios;
 
-import org.springframework.web.context.ContextLoader;
-
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.PropertyId;
 import com.vaadin.server.FontAwesome;
@@ -12,7 +10,6 @@ import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.TextField;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
-import es.cic.curso.curso04.ejercicio028.backend.service.TipoService;
 
 public class TiposForm extends FormLayout {
 
@@ -33,14 +30,13 @@ public class TiposForm extends FormLayout {
 
 	@SuppressWarnings("unused")
 	private GestionTipos padre;
-	private TipoService tipoService;
+
 
 	private Tipo tipo;
 
 	public TiposForm(GestionTipos padre) {
 		this.padre = padre;
 		tipo = new Tipo();
-		tipoService = ContextLoader.getCurrentWebApplicationContext().getBean(TipoService.class);
 
 		confirmar = new NativeButton("Guardar");
 		confirmar.setIcon(FontAwesome.SAVE);

@@ -1,17 +1,15 @@
 package es.cic.curso.curso04.ejercicio028.frontend.secundarios;
 
-import org.springframework.web.context.ContextLoader;
-
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.PropertyId;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.TextField;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
-import es.cic.curso.curso04.ejercicio028.backend.service.EstiloService;
 
 public class EstiloForm extends FormLayout {
 
@@ -22,6 +20,9 @@ public class EstiloForm extends FormLayout {
 
 	@PropertyId("nombreEstilo")
 	private TextField nombreEstilo;
+	
+	@PropertyId("habilitado")
+	private CheckBox habilitado;
 
 	private NativeButton confirmar;
 	private NativeButton cancelar;
@@ -31,14 +32,12 @@ public class EstiloForm extends FormLayout {
 
 	@SuppressWarnings("unused")
 	private GestionEstilo padre;
-	private EstiloService estiloService;
 
 	private Estilo estilo;
 
 	public EstiloForm(GestionEstilo padre) {
 		this.padre = padre;
 		estilo = new Estilo();
-		estiloService = ContextLoader.getCurrentWebApplicationContext().getBean(EstiloService.class);
 
 		confirmar = new NativeButton("Guardar");
 		confirmar.setIcon(FontAwesome.SAVE);
@@ -47,16 +46,17 @@ public class EstiloForm extends FormLayout {
 		cancelar.setIcon(FontAwesome.REPLY);
 
 		nombreEstilo = new TextField("Estilo ");
-
+		habilitado = new CheckBox("Habilitado");
+		
 		horizontal1 = new HorizontalLayout();
 		horizontal2 = new HorizontalLayout();
 
 		confirmar.addClickListener(e -> {
-			estiloService.aniadirEstilo(estilo);
 			padre.cargarEstilos(estilo);
 
 			setEstilo(null);
 			nombreEstilo.clear();
+			
 		});
 
 		cancelar.addClickListener(e -> {
@@ -65,7 +65,7 @@ public class EstiloForm extends FormLayout {
 			padre.cargarEstilos(null);
 		});
 
-		horizontal1.addComponents(nombreEstilo);
+		horizontal1.addComponents(nombreEstilo, habilitado);
 		horizontal2.addComponents(confirmar, cancelar);
 
 		addComponents(horizontal1, horizontal2);

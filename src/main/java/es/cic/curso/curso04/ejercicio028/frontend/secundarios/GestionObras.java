@@ -204,6 +204,8 @@ public class GestionObras extends HorizontalLayout {
 
 				if (obra.getAutor().getNombre().equals(a.getNombre())) {
 					autor = obra.getAutor();
+					
+					obraService.modificarObra(obra);
 				}
 			}
 
