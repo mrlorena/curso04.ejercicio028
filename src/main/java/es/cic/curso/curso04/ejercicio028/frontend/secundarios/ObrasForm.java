@@ -190,7 +190,7 @@ public class ObrasForm extends FormLayout {
 		upload.setButtonCaption("Guardar");
 
 		confirmar.addClickListener(e -> {
-			obraService.aniadirObra(obra);
+			//obraService.aniadirObra(obra);
 			cbEstilos.setVisible(false);
 			cbTipos.setVisible(false);
 			cbAutores.setVisible(false);

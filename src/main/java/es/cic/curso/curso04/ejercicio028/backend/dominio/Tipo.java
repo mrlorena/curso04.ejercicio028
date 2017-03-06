@@ -24,14 +24,18 @@ public class Tipo implements Identificable<Long> {
 
 	@Column(name = "NOMBRE_TIPO")
 	private String nombreTipo;
+	
+	@Column(name = "HABILITADO")
+	private boolean habilitado;
 
 	public Tipo() {
 		super();
 	}
 
-	public Tipo(String nombreTipo) {
+	public Tipo(String nombreTipo, boolean habilitado) {
 		super();
 		this.nombreTipo = nombreTipo;
+		this.habilitado = habilitado;
 	}
 
 	@Override
@@ -51,6 +55,15 @@ public class Tipo implements Identificable<Long> {
 	public void setNombreTipo(String nombreTipo) {
 		this.nombreTipo = nombreTipo;
 	}
+	
+	public boolean isHabilitado() {
+		return habilitado;
+	}
+
+	public void setHabilitado(boolean habilitado) {
+		this.habilitado = habilitado;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -79,7 +92,8 @@ public class Tipo implements Identificable<Long> {
 
 	@Override
 	public String toString() {
-		return "Tipo [id=" + id + ", nombreTipo=" + nombreTipo + "]";
+		return "Tipo [id=" + id + ", nombreTipo=" + nombreTipo + ", habilitado=" + habilitado + "]";
 	}
 
+	
 }

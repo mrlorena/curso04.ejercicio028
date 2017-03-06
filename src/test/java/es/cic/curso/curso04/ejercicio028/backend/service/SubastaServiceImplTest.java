@@ -95,25 +95,25 @@ public class SubastaServiceImplTest {
 
 	private void inicializaBaseDeDatos() {
 
-		tipo1 = new Tipo("tipo1");
-		tipo2 = new Tipo("tipo2");
-		tipo3 = new Tipo("tipo3");
+		tipo1 = new Tipo("tipo1", true);
+		tipo2 = new Tipo("tipo2", true);
+		tipo3 = new Tipo("tipo3", true);
 
 		entityManager.persist(tipo1);
 		entityManager.persist(tipo2);
 		entityManager.persist(tipo3);
 
-		estilo1 = new Estilo("estilo1");
-		estilo2 = new Estilo("estilo2");
-		estilo3 = new Estilo("estilo3");
+		estilo1 = new Estilo("estilo1", true);
+		estilo2 = new Estilo("estilo2", true);
+		estilo3 = new Estilo("estilo3", true);
 
 		entityManager.persist(estilo1);
 		entityManager.persist(estilo2);
 		entityManager.persist(estilo3);
 
-		autor1 = new Autor("autor1", 123);
-		autor2 = new Autor("autor2", 123);
-		autor3 = new Autor("autor3", 123);
+		autor1 = new Autor("autor1", 123, true);
+		autor2 = new Autor("autor2", 123, true);
+		autor3 = new Autor("autor3", 123, true);
 
 		entityManager.persist(autor1);
 		entityManager.persist(autor2);

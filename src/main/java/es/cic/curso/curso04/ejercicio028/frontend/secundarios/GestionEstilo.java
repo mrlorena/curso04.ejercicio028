@@ -65,7 +65,7 @@ public class GestionEstilo extends HorizontalLayout {
 	private void aniadirEstilo() {
 		detalleEstilo.setVisible(true);
 
-		Estilo estilo = new Estilo("");
+		Estilo estilo = new Estilo("", true);
 		detalleEstilo.setEstilo(estilo);
 
 	}

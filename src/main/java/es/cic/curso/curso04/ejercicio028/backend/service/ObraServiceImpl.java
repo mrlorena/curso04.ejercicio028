@@ -59,16 +59,16 @@ public class ObraServiceImpl implements ObraService {
 
 	@Override
 	public void generaBBDD() {
-		Tipo tipo1 = new Tipo("Escultura");
-		Tipo tipo2 = new Tipo("Dibujo");
-		Tipo tipo3 = new Tipo("Fotografía");
-		Tipo tipo4 = new Tipo("Mosaico");
+		Tipo tipo1 = new Tipo("Escultura", true);
+		Tipo tipo2 = new Tipo("Dibujo", true);
+		Tipo tipo3 = new Tipo("Fotografía", true);
+		Tipo tipo4 = new Tipo("Mosaico", true);
 
-		Estilo estilo1 = new Estilo("Gótico");
-		Estilo estilo2 = new Estilo("Renacentista");
+		Estilo estilo1 = new Estilo("Gótico", true);
+		Estilo estilo2 = new Estilo("Renacentista", true);
 
-		Autor autor = new Autor("Desconocido", 0);
-		Autor autor1 = new Autor("Leonardo Da Vinci", 1452);
+		Autor autor = new Autor("Desconocido", 0, true);
+		Autor autor1 = new Autor("Leonardo Da Vinci", 1452, true);
 
 		tipoRepository.add(tipo1);
 		tipoRepository.add(tipo2);

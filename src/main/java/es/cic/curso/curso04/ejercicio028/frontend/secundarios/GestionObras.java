@@ -7,10 +7,13 @@ import org.springframework.web.context.ContextLoader;
 
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Grid.SelectionMode;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.NativeButton;
+import com.vaadin.ui.VerticalLayout;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Autor;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
@@ -38,6 +41,8 @@ public class GestionObras extends HorizontalLayout {
 	private ObrasForm detalleObras;
 	private List<ObraDTO> listaObras;
 	private List<Obra> listaObr;
+	private List<String> listaTitulos;
+	
 	private List<Tipo> listaTipos;
 	private List<Estilo> listaEstilos = new ArrayList<>();
 	private List<Autor> listaAutores;
@@ -45,7 +50,13 @@ public class GestionObras extends HorizontalLayout {
 	private ObraConverter obraConverter = new ObraConverter();
 
 	private NativeButton aniadirObra;
+	private NativeButton modificar;
+	private NativeButton cancelar;
 	private Grid gridObras;
+	
+	private final VerticalLayout extra;
+	private final VerticalLayout vertical;
+	private ComboBox titulos = new ComboBox();
 
 	@SuppressWarnings("unused")
 	private MyUI padre;
@@ -56,9 +67,16 @@ public class GestionObras extends HorizontalLayout {
 		tipoService = ContextLoader.getCurrentWebApplicationContext().getBean(TipoService.class);
 		estiloService = ContextLoader.getCurrentWebApplicationContext().getBean(EstiloService.class);
 		autorService = ContextLoader.getCurrentWebApplicationContext().getBean(AutorService.class);
+		
+		vertical = new VerticalLayout();
+		vertical.setSpacing(true);
+
+		extra = new VerticalLayout();
+		extra.setSpacing(true);
 
 		listaObras = new ArrayList<>();
 		listaObr = new ArrayList<>();
+		listaTitulos = new ArrayList<>();
 		listaTipos = new ArrayList<>();
 		listaEstilos = new ArrayList<>();
 		listaAutores = new ArrayList<>();
@@ -79,6 +97,14 @@ public class GestionObras extends HorizontalLayout {
 
 		aniadirObra = new NativeButton("Añadir Obra");
 		aniadirObra.setIcon(FontAwesome.PLUS);
+		
+
+		modificar = new NativeButton("modificar");
+		modificar.setIcon(FontAwesome.PENCIL);
+
+		cancelar = new NativeButton("Cancelar");
+		cancelar.setIcon(FontAwesome.REPLY);
+
 
 		gridObras = new Grid();
 		gridObras.setWidth(820, Unit.PIXELS);
@@ -94,9 +120,18 @@ public class GestionObras extends HorizontalLayout {
 			detalleObras.actualizarAutor();
 			aniadirObra();
 		});
+		
+		modificar.addClickListener(e -> {modificarObra();
+		
+
+		});
+
+		
+		vertical.addComponents(aniadirObra,modificar, extra, detalleObras);
+		addComponents(gridObras, vertical);
 
 		cargarObras(null);
-		addComponents(gridObras, aniadirObra, detalleObras);
+		
 	}
 
 	private void aniadirObra() {
@@ -107,6 +142,54 @@ public class GestionObras extends HorizontalLayout {
 
 		gridObras.setContainerDataSource(new BeanItemContainer<>(ObraDTO.class, listaObras));
 	}
+	
+	public void modificarObra() {
+		listaObr = obraService.listarObra();
+		listaTitulos.clear();
+		for (Obra obra : listaObr) {
+
+			listaTitulos.add(obra.getTitulo());
+
+		}
+		titulos = new ComboBox("Titulo", listaTitulos);
+		titulos.setInputPrompt("Seleccione el titulo");
+		titulos.setNullSelectionAllowed(false);
+		titulos.select(1);
+		titulos.setImmediate(true);
+		titulos.setWidth(300, Unit.PIXELS);
+
+		aniadirObra.setVisible(false);
+		modificar.setVisible(false);
+		titulos.setVisible(true);
+		cancelar.setVisible(true);
+
+		extra.addComponents(titulos, cancelar);
+
+		titulos.addValueChangeListener(a -> {
+
+			for (Obra o : listaObr) {
+				if (titulos.getValue() == (o.getTitulo())) {
+					detalleObras.setVisible(true);
+					detalleObras.setObra(o);
+					detalleObras.actualizarTipo();
+					detalleObras.actualizarEstilo();
+					detalleObras.actualizarAutor();
+					cancelar.setVisible(false);
+				}
+			}
+		});
+
+		cancelar.addClickListener(a -> {
+
+			titulos.setVisible(false);
+			cancelar.setVisible(false);
+			titulos.clear();
+			aniadirObra.setVisible(true);
+			modificar.setVisible(true);
+
+		});
+	}
+
 
 	public void cargarObras(Obra obra) {
 
@@ -114,22 +197,8 @@ public class GestionObras extends HorizontalLayout {
 		detalleObras.setVisible(false);
 
 		if (obra != null) {
-			Tipo tipo = null;
-			Estilo estilo = null;
+		
 			Autor autor = null;
-
-			for (Tipo t : listaTipos) {
-				if (obra.getTipo().getNombreTipo().equals(t.getNombreTipo())) {
-					tipo = obra.getTipo();
-
-				}
-			}
-
-			for (Estilo e : listaEstilos) {
-				if (obra.getEstilo().getNombreEstilo().equals(e.getNombreEstilo())) {
-					estilo = obra.getEstilo();
-				}
-			}
 
 			for (Autor a : listaAutores) {
 

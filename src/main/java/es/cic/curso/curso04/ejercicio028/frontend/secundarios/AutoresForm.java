@@ -1,17 +1,16 @@
 package es.cic.curso.curso04.ejercicio028.frontend.secundarios;
 
-import org.springframework.web.context.ContextLoader;
-
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.PropertyId;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.TextField;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Autor;
-import es.cic.curso.curso04.ejercicio028.backend.service.AutorService;
+
 
 public class AutoresForm extends FormLayout {
 
@@ -22,6 +21,9 @@ public class AutoresForm extends FormLayout {
 
 	@PropertyId("fechaNacimiento")
 	private TextField fechaNacimiento;
+	
+	@PropertyId("habilitado")
+	private CheckBox habilitado;
 
 	private NativeButton confirmar;
 	private NativeButton cancelar;
@@ -32,15 +34,13 @@ public class AutoresForm extends FormLayout {
 
 	@SuppressWarnings("unused")
 	private GestionAutores padre;
-	private AutorService autorService;
 
 	private Autor autor;
 
 	public AutoresForm(GestionAutores padre) {
 		this.padre = padre;
 		autor = new Autor();
-		autorService = ContextLoader.getCurrentWebApplicationContext().getBean(AutorService.class);
-
+		
 		confirmar = new NativeButton("Guardar");
 		confirmar.setIcon(FontAwesome.SAVE);
 
@@ -49,30 +49,23 @@ public class AutoresForm extends FormLayout {
 
 		nombre = new TextField("Nombre");
 		fechaNacimiento = new TextField("Fecha de nacimiento");
+		habilitado = new CheckBox("Habilitado");
 
 		horizontal1 = new HorizontalLayout();
 		horizontal2 = new HorizontalLayout();
 		horizontal3 = new HorizontalLayout();
 
 		confirmar.addClickListener(e -> {
-
-			//autorService.aniadirAutor(autor);
 			padre.cargarAutores(autor);
 			
-			//setAutor(null);
-			//nombre.clear();
-			//fechaNacimiento.clear();
 		});
 
 		cancelar.addClickListener(e -> {
-			
 			padre.cargarAutores(null);
-			//nombre.clear();
-			//fechaNacimiento.clear();
 		});
 
 		horizontal1.addComponents(nombre);
-		horizontal2.addComponent(fechaNacimiento);
+		horizontal2.addComponents(fechaNacimiento, habilitado);
 		horizontal3.addComponents(confirmar, cancelar);
 
 		addComponents(horizontal1, horizontal2, horizontal3);

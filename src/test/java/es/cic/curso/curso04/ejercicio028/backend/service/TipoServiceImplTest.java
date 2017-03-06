@@ -57,7 +57,7 @@ public class TipoServiceImplTest {
 
 	@Test
 	public void testBorrarTipo() {
-		Tipo tipoABorrar = new Tipo("Eliminar");
+		Tipo tipoABorrar = new Tipo("Eliminar", true);
 		tipoService.aniadirTipo(tipoABorrar);
 		tipoService.borrarTipo(tipoABorrar.getId());
 		List<Tipo> listaTipo = tipoService.listarTipo();
@@ -75,9 +75,9 @@ public class TipoServiceImplTest {
 
 	private void inicializaBaseDeDatos() {
 
-		tipo1 = new Tipo("administrador");
-		tipo2 = new Tipo("invitado");
-		tipo3 = new Tipo("invitado");
+		tipo1 = new Tipo("administrador", true);
+		tipo2 = new Tipo("invitado", true);
+		tipo3 = new Tipo("invitado", true);
 		entityManager.persist(tipo1);
 		entityManager.persist(tipo2);
 		entityManager.persist(tipo3);

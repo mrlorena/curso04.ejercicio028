@@ -63,7 +63,7 @@ public class EstiloServiceImplTest {
 
 	@Test
 	public void testBorrarCategoria() {
-		Estilo estiloABorrar = new Estilo("estilo");
+		Estilo estiloABorrar = new Estilo("estilo", true);
 		estiloService.aniadirEstilo(estiloABorrar);
 		estiloService.borrarEstilo(estiloABorrar.getId());
 		List<Estilo> listaEstilo = estiloService.listarEstilo();
@@ -80,9 +80,9 @@ public class EstiloServiceImplTest {
 	}
 
 	private void inicializaBaseDeDatos() {
-		estilo1 = new Estilo("categoria1");
-		estilo2 = new Estilo("categoria2");
-		estilo3 = new Estilo("categoria3");
+		estilo1 = new Estilo("categoria1", true);
+		estilo2 = new Estilo("categoria2", true);
+		estilo3 = new Estilo("categoria3", true);
 
 		entityManager.persist(estilo1);
 		entityManager.persist(estilo2);

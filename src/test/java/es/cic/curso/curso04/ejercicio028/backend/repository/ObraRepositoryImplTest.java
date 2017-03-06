@@ -33,9 +33,9 @@ public class ObraRepositoryImplTest extends AbstractRepositoryImplTest<Long, Obr
 	public void setUp() throws Exception {
 		super.setUp();
 
-		tipo = new Tipo("cuadro");
-		estilo = new Estilo("cuadro");
-		autor = new Autor("autor1", 1234);
+		tipo = new Tipo("cuadro", true);
+		estilo = new Estilo("cuadro", true);
+		autor = new Autor("autor1", 1234, true);
 		em.persist(tipo);
 		em.persist(estilo);
 		em.persist(autor);

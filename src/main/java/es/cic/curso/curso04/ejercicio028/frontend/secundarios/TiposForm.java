@@ -5,6 +5,7 @@ import org.springframework.web.context.ContextLoader;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.PropertyId;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.NativeButton;
@@ -19,6 +20,10 @@ public class TiposForm extends FormLayout {
 
 	@PropertyId("nombreTipo")
 	private TextField nombreTipo;
+	
+	@PropertyId("habilitado")
+	private CheckBox habilitado;
+	
 
 	private NativeButton confirmar;
 	private NativeButton cancelar;
@@ -44,12 +49,13 @@ public class TiposForm extends FormLayout {
 		cancelar.setIcon(FontAwesome.REPLY);
 
 		nombreTipo = new TextField("Nombre");
+		habilitado = new CheckBox("Habilitado");
 
 		horizontal1 = new HorizontalLayout();
 		horizontal2 = new HorizontalLayout();
 
 		confirmar.addClickListener(e -> {
-			tipoService.aniadirTipo(tipo);
+			//tipoService.aniadirTipo(tipo);
 			padre.cargarTipos(tipo);
 
 			setTipo(null);
@@ -62,7 +68,7 @@ public class TiposForm extends FormLayout {
 			padre.cargarTipos(null);
 		});
 
-		horizontal1.addComponents(nombreTipo);
+		horizontal1.addComponents(nombreTipo, habilitado);
 		horizontal2.addComponents(confirmar, cancelar);
 
 		addComponents(horizontal1, horizontal2);

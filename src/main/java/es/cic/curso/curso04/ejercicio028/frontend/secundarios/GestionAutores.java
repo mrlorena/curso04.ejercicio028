@@ -69,7 +69,7 @@ public class GestionAutores extends HorizontalLayout {
 
 		gridAutores = new Grid();
 		gridAutores.setWidth(820, Unit.PIXELS);
-		gridAutores.setColumns("nombre", "fechaNacimiento");
+		gridAutores.setColumns("nombre", "fechaNacimiento","habilitado" );
 		gridAutores.setFrozenColumnCount(1);
 		gridAutores.setSelectionMode(SelectionMode.NONE);
 	
@@ -80,48 +80,8 @@ public class GestionAutores extends HorizontalLayout {
 			aniadirAutor();
 		});
 
-		modificar.addClickListener(e -> {
-			listaAutores = autorService.listarAutor();
-			listaNombres.clear();
-			for (Autor autor : listaAutores) {
-
-				listaNombres.add(autor.getNombre());
-
-			}
-			autores = new ComboBox("Nombre", listaNombres);
-			autores.setInputPrompt("Seleccione autor a modificar");
-			autores.setNullSelectionAllowed(false);
-			autores.select(1);
-			autores.setImmediate(true);
-			autores.setWidth(300, Unit.PIXELS);
-
-			aniadirAutor.setVisible(false);
-			modificar.setVisible(false);
-			autores.setVisible(true);
-			cancelar.setVisible(true);
-
-			extra.addComponents(autores, cancelar);
-
-			autores.addValueChangeListener(a -> {
-
-				for (Autor au : listaAutores) {
-					if (autores.getValue() == (au.getNombre())) {
-						detalleAutor.setVisible(true);
-						detalleAutor.setAutor(au);
-						cancelar.setVisible(false);
-					}
-				}
-			});
-
-			cancelar.addClickListener(a -> {
-
-				autores.setVisible(false);
-				cancelar.setVisible(false);
-				autores.clear();
-				aniadirAutor.setVisible(true);
-				modificar.setVisible(true);
-
-			});
+		modificar.addClickListener(e -> {modificarAutor();
+			
 
 		});
 
@@ -136,7 +96,7 @@ public class GestionAutores extends HorizontalLayout {
 	private void aniadirAutor() {
 		detalleAutor.setVisible(true);
 
-		Autor autor = new Autor("", 0);
+		Autor autor = new Autor("", 0, true);
 		detalleAutor.setAutor(autor);
 
 	}
@@ -183,7 +143,6 @@ public class GestionAutores extends HorizontalLayout {
 			modificar.setVisible(true);
 
 		});
-
 	}
 
 	public void cargarAutores(Autor autor) {
