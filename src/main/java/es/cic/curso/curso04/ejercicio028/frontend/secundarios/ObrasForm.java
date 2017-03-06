@@ -3,6 +3,7 @@ package es.cic.curso.curso04.ejercicio028.frontend.secundarios;
  
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.Upload;
 import com.vaadin.ui.Upload.Receiver;
@@ -159,11 +161,11 @@ public class ObrasForm extends FormLayout {
 			 */
 			private static final long serialVersionUID = -994472642239542333L;
 
-			public File file;
-        	
-    			OutputStream outputFile = null;
+			private File file;
+        	private OutputStream outputFile = null;
 
-    			@Override
+    			
+				@Override
     			public OutputStream receiveUpload(String strFilename, String strMIMEType) {
     				 
     				
@@ -172,8 +174,9 @@ public class ObrasForm extends FormLayout {
     	            try {
     	                file = new File("C:\\Documents and Settings\\ABDEN00U\\Desktop\\tmp\\" + strFilename);
     	                fos = new FileOutputStream(file);   
-    	            } catch (final java.io.FileNotFoundException e) {
-    	                new Notification("Could not open file", e.getMessage(), Notification.TYPE_ERROR_MESSAGE.ERROR_MESSAGE).show(Page.getCurrent());
+    	                fos.close();
+    	            } catch (final IOException e) {
+    	                new Notification("Could not open file", e.getMessage(), Type.ERROR_MESSAGE).show(Page.getCurrent());
     	                return null;
     	            }
 
@@ -209,25 +212,21 @@ public class ObrasForm extends FormLayout {
 		
 		
 		confirmar.addClickListener(e->{
-				
 				obraService.aniadirObra(obra);
 				cbEstilos.setVisible(false);
 				cbTipos.setVisible(false);
 				cbAutores.setVisible(false);
-			
 				padre.cargarObras(obra);
 				
 				txTitulo.clear();
 				txImagen.clear();
 				txAnio.clear();
 				habilitada.clear();
-				
 				cbAutores.clear();
 				cbEstilos.clear();
 				cbTipos.clear();
 
 				setObra(null);
-	
 		});
 
 		cancelar.addClickListener(e->{
@@ -275,8 +274,6 @@ public class ObrasForm extends FormLayout {
 		cbAutores.addValueChangeListener(a->{
 			for(Autor au :listaNombreAutores){
 				if(cbAutores.getValue()==(au.getNombre())){
-				
-					System.out.println("eeeeeeee"+cbAutores.getValue());
 					obra.setAutor(au);
 				}
 			}							

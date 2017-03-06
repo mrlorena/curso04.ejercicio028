@@ -119,8 +119,7 @@ public class GestionObras  extends HorizontalLayout {
 
 
 	public void cargarObras(Obra obra){	
-		List<Tipo> listaTipos = tipoService.listarTipo();
-		List<Estilo> listaEstilos = estiloService.listarEstilo();
+	
 		aniadirObra.setVisible(true);
 		detalleObras.setVisible(false);
 		
@@ -130,18 +129,14 @@ public class GestionObras  extends HorizontalLayout {
 			Autor autor = null;
 			
 			for(Tipo t: listaTipos){
-				
 				if(obra.getTipo().getNombreTipo().equals(t.getNombreTipo())){
-					tipo = new Tipo();
 					tipo = obra.getTipo();
 					
 				}
 			}	
 				
 			for(Estilo e: listaEstilos){
-				
 				if(obra.getEstilo().getNombreEstilo().equals(e.getNombreEstilo())){
-					estilo = new Estilo();
 					estilo = obra.getEstilo();		
 				}
 			}
@@ -149,7 +144,6 @@ public class GestionObras  extends HorizontalLayout {
 			for(Autor a: listaAutores){
 				
 				if(obra.getAutor().getNombre().equals(a.getNombre())){
-					autor = new Autor();
 					autor = obra.getAutor();		
 				}
 			}
