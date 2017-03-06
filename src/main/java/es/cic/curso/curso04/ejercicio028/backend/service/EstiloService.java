@@ -8,12 +8,12 @@ public interface EstiloService {
 
 	Estilo aniadirEstilo(Estilo estilo);
 
-    void borrarEstilo(Long id);
-    
-    Estilo modificarEstilo(Estilo estilo);
+	void borrarEstilo(Long id);
 
-    Estilo obtenerEstilo(Long id);
+	Estilo modificarEstilo(Estilo estilo);
 
-    List<Estilo> listarEstilo();
-	
+	Estilo obtenerEstilo(Long id);
+
+	List<Estilo> listarEstilo();
+
 }

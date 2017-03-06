@@ -8,13 +8,13 @@ public interface ObraService {
 
 	Obra aniadirObra(Obra obra);
 
-    void borrarObra(Long id);
-    
-    Obra modificarObra(Obra obra);
+	void borrarObra(Long id);
 
-    Obra obtenerObra(Long id);
+	Obra modificarObra(Obra obra);
 
-    List<Obra> listarObra();
+	Obra obtenerObra(Long id);
+
+	List<Obra> listarObra();
 
 	void generaBBDD();
 }

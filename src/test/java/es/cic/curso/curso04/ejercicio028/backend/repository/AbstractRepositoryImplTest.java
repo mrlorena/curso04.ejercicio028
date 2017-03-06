@@ -17,105 +17,105 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
-@TestExecutionListeners({DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class})
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
 @Transactional
 public abstract class AbstractRepositoryImplTest<K extends Number, T extends Identificable<K>> {
 
-    @PersistenceContext
-    protected EntityManager em;
+	@PersistenceContext
+	protected EntityManager em;
 
-    public AbstractRepositoryImplTest() {
-        super();
-    }
+	public AbstractRepositoryImplTest() {
+		super();
+	}
 
-    public abstract IRepository<K, T> getRepository();
+	public abstract IRepository<K, T> getRepository();
 
-    public abstract T getInstanceDeTParaNuevo();
+	public abstract T getInstanceDeTParaNuevo();
 
-    public abstract T getInstanceDeTParaLectura();
+	public abstract T getInstanceDeTParaLectura();
 
-    public abstract boolean sonDatosIguales(T t1, T t2);
+	public abstract boolean sonDatosIguales(T t1, T t2);
 
-    public abstract K getClavePrimariaNoExistente();
+	public abstract K getClavePrimariaNoExistente();
 
-    public abstract T getInstanceDeTParaModificar(K clave);
+	public abstract T getInstanceDeTParaModificar(K clave);
 
-    @Before
-    public void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 
-    }
+	}
 
-    @Test
-    public void testAdd() {
-        T instancia = getInstanceDeTParaNuevo();
-        assertNull(instancia.getId());
+	@Test
+	public void testAdd() {
+		T instancia = getInstanceDeTParaNuevo();
+		assertNull(instancia.getId());
 
-        instancia = getRepository().add(instancia);
+		instancia = getRepository().add(instancia);
 
-        assertNotNull(instancia.getId());
-    }
+		assertNotNull(instancia.getId());
+	}
 
-    @Test
-    public void testRead() {
-        K clavePrimaria = generaDatoLectura();
-
-        T resultado = getRepository().read(clavePrimaria);
-
-        assertTrue(sonDatosIguales(getInstanceDeTParaLectura(), resultado));
-    }
-
-    @Test(expected = PersistenceException.class)
-    public void testRead_NoExiste() {
-        K clavePrimaria = getClavePrimariaNoExistente();
+	@Test
+	public void testRead() {
+		K clavePrimaria = generaDatoLectura();
 
 		T resultado = getRepository().read(clavePrimaria);
-    }
 
-    @Test
-    public void testList() {
-        generaDatoLectura();
-        generaDatoLectura();
-        generaDatoLectura();
+		assertTrue(sonDatosIguales(getInstanceDeTParaLectura(), resultado));
+	}
 
-        List<T> resultado = getRepository().list();
+	@Test(expected = PersistenceException.class)
+	public void testRead_NoExiste() {
+		K clavePrimaria = getClavePrimariaNoExistente();
 
-        assertTrue(resultado.size() >= 3);
-    }
+		T resultado = getRepository().read(clavePrimaria);
+	}
 
-    @Test
-    public void testUpdate() {
-        K clavePrimaria = generaDatoLectura();
+	@Test
+	public void testList() {
+		generaDatoLectura();
+		generaDatoLectura();
+		generaDatoLectura();
 
-        T sala2 = getInstanceDeTParaModificar(clavePrimaria);
+		List<T> resultado = getRepository().list();
 
-        T resultado = getRepository().update(sala2);
+		assertTrue(resultado.size() >= 3);
+	}
 
-        T enBBDD = em.find(getRepository().getClassDeT(), clavePrimaria);
+	@Test
+	public void testUpdate() {
+		K clavePrimaria = generaDatoLectura();
 
-        assertTrue(sonDatosIguales(getInstanceDeTParaModificar(clavePrimaria), enBBDD));
-    }
+		T sala2 = getInstanceDeTParaModificar(clavePrimaria);
 
-    @Test
-    public void testDelete() {
-        K clavePrimaria = generaDatoLectura();
+		T resultado = getRepository().update(sala2);
 
-        getRepository().delete(clavePrimaria);
-        @SuppressWarnings("rawtypes")
+		T enBBDD = em.find(getRepository().getClassDeT(), clavePrimaria);
+
+		assertTrue(sonDatosIguales(getInstanceDeTParaModificar(clavePrimaria), enBBDD));
+	}
+
+	@Test
+	public void testDelete() {
+		K clavePrimaria = generaDatoLectura();
+
+		getRepository().delete(clavePrimaria);
+		@SuppressWarnings("rawtypes")
 		Identificable c;
-        try {
-            c = em.find(getRepository().getClassDeT(), clavePrimaria);
-        } catch (PersistenceException pe) {
-            return;
-        }
-        assertNull(c);
-    }
+		try {
+			c = em.find(getRepository().getClassDeT(), clavePrimaria);
+		} catch (PersistenceException pe) {
+			return;
+		}
+		assertNull(c);
+	}
 
-    private K generaDatoLectura() {
-        T instancia = getInstanceDeTParaLectura();
+	private K generaDatoLectura() {
+		T instancia = getInstanceDeTParaLectura();
 
-        em.persist(instancia);
+		em.persist(instancia);
 
-        return instancia.getId();
-    }
+		return instancia.getId();
+	}
 
 }

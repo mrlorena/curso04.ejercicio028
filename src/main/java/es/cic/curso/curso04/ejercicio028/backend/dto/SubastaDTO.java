@@ -1,15 +1,14 @@
 package es.cic.curso.curso04.ejercicio028.backend.dto;
 
-
 public class SubastaDTO {
-	
+
 	private String obra;
 	private double pujaInicial;
 	private double precioVenta;
 	private String fechaInicio;
 	private String fechaFin;
 	private boolean activa;
-	
+
 	public SubastaDTO() {
 		super();
 	}

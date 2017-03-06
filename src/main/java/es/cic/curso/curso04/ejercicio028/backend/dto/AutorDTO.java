@@ -1,13 +1,11 @@
 package es.cic.curso.curso04.ejercicio028.backend.dto;
 
-
-
 public class AutorDTO {
-    private Long id;
-    private String nombre;
-    private String apellidos;
-    private int fechaNacimiento;
-    
+	private Long id;
+	private String nombre;
+	private String apellidos;
+	private int fechaNacimiento;
+
 	public AutorDTO() {
 		super();
 	}
@@ -56,6 +54,5 @@ public class AutorDTO {
 		return "AutorDTO [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", fechaNacimiento="
 				+ fechaNacimiento + "]";
 	}
-	
 
 }

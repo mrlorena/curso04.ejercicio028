@@ -13,9 +13,8 @@ import javax.persistence.Table;
 
 import es.cic.curso.curso04.ejercicio028.backend.repository.Identificable;
 
-
 @Entity
-@Table(name="OBRA")
+@Table(name = "OBRA")
 public class Obra implements Identificable<Long> {
 
 	/**
@@ -24,40 +23,37 @@ public class Obra implements Identificable<Long> {
 	private static final long serialVersionUID = 6777173737846819360L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@Column(name="TITULO")
+
+	@Column(name = "TITULO")
 	private String titulo;
-	
+
 	@JoinColumn(name = "AUTOR_ID")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Autor autor;
-	
-	@Column(name="ANIO")
-	private int anio;
-	
-	@OneToOne
-	@JoinColumn(name="TIPO_ID")
-	private Tipo tipo;
-	
-	@OneToOne
-	@JoinColumn(name="ESTILO_ID")
-	private Estilo estilo;
-	
-	@Column(name="HABILITADA")
-	private boolean habilitada;
-	
-	@Column(name="IMAGEN")
-	private String imagen;
-	
-	
 
-	
+	@Column(name = "ANIO")
+	private int anio;
+
+	@OneToOne
+	@JoinColumn(name = "TIPO_ID")
+	private Tipo tipo;
+
+	@OneToOne
+	@JoinColumn(name = "ESTILO_ID")
+	private Estilo estilo;
+
+	@Column(name = "HABILITADA")
+	private boolean habilitada;
+
+	@Column(name = "IMAGEN")
+	private String imagen;
+
 	public Obra() {
 		super();
 	}
-	
+
 	public Obra(String titulo, Autor autor, int anio, Tipo tipo, Estilo estilo, boolean habilitada, String imagen) {
 		super();
 		this.titulo = titulo;
@@ -73,6 +69,7 @@ public class Obra implements Identificable<Long> {
 	public Long getId() {
 		return id;
 	}
+
 	@Override
 	public void setId(Long id) {
 		this.id = id;
@@ -165,5 +162,4 @@ public class Obra implements Identificable<Long> {
 				+ ", estilo=" + estilo + ", precio=" + habilitada + ", imagen=" + imagen + "]";
 	}
 
-	
 }

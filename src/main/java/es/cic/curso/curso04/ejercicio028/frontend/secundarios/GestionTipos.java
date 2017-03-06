@@ -22,71 +22,63 @@ public class GestionTipos extends HorizontalLayout {
 	 * 
 	 */
 	private static final long serialVersionUID = -7897900102340873208L;
-	
+
 	private TipoService tipoService;
 	private List<Tipo> listaTipos;
 
 	private TiposForm detalleTipo;
 	private NativeButton aniadirTipo;
 	private Grid gridTipos;
-	
+
 	@SuppressWarnings("unused")
 	private MyUI padre;
-	
 
-	public GestionTipos(MyUI padre){
+	public GestionTipos(MyUI padre) {
 		this.padre = padre;
-		
-		tipoService = ContextLoader.getCurrentWebApplicationContext().getBean(TipoService.class);	
+
+		tipoService = ContextLoader.getCurrentWebApplicationContext().getBean(TipoService.class);
 
 		listaTipos = new ArrayList<>();
 		listaTipos = tipoService.listarTipo();
 
-		System.out.println("44444"+listaTipos);
-		
 		aniadirTipo = new NativeButton("Añadir Tipo");
 		aniadirTipo.setIcon(FontAwesome.PLUS);
-		
+
 		gridTipos = new Grid();
-		gridTipos.setWidth(820, Unit.PIXELS);	
-		gridTipos.setColumns("nombreTipo");	
+		gridTipos.setWidth(820, Unit.PIXELS);
+		gridTipos.setColumns("nombreTipo");
 		gridTipos.setFrozenColumnCount(1);
-		gridTipos.setSelectionMode(SelectionMode.NONE);	
-		
+		gridTipos.setSelectionMode(SelectionMode.NONE);
+
 		detalleTipo = new TiposForm(this);
-		aniadirTipo.addClickListener(e->{	
+
+		aniadirTipo.addClickListener(e -> {
 			aniadirTipo.setVisible(false);
-			
+
 			aniadirTipo();
 		});
-		
-	
+
 		cargarTipos(null);
-		
-		
-		addComponents(gridTipos,aniadirTipo,detalleTipo);	
-		
+
+		addComponents(gridTipos, aniadirTipo, detalleTipo);
+
 	}
 
-	private void aniadirTipo() {	
+	private void aniadirTipo() {
 		detalleTipo.setVisible(true);
-		
+
 		Tipo tipo = new Tipo("");
 		detalleTipo.setTipo(tipo);
-	
+
 	}
 
 	public void cargarTipos(Tipo tipo) {
-		//listaTipos = tipoService.listarTipo();
+		// listaTipos = tipoService.listarTipo();
 		aniadirTipo.setVisible(true);
 		detalleTipo.setVisible(false);
-		
-		
-			gridTipos.setContainerDataSource(
-					new BeanItemContainer<>(Tipo.class, listaTipos)
-					);
-			detalleTipo.setTipo(null);
-		
-	
+
+		gridTipos.setContainerDataSource(new BeanItemContainer<>(Tipo.class, listaTipos));
+		detalleTipo.setTipo(null);
+
 	}
 }

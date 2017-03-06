@@ -8,7 +8,7 @@ public class ObraDTO {
 	private String estilo;
 	private boolean habilitada;
 	private String imagen;
-	
+
 	public ObraDTO() {
 		super();
 	}
@@ -60,7 +60,6 @@ public class ObraDTO {
 	public void setHabilitada(boolean habilitada) {
 		this.habilitada = habilitada;
 	}
-	
 
 	public String getImagen() {
 		return imagen;
@@ -76,7 +75,4 @@ public class ObraDTO {
 				+ estilo + ", precio=" + habilitada + ", imagen=" + imagen + "]";
 	}
 
-
-	
-	
 }

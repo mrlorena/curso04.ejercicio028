@@ -20,24 +20,22 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.transaction.annotation.Transactional;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Autor;
- 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:es/cic/curso/curso04.ejercicio028/applicationContext.xml"})
+@ContextConfiguration(locations = { "classpath:es/cic/curso/curso04.ejercicio028/applicationContext.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
 @Transactional
 public class AutorServiceImplTest {
 
-    @PersistenceContext
+	@PersistenceContext
 	protected EntityManager entityManager;
-	
+
 	@Autowired
 	private AutorService autorService;
-	
+
 	private Autor autor1;
 	private Autor autor2;
 	private Autor autor3;
-	
 
 	@Before
 	public void setUp() throws Exception {
@@ -74,9 +72,9 @@ public class AutorServiceImplTest {
 		}
 
 	}
-	
+
 	private void inicializaBaseDeDatos() {
-		
+
 		autor1 = new Autor("nombre1", 123);
 		autor2 = new Autor("nombre2", 456);
 		autor3 = new Autor("nombre3", 789);
@@ -84,6 +82,5 @@ public class AutorServiceImplTest {
 		entityManager.persist(autor2);
 		entityManager.persist(autor3);
 	}
-
 
 }

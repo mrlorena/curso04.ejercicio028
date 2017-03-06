@@ -20,24 +20,22 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.transaction.annotation.Transactional;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
- 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:es/cic/curso/curso04.ejercicio028/applicationContext.xml"})
+@ContextConfiguration(locations = { "classpath:es/cic/curso/curso04.ejercicio028/applicationContext.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
 @Transactional
 public class TipoServiceImplTest {
 
-    @PersistenceContext
+	@PersistenceContext
 	protected EntityManager entityManager;
-	
+
 	@Autowired
 	private TipoService tipoService;
-	
+
 	private Tipo tipo1;
 	private Tipo tipo2;
 	private Tipo tipo3;
-	
 
 	@Before
 	public void setUp() throws Exception {
@@ -74,9 +72,9 @@ public class TipoServiceImplTest {
 		}
 
 	}
-	
+
 	private void inicializaBaseDeDatos() {
-		
+
 		tipo1 = new Tipo("administrador");
 		tipo2 = new Tipo("invitado");
 		tipo3 = new Tipo("invitado");
@@ -84,6 +82,5 @@ public class TipoServiceImplTest {
 		entityManager.persist(tipo2);
 		entityManager.persist(tipo3);
 	}
-
 
 }

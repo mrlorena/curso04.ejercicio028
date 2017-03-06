@@ -11,35 +11,35 @@ import es.cic.curso.curso04.ejercicio028.backend.repository.EstiloRepository;
 
 @Service
 @Transactional
-public class EstiloServiceImpl implements EstiloService{
+public class EstiloServiceImpl implements EstiloService {
 
 	@Autowired
 	private EstiloRepository estiloRepository;
 
-    @Override
+	@Override
 	public Estilo aniadirEstilo(Estilo estilo) {
-        return estiloRepository.add(estilo);
+		return estiloRepository.add(estilo);
 	}
 
-    @Override
-    public Estilo modificarEstilo(Estilo estilo) {
-    	return estiloRepository.update(estilo);
-    }
-   
-    @Override
-    public void borrarEstilo(Long id) {
-    	Estilo estiloABorrar = obtenerEstilo(id);
-        estiloRepository.delete( estiloABorrar);
-    }
+	@Override
+	public Estilo modificarEstilo(Estilo estilo) {
+		return estiloRepository.update(estilo);
+	}
 
-    @Override
-    public Estilo obtenerEstilo(Long id) {
-        return estiloRepository.read(id);
-    }
+	@Override
+	public void borrarEstilo(Long id) {
+		Estilo estiloABorrar = obtenerEstilo(id);
+		estiloRepository.delete(estiloABorrar);
+	}
 
-    @Override
-    public List<Estilo> listarEstilo() {
-        return estiloRepository.list();
-    }
-    
+	@Override
+	public Estilo obtenerEstilo(Long id) {
+		return estiloRepository.read(id);
+	}
+
+	@Override
+	public List<Estilo> listarEstilo() {
+		return estiloRepository.list();
+	}
+
 }

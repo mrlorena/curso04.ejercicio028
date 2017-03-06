@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import es.cic.curso.curso04.ejercicio028.backend.repository.Identificable;
 
 @Entity
-@Table(name="AUTOR")
+@Table(name = "AUTOR")
 public class Autor implements Identificable<Long> {
 
 	/**
@@ -23,19 +23,18 @@ public class Autor implements Identificable<Long> {
 	private static final long serialVersionUID = 5556422682642816178L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@Column(name="NOMBRE")
+
+	@Column(name = "NOMBRE")
 	private String nombre;
-	
-	@Column(name="FECHA_NACIMIENTO")
+
+	@Column(name = "FECHA_NACIMIENTO")
 	private int fechaNacimiento;
-	
+
 	@OneToMany(mappedBy = "autor")
 	private List<Obra> listaObras = new ArrayList<>();
 
-	
 	public Autor() {
 		super();
 	}
@@ -71,6 +70,7 @@ public class Autor implements Identificable<Long> {
 	public void setFechaNacimiento(int fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
+
 	public List<Obra> getListaObras() {
 		return listaObras;
 	}
@@ -78,7 +78,6 @@ public class Autor implements Identificable<Long> {
 	public void setListaObras(List<Obra> listaObras) {
 		this.listaObras = listaObras;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -107,10 +106,7 @@ public class Autor implements Identificable<Long> {
 
 	@Override
 	public String toString() {
-		return "Autor [id=" + id + ", nombre=" + nombre +  ", fechaNacimiento="
-				+ fechaNacimiento + "]";
+		return "Autor [id=" + id + ", nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento + "]";
 	}
 
-	
-	
 }

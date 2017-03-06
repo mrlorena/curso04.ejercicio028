@@ -21,25 +21,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 
- 
-
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {	"classpath:es/cic/curso/curso04.ejercicio028/applicationContext.xml"})
+@ContextConfiguration(locations = { "classpath:es/cic/curso/curso04.ejercicio028/applicationContext.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
 @Transactional
 public class EstiloServiceImplTest {
 
 	@PersistenceContext
 	protected EntityManager entityManager;
-	
+
 	@Autowired
 	private EstiloService estiloService;
 
 	private Estilo estilo1;
 	private Estilo estilo2;
 	private Estilo estilo3;
-	
-	
+
 	@Before
 	public void setUp() throws Exception {
 		inicializaBaseDeDatos();
@@ -50,7 +47,7 @@ public class EstiloServiceImplTest {
 		estiloService.aniadirEstilo(estilo1);
 		estiloService.aniadirEstilo(estilo2);
 		estiloService.aniadirEstilo(estilo3);
-		
+
 		assertNotNull(estilo1.getId());
 		assertNotNull(estilo2.getId());
 		assertNotNull(estilo3.getId());
@@ -58,7 +55,7 @@ public class EstiloServiceImplTest {
 
 	@Test
 	public void testModificarCategoria() {
-		
+
 		estilo2.setNombreEstilo("estilo");
 		estiloService.modificarEstilo(estilo2);
 		assertEquals(estilo2.getNombreEstilo(), "estilo");
@@ -81,7 +78,7 @@ public class EstiloServiceImplTest {
 		}
 
 	}
-	
+
 	private void inicializaBaseDeDatos() {
 		estilo1 = new Estilo("categoria1");
 		estilo2 = new Estilo("categoria2");
@@ -92,6 +89,5 @@ public class EstiloServiceImplTest {
 		entityManager.persist(estilo3);
 
 	}
-
 
 }

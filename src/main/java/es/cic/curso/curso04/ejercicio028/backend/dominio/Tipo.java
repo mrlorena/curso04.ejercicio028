@@ -10,8 +10,8 @@ import javax.persistence.Table;
 import es.cic.curso.curso04.ejercicio028.backend.repository.Identificable;
 
 @Entity
-@Table(name="TIPO")
-public class Tipo implements Identificable<Long>{
+@Table(name = "TIPO")
+public class Tipo implements Identificable<Long> {
 
 	/**
 	 * 
@@ -19,13 +19,12 @@ public class Tipo implements Identificable<Long>{
 	private static final long serialVersionUID = 636697323429057481L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@Column(name="NOMBRE_TIPO")
+
+	@Column(name = "NOMBRE_TIPO")
 	private String nombreTipo;
-	
-	
+
 	public Tipo() {
 		super();
 	}
@@ -39,6 +38,7 @@ public class Tipo implements Identificable<Long>{
 	public Long getId() {
 		return id;
 	}
+
 	@Override
 	public void setId(Long id) {
 		this.id = id;
@@ -82,5 +82,4 @@ public class Tipo implements Identificable<Long>{
 		return "Tipo [id=" + id + ", nombreTipo=" + nombreTipo + "]";
 	}
 
-	
 }

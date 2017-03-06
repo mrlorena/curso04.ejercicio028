@@ -16,6 +16,4 @@ public interface TipoService {
 
 	Tipo modificarTipo(Tipo tipo);
 
-	
-
 }

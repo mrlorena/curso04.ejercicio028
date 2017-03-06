@@ -25,52 +25,48 @@ public class GestionEstilo extends HorizontalLayout {
 
 	@SuppressWarnings("unused")
 	private MyUI padre;
-	
+
 	private EstiloService estiloService;
-	
+
 	private List<Estilo> listaEstilos = new ArrayList<>();
-	
+
 	private NativeButton aniadirEstilo;
 	private EstiloForm detalleEstilo;
 	private Grid gridEstilo;
-	
-	public GestionEstilo(MyUI padre){
+
+	public GestionEstilo(MyUI padre) {
 		this.padre = padre;
-		
-		estiloService = ContextLoader.getCurrentWebApplicationContext().getBean(EstiloService.class);	
-		
+
+		estiloService = ContextLoader.getCurrentWebApplicationContext().getBean(EstiloService.class);
+
 		aniadirEstilo = new NativeButton("Añadir Estilo");
 		aniadirEstilo.setIcon(FontAwesome.PLUS);
-		
+
 		gridEstilo = new Grid();
-		gridEstilo.setWidth(820, Unit.PIXELS);	
-		gridEstilo.setColumns("nombreEstilo");	
+		gridEstilo.setWidth(820, Unit.PIXELS);
+		gridEstilo.setColumns("nombreEstilo");
 		gridEstilo.setFrozenColumnCount(1);
-		gridEstilo.setSelectionMode(SelectionMode.NONE);	
-		
+		gridEstilo.setSelectionMode(SelectionMode.NONE);
+
 		detalleEstilo = new EstiloForm(this);
-		aniadirEstilo.addClickListener(e->{	
+		aniadirEstilo.addClickListener(e -> {
 			aniadirEstilo.setVisible(false);
-			
+
 			aniadirEstilo();
 		});
-		
-	
+
 		cargarEstilos(null);
-		
-		
-		addComponents(gridEstilo,aniadirEstilo,detalleEstilo);	
-		
-	
+
+		addComponents(gridEstilo, aniadirEstilo, detalleEstilo);
+
 	}
 
-	private void aniadirEstilo() {	
+	private void aniadirEstilo() {
 		detalleEstilo.setVisible(true);
-		
+
 		Estilo estilo = new Estilo("");
 		detalleEstilo.setEstilo(estilo);
-		
-		
+
 	}
 
 	public void cargarEstilos(Estilo estilo) {
@@ -78,12 +74,9 @@ public class GestionEstilo extends HorizontalLayout {
 
 		aniadirEstilo.setVisible(true);
 		detalleEstilo.setVisible(false);
-		
-		gridEstilo.setContainerDataSource(
-					new BeanItemContainer<>(Estilo.class, listaEstilos)
-					);
+
+		gridEstilo.setContainerDataSource(new BeanItemContainer<>(Estilo.class, listaEstilos));
 		detalleEstilo.setEstilo(null);
-		
-	
+
 	}
 }

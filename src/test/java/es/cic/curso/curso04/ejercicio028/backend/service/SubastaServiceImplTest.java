@@ -26,38 +26,37 @@ import es.cic.curso.curso04.ejercicio028.backend.dominio.Subasta;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:es/cic/curso/curso04.ejercicio028/applicationContext.xml"})
+@ContextConfiguration(locations = { "classpath:es/cic/curso/curso04.ejercicio028/applicationContext.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
 @Transactional
 public class SubastaServiceImplTest {
 
-    @PersistenceContext
+	@PersistenceContext
 	protected EntityManager entityManager;
-	
+
 	@Autowired
 	private SubastaService subastaService;
-	 
 
 	private Obra obra1;
 	private Obra obra2;
 	private Obra obra3;
-	
+
 	private Subasta subasta1;
 	private Subasta subasta2;
 	private Subasta subasta3;
-	
+
 	private Tipo tipo1;
 	private Tipo tipo2;
 	private Tipo tipo3;
-	
+
 	private Estilo estilo1;
 	private Estilo estilo2;
 	private Estilo estilo3;
- 
+
 	private Autor autor1;
 	private Autor autor2;
 	private Autor autor3;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		inicializaBaseDeDatos();
@@ -93,17 +92,17 @@ public class SubastaServiceImplTest {
 		}
 
 	}
-	
+
 	private void inicializaBaseDeDatos() {
- 	 
+
 		tipo1 = new Tipo("tipo1");
 		tipo2 = new Tipo("tipo2");
 		tipo3 = new Tipo("tipo3");
-	
+
 		entityManager.persist(tipo1);
 		entityManager.persist(tipo2);
 		entityManager.persist(tipo3);
-		
+
 		estilo1 = new Estilo("estilo1");
 		estilo2 = new Estilo("estilo2");
 		estilo3 = new Estilo("estilo3");
@@ -111,35 +110,31 @@ public class SubastaServiceImplTest {
 		entityManager.persist(estilo1);
 		entityManager.persist(estilo2);
 		entityManager.persist(estilo3);
-		
-		autor1 = new Autor("autor1",123);
-		autor2 = new Autor("autor2",123);
-		autor3 = new Autor("autor3",123);
-		
+
+		autor1 = new Autor("autor1", 123);
+		autor2 = new Autor("autor2", 123);
+		autor3 = new Autor("autor3", 123);
+
 		entityManager.persist(autor1);
 		entityManager.persist(autor2);
 		entityManager.persist(autor3);
-		
-		
-		obra1 = new Obra("titulo",autor1,1234,tipo1,estilo1,true,"imagen");
-		obra2 = new Obra("titulo",autor2,1234,tipo2,estilo2,true,"imagen");
-		obra3 = new Obra("titulo",autor3,1234,tipo3,estilo3,true,"imagen");
+
+		obra1 = new Obra("titulo", autor1, 1234, tipo1, estilo1, true, "imagen");
+		obra2 = new Obra("titulo", autor2, 1234, tipo2, estilo2, true, "imagen");
+		obra3 = new Obra("titulo", autor3, 1234, tipo3, estilo3, true, "imagen");
 
 		entityManager.persist(obra1);
 		entityManager.persist(obra2);
 		entityManager.persist(obra3);
-		
+
 		subasta1 = new Subasta(obra1, 11, 22, "hoy", "mañana", true);
 		subasta2 = new Subasta(obra2, 11, 22, "hoy", "mañana", true);
 		subasta3 = new Subasta(obra3, 11, 22, "hoy", "mañana", true);
-		
+
 		entityManager.persist(subasta1);
 		entityManager.persist(subasta2);
 		entityManager.persist(subasta3);
-		
-		
 
 	}
-
 
 }

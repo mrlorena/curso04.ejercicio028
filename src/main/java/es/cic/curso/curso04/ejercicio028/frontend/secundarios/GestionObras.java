@@ -1,6 +1,5 @@
 package es.cic.curso.curso04.ejercicio028.frontend.secundarios;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +24,7 @@ import es.cic.curso.curso04.ejercicio028.backend.service.ObraService;
 import es.cic.curso.curso04.ejercicio028.backend.service.TipoService;
 import es.cic.curso.curso04.ejercicio028.frontend.principal.MyUI;
 
-public class GestionObras  extends HorizontalLayout {
+public class GestionObras extends HorizontalLayout {
 
 	/**
 	 * 
@@ -35,33 +34,29 @@ public class GestionObras  extends HorizontalLayout {
 	private ObraService obraService;
 	private EstiloService estiloService;
 	private AutorService autorService;
-	
+
 	private ObrasForm detalleObras;
-	private List<ObraDTO> listaObras ;
+	private List<ObraDTO> listaObras;
 	private List<Obra> listaObr;
 	private List<Tipo> listaTipos;
 	private List<Estilo> listaEstilos = new ArrayList<>();
 	private List<Autor> listaAutores;
-	
-	
+
 	private ObraConverter obraConverter = new ObraConverter();
-	
+
 	private NativeButton aniadirObra;
 	private Grid gridObras;
-	
-	
+
 	@SuppressWarnings("unused")
 	private MyUI padre;
 
-
-	
-	public GestionObras(MyUI padre){
+	public GestionObras(MyUI padre) {
 		this.padre = padre;
 		obraService = ContextLoader.getCurrentWebApplicationContext().getBean(ObraService.class);
 		tipoService = ContextLoader.getCurrentWebApplicationContext().getBean(TipoService.class);
 		estiloService = ContextLoader.getCurrentWebApplicationContext().getBean(EstiloService.class);
 		autorService = ContextLoader.getCurrentWebApplicationContext().getBean(AutorService.class);
-		
+
 		listaObras = new ArrayList<>();
 		listaObr = new ArrayList<>();
 		listaTipos = new ArrayList<>();
@@ -69,94 +64,86 @@ public class GestionObras  extends HorizontalLayout {
 		listaAutores = new ArrayList<>();
 
 		listaObr = obraService.listarObra();
-		
-		if(listaObr.isEmpty()){	
+
+		if (listaObr.isEmpty()) {
 			obraService.generaBBDD();
 			listaObr = obraService.listarObra();
-			
+
 		}
-		
-		
+
 		listaTipos = tipoService.listarTipo();
 		listaEstilos = estiloService.listarEstilo();
 		listaAutores = autorService.listarAutor();
-		
+
 		listaObras = obraConverter.entity2DTO(listaObr, listaTipos, listaEstilos, listaAutores);
-		
+
 		aniadirObra = new NativeButton("Añadir Obra");
 		aniadirObra.setIcon(FontAwesome.PLUS);
-		
+
 		gridObras = new Grid();
-		gridObras.setWidth(820, Unit.PIXELS);	
-		gridObras.setColumns("titulo","autor","anio","tipo","estilo","habilitada","imagen");	
+		gridObras.setWidth(820, Unit.PIXELS);
+		gridObras.setColumns("titulo", "autor", "anio", "tipo", "estilo", "habilitada", "imagen");
 		gridObras.setFrozenColumnCount(1);
-		gridObras.setSelectionMode(SelectionMode.NONE);	
-		
+		gridObras.setSelectionMode(SelectionMode.NONE);
+
 		detalleObras = new ObrasForm(this);
-		aniadirObra.addClickListener(e->{	
+		aniadirObra.addClickListener(e -> {
 			aniadirObra.setVisible(false);
 			detalleObras.actualizarTipo();
 			detalleObras.actualizarEstilo();
 			detalleObras.actualizarAutor();
 			aniadirObra();
 		});
-		
+
 		cargarObras(null);
-		addComponents(gridObras,aniadirObra,detalleObras);	
+		addComponents(gridObras, aniadirObra, detalleObras);
 	}
-	
 
-	private void aniadirObra() {	
+	private void aniadirObra() {
 		detalleObras.setVisible(true);
-		
-		Obra obra = new Obra("",null,0,null,null,false,"");
+
+		Obra obra = new Obra("", null, 0, null, null, false, "");
 		detalleObras.setObra(obra);
-		
-		gridObras.setContainerDataSource(
-				new BeanItemContainer<>(ObraDTO.class, listaObras)
-				);
+
+		gridObras.setContainerDataSource(new BeanItemContainer<>(ObraDTO.class, listaObras));
 	}
 
+	public void cargarObras(Obra obra) {
 
-	public void cargarObras(Obra obra){	
-	
 		aniadirObra.setVisible(true);
 		detalleObras.setVisible(false);
-		
-		if(obra!=null){
+
+		if (obra != null) {
 			Tipo tipo = null;
 			Estilo estilo = null;
 			Autor autor = null;
-			
-			for(Tipo t: listaTipos){
-				if(obra.getTipo().getNombreTipo().equals(t.getNombreTipo())){
+
+			for (Tipo t : listaTipos) {
+				if (obra.getTipo().getNombreTipo().equals(t.getNombreTipo())) {
 					tipo = obra.getTipo();
-					
-				}
-			}	
-				
-			for(Estilo e: listaEstilos){
-				if(obra.getEstilo().getNombreEstilo().equals(e.getNombreEstilo())){
-					estilo = obra.getEstilo();		
+
 				}
 			}
-			
-			for(Autor a: listaAutores){
-				
-				if(obra.getAutor().getNombre().equals(a.getNombre())){
-					autor = obra.getAutor();		
+
+			for (Estilo e : listaEstilos) {
+				if (obra.getEstilo().getNombreEstilo().equals(e.getNombreEstilo())) {
+					estilo = obra.getEstilo();
 				}
 			}
-			
-			ObraDTO obraDTO = new ObraDTO();	
+
+			for (Autor a : listaAutores) {
+
+				if (obra.getAutor().getNombre().equals(a.getNombre())) {
+					autor = obra.getAutor();
+				}
+			}
+
+			ObraDTO obraDTO = new ObraDTO();
 			obraDTO = obraConverter.entityToDto(obra, tipo, estilo, autor);
 			listaObras.add(obraDTO);
-		}	
-		
+		}
 
-		gridObras.setContainerDataSource(
-				new BeanItemContainer<>(ObraDTO.class, listaObras)
-				);
+		gridObras.setContainerDataSource(new BeanItemContainer<>(ObraDTO.class, listaObras));
 		detalleObras.setObra(null);
 	}
 }
