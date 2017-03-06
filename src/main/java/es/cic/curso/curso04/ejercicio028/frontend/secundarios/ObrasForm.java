@@ -34,7 +34,6 @@ import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
 import es.cic.curso.curso04.ejercicio028.backend.service.AutorService;
 import es.cic.curso.curso04.ejercicio028.backend.service.EstiloService;
-import es.cic.curso.curso04.ejercicio028.backend.service.ObraService;
 import es.cic.curso.curso04.ejercicio028.backend.service.TipoService;
 
 public class ObrasForm extends FormLayout {
@@ -66,7 +65,6 @@ public class ObrasForm extends FormLayout {
 	private TextField txImagen;
 
 	private Obra obra;
-	private ObraService obraService;
 	private EstiloService estiloService;
 	private TipoService tipoService;
 	private AutorService autorService;
@@ -94,7 +92,6 @@ public class ObrasForm extends FormLayout {
 	public ObrasForm(GestionObras padre) {
 
 		this.padre = padre;
-		obraService = ContextLoader.getCurrentWebApplicationContext().getBean(ObraService.class);
 		estiloService = ContextLoader.getCurrentWebApplicationContext().getBean(EstiloService.class);
 		tipoService = ContextLoader.getCurrentWebApplicationContext().getBean(TipoService.class);
 		autorService = ContextLoader.getCurrentWebApplicationContext().getBean(AutorService.class);

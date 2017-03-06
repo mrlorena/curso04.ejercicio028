@@ -48,6 +48,12 @@ public class EstiloForm extends FormLayout {
 		nombreEstilo = new TextField("Estilo ");
 		habilitado = new CheckBox("Habilitado");
 		
+		
+			
+		
+		
+		
+		
 		horizontal1 = new HorizontalLayout();
 		horizontal2 = new HorizontalLayout();
 

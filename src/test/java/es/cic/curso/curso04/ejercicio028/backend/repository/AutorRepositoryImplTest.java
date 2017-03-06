@@ -26,7 +26,7 @@ public class AutorRepositoryImplTest extends AbstractRepositoryImplTest<Long, Au
 
 		Autor autor = new Autor();
 		autor.setNombre("nombre1");
-		autor.setFechaNacimiento(1234);
+		autor.setFechaNacimiento("1234");
 
 		return autor;
 	}
@@ -35,7 +35,7 @@ public class AutorRepositoryImplTest extends AbstractRepositoryImplTest<Long, Au
 	public Autor getInstanceDeTParaLectura() {
 		Autor autor = new Autor();
 		autor.setNombre("nombre1");
-		autor.setFechaNacimiento(1234);
+		autor.setFechaNacimiento("1234");
 
 		return autor;
 	}
@@ -50,7 +50,7 @@ public class AutorRepositoryImplTest extends AbstractRepositoryImplTest<Long, Au
 		Autor autor = getInstanceDeTParaLectura();
 		autor.setId(clave);
 		autor.setNombre("nombre1");
-		autor.setFechaNacimiento(1234);
+		autor.setFechaNacimiento("1234");
 
 		return autor;
 	}

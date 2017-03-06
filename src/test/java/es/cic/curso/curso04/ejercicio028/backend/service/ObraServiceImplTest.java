@@ -106,9 +106,9 @@ public class ObraServiceImplTest {
 		entityManager.persist(estilo2);
 		entityManager.persist(estilo3);
 
-		autor1 = new Autor("autor1", 123, true);
-		autor2 = new Autor("autor2", 123, true);
-		autor3 = new Autor("autor3", 123, true);
+		autor1 = new Autor("autor1", "123", true);
+		autor2 = new Autor("autor2", "123", true);
+		autor3 = new Autor("autor3", "123", true);
 
 		entityManager.persist(autor1);
 		entityManager.persist(autor2);

@@ -96,7 +96,7 @@ public class GestionAutores extends HorizontalLayout {
 	private void aniadirAutor() {
 		detalleAutor.setVisible(true);
 
-		Autor autor = new Autor("", 0, true);
+		Autor autor = new Autor("", "", true);
 		detalleAutor.setAutor(autor);
 
 	}
@@ -128,6 +128,7 @@ public class GestionAutores extends HorizontalLayout {
 			for (Autor au : listaAutores) {
 				if (autores.getValue() == (au.getNombre())) {
 					detalleAutor.setVisible(true);
+					detalleAutor.bloquearNombre();
 					detalleAutor.setAutor(au);
 					cancelar.setVisible(false);
 				}

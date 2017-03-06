@@ -4,13 +4,13 @@ public class AutorDTO {
 	private Long id;
 	private String nombre;
 	private String apellidos;
-	private int fechaNacimiento;
+	private String fechaNacimiento;
 
 	public AutorDTO() {
 		super();
 	}
 
-	public AutorDTO(String nombre, String apellidos, int fechaNacimiento) {
+	public AutorDTO(String nombre, String apellidos, String fechaNacimiento) {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -41,11 +41,11 @@ public class AutorDTO {
 		this.apellidos = apellidos;
 	}
 
-	public int getFechaNacimiento() {
+	public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(int fechaNacimiento) {
+	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 

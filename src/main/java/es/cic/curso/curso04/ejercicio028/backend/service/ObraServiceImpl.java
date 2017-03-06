@@ -67,8 +67,8 @@ public class ObraServiceImpl implements ObraService {
 		Estilo estilo1 = new Estilo("Gótico", true);
 		Estilo estilo2 = new Estilo("Renacentista", true);
 
-		Autor autor = new Autor("Desconocido", 0, true);
-		Autor autor1 = new Autor("Leonardo Da Vinci", 1452, true);
+		Autor autor = new Autor("Desconocido", "0", true);
+		Autor autor1 = new Autor("Leonardo Da Vinci", "1452", true);
 
 		tipoRepository.add(tipo1);
 		tipoRepository.add(tipo2);

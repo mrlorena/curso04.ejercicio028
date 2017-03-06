@@ -35,7 +35,7 @@ public class ObraRepositoryImplTest extends AbstractRepositoryImplTest<Long, Obr
 
 		tipo = new Tipo("cuadro", true);
 		estilo = new Estilo("cuadro", true);
-		autor = new Autor("autor1", 1234, true);
+		autor = new Autor("autor1", "1234", true);
 		em.persist(tipo);
 		em.persist(estilo);
 		em.persist(autor);

@@ -44,7 +44,7 @@
 	                <constraints primaryKey="true"/>
 	            </column>
 	            <column name="NOMBRE" type="VARCHAR(60)"/>
-	            <column name="FECHA_NACIMIENTO" type="INT(4)"/>
+	            <column name="FECHA_NACIMIENTO" type="VARCHAR(5)"/>
 	            <column name="HABILITADO" type="BOOLEAN"/>
 	             
       </createTable>

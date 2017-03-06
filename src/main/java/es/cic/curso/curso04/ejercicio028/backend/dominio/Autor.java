@@ -30,7 +30,7 @@ public class Autor implements Identificable<Long> {
 	private String nombre;
 
 	@Column(name = "FECHA_NACIMIENTO")
-	private int fechaNacimiento;
+	private String fechaNacimiento;
 	
 	@Column(name = "HABILITADO")
 	private boolean habilitado;
@@ -43,7 +43,7 @@ public class Autor implements Identificable<Long> {
 		super();
 	}
 
-	public Autor(String nombre, int fechaNacimiento, boolean habilitado) {
+	public Autor(String nombre, String fechaNacimiento, boolean habilitado) {
 		super();
 		this.nombre = nombre;
 		this.fechaNacimiento = fechaNacimiento;
@@ -68,11 +68,11 @@ public class Autor implements Identificable<Long> {
 		this.nombre = nombre;
 	}
 
-	public int getFechaNacimiento() {
+	public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(int fechaNacimiento) {
+	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 

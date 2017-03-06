@@ -57,7 +57,7 @@ public class AutorServiceImplTest {
 
 	@Test
 	public void testBorrarTipo() {
-		Autor autorABorrar = new Autor("aa", 12, true);
+		Autor autorABorrar = new Autor("aa", "12", true);
 		autorService.aniadirAutor(autorABorrar);
 		autorService.borrarAutor(autorABorrar.getId());
 		List<Autor> listaAutor = autorService.listarAutor();
@@ -75,9 +75,9 @@ public class AutorServiceImplTest {
 
 	private void inicializaBaseDeDatos() {
 
-		autor1 = new Autor("nombre1", 123, true);
-		autor2 = new Autor("nombre2", 456, true);
-		autor3 = new Autor("nombre3", 789, true);
+		autor1 = new Autor("nombre1", "123", true);
+		autor2 = new Autor("nombre2", "456", true);
+		autor3 = new Autor("nombre3", "789", true);
 		entityManager.persist(autor1);
 		entityManager.persist(autor2);
 		entityManager.persist(autor3);

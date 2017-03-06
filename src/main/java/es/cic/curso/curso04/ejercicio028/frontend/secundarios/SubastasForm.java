@@ -133,14 +133,6 @@ public class SubastasForm extends FormLayout {
 				
 				padre.cargarSubastas(subasta);
 
-				// pujaInicial.clear();
-				// precioVenta.clear();
-				// fechaInicio.clear();
-				// fechaFin.clear();
-				// activa.clear();
-
-				// cbObras.clear();
-
 				setSubasta(null);
 
 			} else {
