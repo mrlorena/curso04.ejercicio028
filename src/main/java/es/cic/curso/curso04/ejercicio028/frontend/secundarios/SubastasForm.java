@@ -1,5 +1,7 @@
 package es.cic.curso.curso04.ejercicio028.frontend.secundarios;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,7 @@ import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Page;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.ComboBox;
+import com.vaadin.ui.DateField;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.NativeButton;
@@ -39,10 +42,10 @@ public class SubastasForm extends FormLayout {
 	private TextField precioVenta;
 
 	@PropertyId("fechaInicio")
-	private TextField fechaInicio;
+	private String convertidoFechaInicial;
 
 	@PropertyId("fechaFin")
-	private TextField fechaFin;
+	private String convertidoFechaFin;
 
 	@PropertyId("activa")
 	private CheckBox activa;
@@ -62,7 +65,10 @@ public class SubastasForm extends FormLayout {
 
 	private NativeButton confirmar;
 	private NativeButton cancelar;
-
+	
+	DateField dateInicio;
+	DateField dateFin;
+	DateFormat fecha;
 	private ComboBox cbObras;
 
 	public SubastasForm(GestionSubastas padre) {
@@ -89,9 +95,11 @@ public class SubastasForm extends FormLayout {
 
 		pujaInicial = new TextField("Puja inicial *");
 		precioVenta = new TextField("Precio venta");
-		fechaInicio = new TextField("Fecha Inicio");
-		fechaFin = new TextField("Fecha fin *");
+		dateInicio = new DateField("Fecha Inicio *");
+		dateFin = new DateField("Fecha fin *");
 		activa = new CheckBox("Activa");
+	
+
 
 		confirmar = new NativeButton("Registrar");
 		confirmar.setIcon(FontAwesome.SAVE);
@@ -105,10 +113,24 @@ public class SubastasForm extends FormLayout {
 			Notification notificacion;
 			notificacion = new Notification("No es posible volver a subastar esta obra");
 
+			fecha = new SimpleDateFormat("dd-MM-yyyy");
+			
 			if (listaSubasta.isEmpty()) {
+				
+				
+				convertidoFechaInicial = fecha.format(dateInicio.getValue());
+				convertidoFechaFin = fecha.format(dateFin.getValue());
+				
+				subasta.setFechaInicio(convertidoFechaInicial);
+				subasta.setFechaFin(convertidoFechaFin);
+				
 				subastaService.aniadirSubasta(subasta);
 				cbObras.setVisible(false);
 
+				
+				System.out.print("inicio"+convertidoFechaInicial);
+				System.out.print("fin"+convertidoFechaFin);
+				
 				padre.cargarSubastas(subasta);
 
 				// pujaInicial.clear();
@@ -130,6 +152,13 @@ public class SubastasForm extends FormLayout {
 
 					} else {
 
+
+						convertidoFechaInicial = fecha.format(dateInicio.getValue());
+						convertidoFechaFin = fecha.format(dateFin.getValue());
+						
+						subasta.setFechaInicio(convertidoFechaInicial);
+						subasta.setFechaFin(convertidoFechaFin);
+						
 						subastaService.aniadirSubasta(subasta);
 						cbObras.setVisible(false);
 
@@ -154,18 +183,19 @@ public class SubastasForm extends FormLayout {
 
 		cancelar.addClickListener(e -> {
 
-			pujaInicial.clear();
-			precioVenta.clear();
-			fechaInicio.clear();
-			fechaFin.clear();
-			activa.clear();
-
+		//	pujaInicial.clear();
+		//	precioVenta.clear();
+		//	fechaInicio.clear();
+		//	fechaFin.clear();
+		//	activa.clear();
+			padre.cargarSubastas(null);
+			cbObras.setVisible(false);
 			cbObras.clear();
 
 		});
 
 		horizontal2.addComponents(pujaInicial, precioVenta);
-		horizontal3.addComponents(fechaInicio, fechaFin, activa);
+		horizontal3.addComponents(dateInicio, dateFin, activa);
 		horizontal4.addComponents(confirmar, cancelar);
 
 		addComponents(horizontal1, horizontal2, horizontal3, horizontal4);
@@ -181,7 +211,7 @@ public class SubastasForm extends FormLayout {
 			listaObras.add(a.getTitulo());
 		}
 
-		cbObras = new ComboBox("Título de obra", listaObras);
+		cbObras = new ComboBox("Título de la obra", listaObras);
 		cbObras.setNullSelectionAllowed(false);
 		cbObras.select(1);
 		cbObras.setImmediate(true);

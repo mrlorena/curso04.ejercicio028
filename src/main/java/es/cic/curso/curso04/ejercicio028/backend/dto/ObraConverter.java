@@ -17,13 +17,13 @@ public class ObraConverter {
 	private EstiloConverter estiloConverter;
 	private AutorConverter autorConverter;
 
-	public ObraDTO entityToDto(Obra obra, Tipo tipo, Estilo estilo, Autor autor) {
+	public ObraDTO entityToDto(Obra obra, Autor autor) {
 		ObraDTO resultado = new ObraDTO();
 		resultado.setTitulo(obra.getTitulo());
 		resultado.setAutor(autor.getNombre());
 		resultado.setAnio(obra.getAnio());
-		resultado.setTipo(tipo.getNombreTipo());
-		resultado.setEstilo(estilo.getNombreEstilo());
+		resultado.setTipo(obra.getTipo().getNombreTipo());
+		resultado.setEstilo(obra.getEstilo().getNombreEstilo());
 		resultado.setHabilitada(obra.isHabilitada());
 		resultado.setImagen(obra.getImagen());
 
@@ -48,17 +48,16 @@ public class ObraConverter {
 		List<ObraDTO> resultado = new ArrayList<>();
 
 		for (Obra obra : obras) {
-			for (Tipo tipo : tipos) {
-				for (Estilo estilo : estilos) {
+			
 					for (Autor autor : autores) {
 
-						resultado.add(entityToDto(obra, tipo, estilo, autor));
-
+						resultado.add(entityToDto(obra, autor));
+						break;
 					}
 
-				}
+				
 
-			}
+		
 
 		}
 		return resultado;

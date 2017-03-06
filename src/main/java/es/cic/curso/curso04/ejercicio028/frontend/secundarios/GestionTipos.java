@@ -39,7 +39,6 @@ public class GestionTipos extends HorizontalLayout {
 		tipoService = ContextLoader.getCurrentWebApplicationContext().getBean(TipoService.class);
 
 		listaTipos = new ArrayList<>();
-		listaTipos = tipoService.listarTipo();
 
 		aniadirTipo = new NativeButton("Añadir Tipo");
 		aniadirTipo.setIcon(FontAwesome.PLUS);
@@ -73,7 +72,8 @@ public class GestionTipos extends HorizontalLayout {
 	}
 
 	public void cargarTipos(Tipo tipo) {
-		// listaTipos = tipoService.listarTipo();
+		listaTipos = tipoService.listarTipo();
+		
 		aniadirTipo.setVisible(true);
 		detalleTipo.setVisible(false);
 

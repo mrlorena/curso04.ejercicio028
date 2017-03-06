@@ -72,8 +72,7 @@ public class GestionAutores extends HorizontalLayout {
 		gridAutores.setColumns("nombre", "fechaNacimiento");
 		gridAutores.setFrozenColumnCount(1);
 		gridAutores.setSelectionMode(SelectionMode.NONE);
-		gridAutores.setWidth("500px");
-
+	
 		detalleAutor = new AutoresForm(this);
 		aniadirAutor.addClickListener(e -> {
 			aniadirAutor.setVisible(false);
@@ -81,9 +80,53 @@ public class GestionAutores extends HorizontalLayout {
 			aniadirAutor();
 		});
 
-		modificar.addClickListener(e -> modificarAutor());
+		modificar.addClickListener(e -> {
+			listaAutores = autorService.listarAutor();
+			listaNombres.clear();
+			for (Autor autor : listaAutores) {
 
-		vertical.addComponents(aniadirAutor, modificar, extra, detalleAutor);
+				listaNombres.add(autor.getNombre());
+
+			}
+			autores = new ComboBox("Nombre", listaNombres);
+			autores.setInputPrompt("Seleccione autor a modificar");
+			autores.setNullSelectionAllowed(false);
+			autores.select(1);
+			autores.setImmediate(true);
+			autores.setWidth(300, Unit.PIXELS);
+
+			aniadirAutor.setVisible(false);
+			modificar.setVisible(false);
+			autores.setVisible(true);
+			cancelar.setVisible(true);
+
+			extra.addComponents(autores, cancelar);
+
+			autores.addValueChangeListener(a -> {
+
+				for (Autor au : listaAutores) {
+					if (autores.getValue() == (au.getNombre())) {
+						detalleAutor.setVisible(true);
+						detalleAutor.setAutor(au);
+						cancelar.setVisible(false);
+					}
+				}
+			});
+
+			cancelar.addClickListener(a -> {
+
+				autores.setVisible(false);
+				cancelar.setVisible(false);
+				autores.clear();
+				aniadirAutor.setVisible(true);
+				modificar.setVisible(true);
+
+			});
+
+		});
+
+
+		vertical.addComponents(aniadirAutor,modificar, extra, detalleAutor);
 		addComponents(gridAutores, vertical);
 
 		cargarAutores(null);
@@ -107,7 +150,7 @@ public class GestionAutores extends HorizontalLayout {
 
 		}
 		autores = new ComboBox("Nombre", listaNombres);
-		autores.setInputPrompt("Seleccione usuario a modificar");
+		autores.setInputPrompt("Seleccione autor a modificar");
 		autores.setNullSelectionAllowed(false);
 		autores.select(1);
 		autores.setImmediate(true);
@@ -144,14 +187,21 @@ public class GestionAutores extends HorizontalLayout {
 	}
 
 	public void cargarAutores(Autor autor) {
-		listaAutores = autorService.listarAutor();
+		
 		aniadirAutor.setVisible(true);
 		modificar.setVisible(true);
 		detalleAutor.setVisible(false);
+		autores.setVisible(false);
+		
+		
+		
+		if(autor != null){
+			autorService.modificarAutor(autor);
+		}	
+		
 
-		if (!listaAutores.isEmpty()) {
-			gridAutores.setContainerDataSource(new BeanItemContainer<>(Autor.class, listaAutores));
-		}
+		listaAutores = autorService.listarAutor();
+		gridAutores.setContainerDataSource(new BeanItemContainer<>(Autor.class, listaAutores));
 		detalleAutor.setAutor(null);
 
 	}

@@ -139,7 +139,7 @@ public class GestionObras extends HorizontalLayout {
 			}
 
 			ObraDTO obraDTO = new ObraDTO();
-			obraDTO = obraConverter.entityToDto(obra, tipo, estilo, autor);
+			obraDTO = obraConverter.entityToDto(obra, autor);
 			listaObras.add(obraDTO);
 		}
 

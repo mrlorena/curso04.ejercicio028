@@ -56,19 +56,19 @@ public class AutoresForm extends FormLayout {
 
 		confirmar.addClickListener(e -> {
 
-			autorService.aniadirAutor(autor);
+			//autorService.aniadirAutor(autor);
 			padre.cargarAutores(autor);
-
-			// setAutor(null);
-			nombre.clear();
-			fechaNacimiento.clear();
+			
+			//setAutor(null);
+			//nombre.clear();
+			//fechaNacimiento.clear();
 		});
 
 		cancelar.addClickListener(e -> {
-
+			
 			padre.cargarAutores(null);
-			nombre.clear();
-			fechaNacimiento.clear();
+			//nombre.clear();
+			//fechaNacimiento.clear();
 		});
 
 		horizontal1.addComponents(nombre);

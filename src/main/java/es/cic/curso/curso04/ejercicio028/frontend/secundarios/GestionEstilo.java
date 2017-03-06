@@ -38,7 +38,8 @@ public class GestionEstilo extends HorizontalLayout {
 		this.padre = padre;
 
 		estiloService = ContextLoader.getCurrentWebApplicationContext().getBean(EstiloService.class);
-
+		listaEstilos = new ArrayList<>();
+		
 		aniadirEstilo = new NativeButton("Añadir Estilo");
 		aniadirEstilo.setIcon(FontAwesome.PLUS);
 

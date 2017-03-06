@@ -13,6 +13,7 @@
                 <constraints primaryKey="true" />
             </column>
             <column name="NOMBRE_TIPO" type="VARCHAR(50)" />
+             <column name="HABILITADO" type="BOOLEAN"/>
          </createTable>
          
              
@@ -21,6 +22,7 @@
                 <constraints primaryKey="true" />
             </column>
             <column name="NOMBRE_ESTILO" type="VARCHAR(50)" />
+             <column name="HABILITADO" type="BOOLEAN"/>
          </createTable>
          
          <createTable catalogName="grupo00" tableName="OBRA">
@@ -43,6 +45,7 @@
 	            </column>
 	            <column name="NOMBRE" type="VARCHAR(60)"/>
 	            <column name="FECHA_NACIMIENTO" type="INT(4)"/>
+	            <column name="HABILITADO" type="BOOLEAN"/>
 	             
       </createTable>
       
@@ -51,7 +54,7 @@
 	                <constraints primaryKey="true"/>
 	            </column>
 	           <column name="OBRA_ID" type="INT(10)"/>
-	            <column name="PUJA_INICIAL" type="DOUBLE(4,4))"/>
+	            <column name="PUJA_INICIAL" type="DOUBLE(4,4)"/>
 	             <column name="PRECIO_VENTA" type="DOUBLE(4,4)"/>
 	            <column name="FECHA_INICIO" type="VARCHAR(50)"/>
 	            <column name="FECHA_FIN" type="VARCHAR(50)"/>
