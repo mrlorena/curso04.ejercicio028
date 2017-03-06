@@ -9,6 +9,8 @@
         <class>es.cic.curso.curso04.ejercicio028.backend.dominio.Obra</class>
         <class>es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo</class>
         <class>es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo</class>
+        <class>es.cic.curso.curso04.ejercicio028.backend.dominio.Autor</class>
+        <class>es.cic.curso.curso04.ejercicio028.backend.dominio.Subasta</class>
 
         <!--
         	Ruta de las clases que va en el Dominio

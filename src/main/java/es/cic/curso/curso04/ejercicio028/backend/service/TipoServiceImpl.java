@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
 import es.cic.curso.curso04.ejercicio028.backend.repository.TipoRepository;
  
@@ -43,15 +42,5 @@ public class TipoServiceImpl implements TipoService{
         return tipoRepository.list();
     }
     
-    @Override
-    public void generaBBDD(){
-    	Tipo tipo1 = new Tipo("tipo1");    	
-    	Tipo tipo2 = new Tipo("tipo2");
-    	Tipo tipo3 = new Tipo("tipo3");
-
-    	tipoRepository.add(tipo1);
-    	tipoRepository.add(tipo2);
-    	tipoRepository.add(tipo3);
-
-    }
+   
 }

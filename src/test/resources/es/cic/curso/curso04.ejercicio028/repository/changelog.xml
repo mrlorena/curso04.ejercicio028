@@ -28,15 +28,46 @@
 	                <constraints primaryKey="true"/>
 	            </column>
 	            <column name="TITULO" type="VARCHAR(60)"/>
-	            <column name="AUTOR" type="VARCHAR(60)"/>
+	            <column name="AUTOR_ID" type="INT(10)"/>
 	            <column name="ANIO" type="INT(4)"/>
 	            <column name="TIPO_ID" type="INT(10)"/>
 	            <column name="ESTILO_ID" type="INT(10)"/>
-	            <column name="PRECIO" type="DOUBLE(5,5)"/>
+	            <column name="HABILITADA" type="BOOLEAN"/>
 	            <column name="IMAGEN" type="VARCHAR(60)"/>
 	             
       </createTable>
-     
+      
+      <createTable catalogName="grupo00" tableName="AUTOR">
+	            <column autoIncrement="true" name="id" type="INT(10)">
+	                <constraints primaryKey="true"/>
+	            </column>
+	            <column name="NOMBRE" type="VARCHAR(60)"/>
+	            <column name="FECHA_NACIMIENTO" type="INT(4)"/>
+	             
+      </createTable>
+      
+       <createTable catalogName="grupo00" tableName="SUBASTA">
+	            <column autoIncrement="true" name="id" type="INT(10)">
+	                <constraints primaryKey="true"/>
+	            </column>
+	           <column name="OBRA_ID" type="INT(10)"/>
+	            <column name="PUJA_INICIAL" type="DOUBLE(4,4))"/>
+	             <column name="PRECIO_VENTA" type="DOUBLE(4,4)"/>
+	            <column name="FECHA_INICIO" type="VARCHAR(50)"/>
+	            <column name="FECHA_FIN" type="VARCHAR(50)"/>
+	            <column name="ACTIVA" type="BOOLEAN"/>
+	          
+	             
+      </createTable>
+      
+      
+       <addForeignKeyConstraint 
+        			constraintName="fk_OBRA_AUTOR_ID" 
+        			referencedTableName="AUTOR" 
+        			baseColumnNames="AUTOR_ID" 
+        			baseTableName="OBRA" 
+        			referencedColumnNames="id"/>
     </changeSet>
+    
     
 </databaseChangeLog>

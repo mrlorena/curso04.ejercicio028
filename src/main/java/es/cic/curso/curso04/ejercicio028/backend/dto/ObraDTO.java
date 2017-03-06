@@ -6,7 +6,7 @@ public class ObraDTO {
 	private int anio;
 	private String tipo;
 	private String estilo;
-	private double precio;
+	private boolean habilitada;
 	private String imagen;
 	
 	public ObraDTO() {
@@ -53,13 +53,14 @@ public class ObraDTO {
 		this.estilo = estilo;
 	}
 
-	public double getPrecio() {
-		return precio;
+	public boolean isHabilitada() {
+		return habilitada;
 	}
 
-	public void setPrecio(double precio) {
-		this.precio = precio;
+	public void setHabilitada(boolean habilitada) {
+		this.habilitada = habilitada;
 	}
+	
 
 	public String getImagen() {
 		return imagen;
@@ -72,9 +73,10 @@ public class ObraDTO {
 	@Override
 	public String toString() {
 		return "ObraDTO [titulo=" + titulo + ", autor=" + autor + ", anio=" + anio + ", tipo=" + tipo + ", estilo="
-				+ estilo + ", precio=" + precio + ", imagen=" + imagen + "]";
+				+ estilo + ", precio=" + habilitada + ", imagen=" + imagen + "]";
 	}
-	
+
+
 	
 	
 }

@@ -15,8 +15,5 @@ public interface EstiloService {
     Estilo obtenerEstilo(Long id);
 
     List<Estilo> listarEstilo();
-
-	void generaBBDD();
-
 	
 }

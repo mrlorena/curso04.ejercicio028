@@ -13,6 +13,11 @@ import es.cic.curso.curso04.ejercicio028.backend.repository.Identificable;
 @Table(name="ESTILO")
 public class Estilo implements Identificable<Long>{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8085438588627987895L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;

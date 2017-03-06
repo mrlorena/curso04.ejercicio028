@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Autor;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
+import es.cic.curso.curso04.ejercicio028.backend.repository.AutorRepository;
 import es.cic.curso.curso04.ejercicio028.backend.repository.EstiloRepository;
 import es.cic.curso.curso04.ejercicio028.backend.repository.ObraRepository;
 import es.cic.curso.curso04.ejercicio028.backend.repository.TipoRepository;
@@ -24,13 +26,11 @@ public class ObraServiceImpl implements ObraService{
 	private TipoRepository tipoRepository;
 	
 	@Autowired
+	private AutorRepository autorRepository;
+	
+	@Autowired
 	private EstiloRepository estiloRepository;
 	
-	@Autowired
-	private EstiloService estiloService;
-	
-	@Autowired
-	private TipoService tipoService;
 
     @Override
 	public Obra aniadirObra(Obra obra) {
@@ -60,14 +60,30 @@ public class ObraServiceImpl implements ObraService{
     
     @Override
 	public void generaBBDD() {
-    	Tipo tipo = new Tipo("tipo1");
-    	Estilo estilo = new Estilo("estilo1");
-    
-    	tipoRepository.add(tipo);
-    	estiloRepository.add(estilo);
+    	Tipo tipo1 = new Tipo("Escultura");
+    	Tipo tipo2 = new Tipo("Dibujo");
+    	Tipo tipo3 = new Tipo("Fotografía");
+    	Tipo tipo4 = new Tipo("Mosaico");
     	
-		Obra obra1 = new Obra("titulo1", "autor1", 1234, tipo, estilo, 1235, "imagen");
-		Obra obra2 = new Obra("titulo2", "autor2", 1234, tipo, estilo, 1235, "imagen");	
+    	Estilo estilo1 = new Estilo("Gótico");
+    	Estilo estilo2 = new Estilo("Renacentista");
+    	
+    	Autor autor = new Autor("Desconocido", 0);
+    	Autor autor1 = new Autor("Leonardo Da Vinci", 1452);
+    
+    	tipoRepository.add(tipo1);
+    	tipoRepository.add(tipo2);
+    	tipoRepository.add(tipo3);
+    	tipoRepository.add(tipo4);
+    	
+    	estiloRepository.add(estilo1);
+    	estiloRepository.add(estilo2);
+    	
+    	autorRepository.add(autor);
+    	autorRepository.add(autor1);
+    	
+		Obra obra1 = new Obra("titulo1", autor, 1234, tipo1, estilo1, true, "imagen");
+		Obra obra2 = new Obra("titulo2", autor, 1234, tipo2, estilo2, true, "imagen");	
 		
 		obraRepository.add(obra1);
 		obraRepository.add(obra2);

@@ -14,7 +14,6 @@ import com.vaadin.ui.NativeButton;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.service.EstiloService;
-import es.cic.curso.curso04.ejercicio028.backend.service.ObraService;
 import es.cic.curso.curso04.ejercicio028.frontend.principal.MyUI;
 
 public class GestionEstilo extends HorizontalLayout {
@@ -28,7 +27,7 @@ public class GestionEstilo extends HorizontalLayout {
 	private MyUI padre;
 	
 	private EstiloService estiloService;
-	private ObraService obraService;
+	
 	private List<Estilo> listaEstilos = new ArrayList<>();
 	
 	private NativeButton aniadirEstilo;
@@ -39,8 +38,6 @@ public class GestionEstilo extends HorizontalLayout {
 		this.padre = padre;
 		
 		estiloService = ContextLoader.getCurrentWebApplicationContext().getBean(EstiloService.class);	
-		obraService = ContextLoader.getCurrentWebApplicationContext().getBean(ObraService.class);	
-		
 		
 		aniadirEstilo = new NativeButton("Añadir Estilo");
 		aniadirEstilo.setIcon(FontAwesome.PLUS);
@@ -82,12 +79,11 @@ public class GestionEstilo extends HorizontalLayout {
 		aniadirEstilo.setVisible(true);
 		detalleEstilo.setVisible(false);
 		
-		if(estilo!=null){
-			gridEstilo.setContainerDataSource(
+		gridEstilo.setContainerDataSource(
 					new BeanItemContainer<>(Estilo.class, listaEstilos)
 					);
-			detalleEstilo.setEstilo(null);
-		}
+		detalleEstilo.setEstilo(null);
+		
 	
 	}
 }

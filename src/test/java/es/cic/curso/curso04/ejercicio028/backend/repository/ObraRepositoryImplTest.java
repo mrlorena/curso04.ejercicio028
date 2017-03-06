@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Autor;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
@@ -29,6 +30,7 @@ public class ObraRepositoryImplTest extends AbstractRepositoryImplTest<Long, Obr
 	 
 	private Tipo tipo;
 	private Estilo estilo;
+	private Autor autor;
 
 	    @Before
 	    @Override
@@ -37,8 +39,10 @@ public class ObraRepositoryImplTest extends AbstractRepositoryImplTest<Long, Obr
 	    	
 	    	tipo = new Tipo("cuadro");
 	    	estilo = new Estilo("cuadro");
+	    	autor = new Autor("autor1",1234);
 	    	em.persist(tipo);
 	    	em.persist(estilo);
+	    	em.persist(autor);
 	        
 	    }
 
@@ -48,11 +52,11 @@ public class ObraRepositoryImplTest extends AbstractRepositoryImplTest<Long, Obr
 	    	Obra obra = new Obra();
 	        
 	    	obra.setTitulo("titulo");
-	    	obra.setAutor("autor");
+	    	obra.setAutor(autor);
 	    	obra.setAnio(1900);
 	        obra.setTipo(tipo);
 	        obra.setEstilo(estilo);
-	        obra.setPrecio(1200);
+	        obra.setHabilitada(true);
 	        obra.setImagen("imagen");
 	        
 	        return obra;
@@ -65,11 +69,11 @@ public class ObraRepositoryImplTest extends AbstractRepositoryImplTest<Long, Obr
 	    	Obra obra = new Obra();
 	        
 	    	obra.setTitulo("titulo");
-	    	obra.setAutor("autor");
+	    	obra.setAutor(autor);
 	    	obra.setAnio(1900);
 	        obra.setTipo(tipo);
 	        obra.setEstilo(estilo);
-	        obra.setPrecio(1200);
+	        obra.setHabilitada(true);
 	        obra.setImagen("imagen");
 	        
 	        return obra;
@@ -85,11 +89,11 @@ public class ObraRepositoryImplTest extends AbstractRepositoryImplTest<Long, Obr
 	    	Obra obra = getInstanceDeTParaLectura();
 	        obra.setId(clave);
 	        obra.setTitulo("titulo");
-	    	obra.setAutor("autor");
+	    	obra.setAutor(autor);
 	    	obra.setAnio(1900);
 	        obra.setTipo(tipo);
 	        obra.setEstilo(estilo);
-	        obra.setPrecio(1200);
+	        obra.setHabilitada(true);
 	        obra.setImagen("imagen");
 	       
 	        return obra;
@@ -126,7 +130,7 @@ public class ObraRepositoryImplTest extends AbstractRepositoryImplTest<Long, Obr
 				return false;
 			}
 			
-			if (!(t1.getPrecio()==(t2.getPrecio()))) {
+			if (!t1.isHabilitada()==(t2.isHabilitada())) {
 				return false;
 			}
 			

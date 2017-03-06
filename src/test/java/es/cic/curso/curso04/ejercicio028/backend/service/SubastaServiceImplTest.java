@@ -22,26 +22,30 @@ import org.springframework.transaction.annotation.Transactional;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Autor;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
+import es.cic.curso.curso04.ejercicio028.backend.dominio.Subasta;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:es/cic/curso/curso04.ejercicio028/applicationContext.xml"})
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
 @Transactional
-public class ObraServiceImplTest {
+public class SubastaServiceImplTest {
 
     @PersistenceContext
 	protected EntityManager entityManager;
 	
 	@Autowired
-	private ObraService obraService;
+	private SubastaService subastaService;
 	 
 
 	private Obra obra1;
 	private Obra obra2;
 	private Obra obra3;
 	
-
+	private Subasta subasta1;
+	private Subasta subasta2;
+	private Subasta subasta3;
+	
 	private Tipo tipo1;
 	private Tipo tipo2;
 	private Tipo tipo3;
@@ -60,31 +64,31 @@ public class ObraServiceImplTest {
 	}
 
 	@Test
-	public void testAniadirObra() {
-		Obra historicoCreado = obraService.aniadirObra(obra2);
+	public void testAniadirSubasta() {
+		Subasta historicoCreado = subastaService.aniadirSubasta(subasta2);
 		assertNotNull(historicoCreado.getId());
 	}
 
 	@Test
-	public void testModificarObra() {
-		obra2.setTitulo("titulo");
-		obraService.modificarObra(obra2);
-		assertEquals(obra2.getTitulo(), "titulo");
+	public void testModificarSubasta() {
+		subasta2.setFechaFin("aa");
+		subastaService.modificarSubasta(subasta2);
+		assertEquals(subasta2.getFechaFin(), "aa");
 	}
 
 	@Test
 	public void testBorrarObra() {
-		Obra historicoABorrar = new Obra("titulo",autor1,1234,tipo1,estilo1,true,"imagen");
-		obraService.aniadirObra(historicoABorrar);
-		obraService.borrarObra(historicoABorrar.getId());
-		List<Obra> listaHistorico = obraService.listarObra();
-		assertEquals(listaHistorico.size(), 3);
+		Subasta subastaABorrar = new Subasta(obra1, 11, 22, "hoy", "mañana", true);
+		subastaService.aniadirSubasta(subastaABorrar);
+		subastaService.borrarSubasta(subastaABorrar.getId());
+		List<Subasta> listaSubasta = subastaService.listarSubasta();
+		assertEquals(listaSubasta.size(), 3);
 	}
 
 	@Test
-	public void testListarObra() {
-		List<Obra> listaHistorico = obraService.listarObra();
-		for (Obra u : listaHistorico) {
+	public void testListarSubasta() {
+		List<Subasta> listaSubasta = subastaService.listarSubasta();
+		for (Subasta u : listaSubasta) {
 			assertNotNull(u.getId());
 		}
 
@@ -124,6 +128,16 @@ public class ObraServiceImplTest {
 		entityManager.persist(obra1);
 		entityManager.persist(obra2);
 		entityManager.persist(obra3);
+		
+		subasta1 = new Subasta(obra1, 11, 22, "hoy", "mañana", true);
+		subasta2 = new Subasta(obra2, 11, 22, "hoy", "mañana", true);
+		subasta3 = new Subasta(obra3, 11, 22, "hoy", "mañana", true);
+		
+		entityManager.persist(subasta1);
+		entityManager.persist(subasta2);
+		entityManager.persist(subasta3);
+		
+		
 
 	}
 

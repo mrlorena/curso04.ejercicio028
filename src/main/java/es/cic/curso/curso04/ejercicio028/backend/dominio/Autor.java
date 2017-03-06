@@ -1,12 +1,14 @@
 package es.cic.curso.curso04.ejercicio028.backend.dominio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import es.cic.curso.curso04.ejercicio028.backend.repository.Identificable;
@@ -15,6 +17,11 @@ import es.cic.curso.curso04.ejercicio028.backend.repository.Identificable;
 @Table(name="AUTOR")
 public class Autor implements Identificable<Long> {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5556422682642816178L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
@@ -22,20 +29,20 @@ public class Autor implements Identificable<Long> {
 	@Column(name="NOMBRE")
 	private String nombre;
 	
-	@Column(name="APELLIDOS")
-	private String apellidos;
-	
 	@Column(name="FECHA_NACIMIENTO")
 	private int fechaNacimiento;
+	
+	@OneToMany(mappedBy = "autor")
+	private List<Obra> listaObras = new ArrayList<>();
+
 	
 	public Autor() {
 		super();
 	}
 
-	public Autor(String nombre, String apellidos, int fechaNacimiento) {
+	public Autor(String nombre, int fechaNacimiento) {
 		super();
 		this.nombre = nombre;
-		this.apellidos = apellidos;
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
@@ -57,14 +64,6 @@ public class Autor implements Identificable<Long> {
 		this.nombre = nombre;
 	}
 
-	public String getApellidos() {
-		return apellidos;
-	}
-
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
-	}
-
 	public int getFechaNacimiento() {
 		return fechaNacimiento;
 	}
@@ -72,6 +71,14 @@ public class Autor implements Identificable<Long> {
 	public void setFechaNacimiento(int fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
+	public List<Obra> getListaObras() {
+		return listaObras;
+	}
+
+	public void setListaObras(List<Obra> listaObras) {
+		this.listaObras = listaObras;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -100,9 +107,10 @@ public class Autor implements Identificable<Long> {
 
 	@Override
 	public String toString() {
-		return "Autor [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", fechaNacimiento="
+		return "Autor [id=" + id + ", nombre=" + nombre +  ", fechaNacimiento="
 				+ fechaNacimiento + "]";
 	}
 
+	
 	
 }

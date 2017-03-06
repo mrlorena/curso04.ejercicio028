@@ -2,18 +2,26 @@ package es.cic.curso.curso04.ejercicio028.backend.dominio;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import es.cic.curso.curso04.ejercicio028.backend.repository.Identificable;
 
+
 @Entity
 @Table(name="OBRA")
 public class Obra implements Identificable<Long> {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6777173737846819360L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -22,8 +30,9 @@ public class Obra implements Identificable<Long> {
 	@Column(name="TITULO")
 	private String titulo;
 	
-	@Column(name="AUTOR")
-	private String autor;
+	@JoinColumn(name = "AUTOR_ID")
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Autor autor;
 	
 	@Column(name="ANIO")
 	private int anio;
@@ -36,25 +45,27 @@ public class Obra implements Identificable<Long> {
 	@JoinColumn(name="ESTILO_ID")
 	private Estilo estilo;
 	
-	@Column(name="PRECIO")
-	private double precio;
+	@Column(name="HABILITADA")
+	private boolean habilitada;
 	
 	@Column(name="IMAGEN")
 	private String imagen;
 	
 	
+
+	
 	public Obra() {
 		super();
 	}
 	
-	public Obra(String titulo, String autor, int anio, Tipo tipo, Estilo estilo, double precio, String imagen) {
+	public Obra(String titulo, Autor autor, int anio, Tipo tipo, Estilo estilo, boolean habilitada, String imagen) {
 		super();
 		this.titulo = titulo;
 		this.autor = autor;
 		this.anio = anio;
 		this.tipo = tipo;
 		this.estilo = estilo;
-		this.precio = precio;
+		this.habilitada = habilitada;
 		this.imagen = imagen;
 	}
 
@@ -75,11 +86,11 @@ public class Obra implements Identificable<Long> {
 		this.titulo = titulo;
 	}
 
-	public String getAutor() {
+	public Autor getAutor() {
 		return autor;
 	}
 
-	public void setAutor(String autor) {
+	public void setAutor(Autor autor) {
 		this.autor = autor;
 	}
 
@@ -107,12 +118,12 @@ public class Obra implements Identificable<Long> {
 		this.estilo = estilo;
 	}
 
-	public double getPrecio() {
-		return precio;
+	public boolean isHabilitada() {
+		return habilitada;
 	}
 
-	public void setPrecio(double precio) {
-		this.precio = precio;
+	public void setHabilitada(boolean habilitada) {
+		this.habilitada = habilitada;
 	}
 
 	public String getImagen() {
@@ -151,9 +162,8 @@ public class Obra implements Identificable<Long> {
 	@Override
 	public String toString() {
 		return "Obra [id=" + id + ", titulo=" + titulo + ", autor=" + autor + ", anio=" + anio + ", tipo=" + tipo
-				+ ", estilo=" + estilo + ", precio=" + precio + ", imagen=" + imagen + "]";
+				+ ", estilo=" + estilo + ", precio=" + habilitada + ", imagen=" + imagen + "]";
 	}
 
-	
 	
 }

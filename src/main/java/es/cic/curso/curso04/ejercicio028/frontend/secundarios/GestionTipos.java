@@ -13,7 +13,6 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.NativeButton;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
-import es.cic.curso.curso04.ejercicio028.backend.service.ObraService;
 import es.cic.curso.curso04.ejercicio028.backend.service.TipoService;
 import es.cic.curso.curso04.ejercicio028.frontend.principal.MyUI;
 
@@ -25,8 +24,7 @@ public class GestionTipos extends HorizontalLayout {
 	private static final long serialVersionUID = -7897900102340873208L;
 	
 	private TipoService tipoService;
-	private ObraService obraService;
-	private List<Tipo> listaTipos = new ArrayList<>();
+	private List<Tipo> listaTipos;
 
 	private TiposForm detalleTipo;
 	private NativeButton aniadirTipo;
@@ -40,10 +38,10 @@ public class GestionTipos extends HorizontalLayout {
 		this.padre = padre;
 		
 		tipoService = ContextLoader.getCurrentWebApplicationContext().getBean(TipoService.class);	
-		obraService = ContextLoader.getCurrentWebApplicationContext().getBean(ObraService.class);	
 
 		listaTipos = new ArrayList<>();
 		listaTipos = tipoService.listarTipo();
+
 		System.out.println("44444"+listaTipos);
 		
 		aniadirTipo = new NativeButton("Añadir Tipo");
@@ -79,16 +77,16 @@ public class GestionTipos extends HorizontalLayout {
 	}
 
 	public void cargarTipos(Tipo tipo) {
-		listaTipos = tipoService.listarTipo();
+		//listaTipos = tipoService.listarTipo();
 		aniadirTipo.setVisible(true);
 		detalleTipo.setVisible(false);
 		
-		if(tipo!=null){
+		
 			gridTipos.setContainerDataSource(
 					new BeanItemContainer<>(Tipo.class, listaTipos)
 					);
 			detalleTipo.setTipo(null);
-		}
+		
 	
 	}
 }
