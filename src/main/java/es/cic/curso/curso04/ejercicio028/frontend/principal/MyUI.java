@@ -64,7 +64,7 @@ public class MyUI extends UI {
 		pestaniaPrincipal = new TabSheet();
 		pestaniaPrincipal.setHeight(100.0f, Unit.PERCENTAGE);
 		pestaniaPrincipal.addTab(hlSubastas, "SUBASTAS");
-		pestaniaPrincipal.addTab(hlGestion, "GESTIÓN DE OBRAS");
+		pestaniaPrincipal.addTab(hlGestion, "ADMINISTRACIÓN");
 
 		pestaniaGestion = new TabSheet();
 		pestaniaGestion.setHeight(100.0f, Unit.PERCENTAGE);

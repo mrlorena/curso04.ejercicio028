@@ -7,7 +7,6 @@ import org.springframework.web.context.ContextLoader;
 
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.server.FontAwesome;
-import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Grid.SelectionMode;
@@ -16,15 +15,11 @@ import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.VerticalLayout;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Autor;
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
 import es.cic.curso.curso04.ejercicio028.backend.dto.ObraConverter;
 import es.cic.curso.curso04.ejercicio028.backend.dto.ObraDTO;
 import es.cic.curso.curso04.ejercicio028.backend.service.AutorService;
-import es.cic.curso.curso04.ejercicio028.backend.service.EstiloService;
 import es.cic.curso.curso04.ejercicio028.backend.service.ObraService;
-import es.cic.curso.curso04.ejercicio028.backend.service.TipoService;
 import es.cic.curso.curso04.ejercicio028.frontend.principal.MyUI;
 
 public class GestionObras extends HorizontalLayout {
@@ -33,18 +28,13 @@ public class GestionObras extends HorizontalLayout {
 	 * 
 	 */
 	private static final long serialVersionUID = 2600433507457283447L;
-	private TipoService tipoService;
 	private ObraService obraService;
-	private EstiloService estiloService;
 	private AutorService autorService;
 
 	private ObrasForm detalleObras;
 	private List<ObraDTO> listaObras;
 	private List<Obra> listaObr;
 	private List<String> listaTitulos;
-	
-	private List<Tipo> listaTipos;
-	private List<Estilo> listaEstilos = new ArrayList<>();
 	private List<Autor> listaAutores;
 
 	private ObraConverter obraConverter = new ObraConverter();
@@ -53,7 +43,7 @@ public class GestionObras extends HorizontalLayout {
 	private NativeButton modificar;
 	private NativeButton cancelar;
 	private Grid gridObras;
-	
+
 	private final VerticalLayout extra;
 	private final VerticalLayout vertical;
 	private ComboBox titulos = new ComboBox();
@@ -64,10 +54,8 @@ public class GestionObras extends HorizontalLayout {
 	public GestionObras(MyUI padre) {
 		this.padre = padre;
 		obraService = ContextLoader.getCurrentWebApplicationContext().getBean(ObraService.class);
-		tipoService = ContextLoader.getCurrentWebApplicationContext().getBean(TipoService.class);
-		estiloService = ContextLoader.getCurrentWebApplicationContext().getBean(EstiloService.class);
 		autorService = ContextLoader.getCurrentWebApplicationContext().getBean(AutorService.class);
-		
+
 		vertical = new VerticalLayout();
 		vertical.setSpacing(true);
 
@@ -77,8 +65,6 @@ public class GestionObras extends HorizontalLayout {
 		listaObras = new ArrayList<>();
 		listaObr = new ArrayList<>();
 		listaTitulos = new ArrayList<>();
-		listaTipos = new ArrayList<>();
-		listaEstilos = new ArrayList<>();
 		listaAutores = new ArrayList<>();
 
 		listaObr = obraService.listarObra();
@@ -89,22 +75,18 @@ public class GestionObras extends HorizontalLayout {
 
 		}
 
-		listaTipos = tipoService.listarTipo();
-		listaEstilos = estiloService.listarEstilo();
 		listaAutores = autorService.listarAutor();
 
-		listaObras = obraConverter.entity2DTO(listaObr, listaTipos, listaEstilos, listaAutores);
+		listaObras = obraConverter.entity2DTO(listaObr, listaAutores);
 
 		aniadirObra = new NativeButton("Añadir Obra");
 		aniadirObra.setIcon(FontAwesome.PLUS);
-		
 
 		modificar = new NativeButton("modificar");
 		modificar.setIcon(FontAwesome.PENCIL);
 
 		cancelar = new NativeButton("Cancelar");
 		cancelar.setIcon(FontAwesome.REPLY);
-
 
 		gridObras = new Grid();
 		gridObras.setWidth(820, Unit.PIXELS);
@@ -120,18 +102,17 @@ public class GestionObras extends HorizontalLayout {
 			detalleObras.actualizarAutor();
 			aniadirObra();
 		});
-		
-		modificar.addClickListener(e -> {modificarObra();
-		
+
+		modificar.addClickListener(e -> {
+			modificarObra();
 
 		});
 
-		
-		vertical.addComponents(aniadirObra,modificar, extra, detalleObras);
+		vertical.addComponents(aniadirObra, modificar, extra, detalleObras);
 		addComponents(gridObras, vertical);
 
 		cargarObras(null);
-		
+
 	}
 
 	private void aniadirObra() {
@@ -142,7 +123,7 @@ public class GestionObras extends HorizontalLayout {
 
 		gridObras.setContainerDataSource(new BeanItemContainer<>(ObraDTO.class, listaObras));
 	}
-	
+
 	public void modificarObra() {
 		listaObr = obraService.listarObra();
 		listaTitulos.clear();
@@ -190,28 +171,27 @@ public class GestionObras extends HorizontalLayout {
 		});
 	}
 
-
 	public void cargarObras(Obra obra) {
 
 		aniadirObra.setVisible(true);
+		modificar.setVisible(true);
 		detalleObras.setVisible(false);
+		titulos.setVisible(false);
 
 		if (obra != null) {
-		
-			Autor autor = null;
+
+			listaObras.clear();
 
 			for (Autor a : listaAutores) {
 
 				if (obra.getAutor().getNombre().equals(a.getNombre())) {
-					autor = obra.getAutor();
-					
 					obraService.modificarObra(obra);
+
 				}
 			}
 
-			ObraDTO obraDTO = new ObraDTO();
-			obraDTO = obraConverter.entityToDto(obra, autor);
-			listaObras.add(obraDTO);
+			listaObras = obraConverter.entity2DTO(listaObr, listaAutores);
+
 		}
 
 		gridObras.setContainerDataSource(new BeanItemContainer<>(ObraDTO.class, listaObras));

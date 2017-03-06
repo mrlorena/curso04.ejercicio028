@@ -6,9 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Autor;
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Estilo;
 import es.cic.curso.curso04.ejercicio028.backend.dominio.Obra;
-import es.cic.curso.curso04.ejercicio028.backend.dominio.Tipo;
 
 @Component
 public class ObraConverter {
@@ -44,20 +42,15 @@ public class ObraConverter {
 		return resultado;
 	}
 
-	public List<ObraDTO> entity2DTO(List<Obra> obras, List<Tipo> tipos, List<Estilo> estilos, List<Autor> autores) {
+	public List<ObraDTO> entity2DTO(List<Obra> obras, List<Autor> autores) {
 		List<ObraDTO> resultado = new ArrayList<>();
 
 		for (Obra obra : obras) {
-			
-					for (Autor autor : autores) {
+			for (Autor autor : autores) {
 
-						resultado.add(entityToDto(obra, autor));
-						break;
-					}
-
-				
-
-		
+				resultado.add(entityToDto(obra, autor));
+				break;
+			}
 
 		}
 		return resultado;

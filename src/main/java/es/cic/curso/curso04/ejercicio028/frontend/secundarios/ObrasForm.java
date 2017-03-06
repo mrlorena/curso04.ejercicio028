@@ -195,7 +195,6 @@ public class ObrasForm extends FormLayout {
 
 			txTitulo.clear();
 			txImagen.clear();
-		//	txAnio.clear();
 			habilitada.clear();
 			cbAutores.clear();
 			cbEstilos.clear();
@@ -207,10 +206,6 @@ public class ObrasForm extends FormLayout {
 		cancelar.addClickListener(e -> {
 
 			padre.cargarObras(null);
-			/*txTitulo.clear();
-			txImagen.clear();
-			txAnio.clear();
-			habilitada.clear();*/
 
 			cbEstilos.setVisible(false);
 			cbTipos.setVisible(false);
